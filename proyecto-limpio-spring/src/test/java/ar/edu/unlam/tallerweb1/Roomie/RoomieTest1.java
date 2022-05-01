@@ -1,4 +1,4 @@
-package ar.edu.unlam.tallerweb1.Test;
+package ar.edu.unlam.tallerweb1.Roomie;
 import  org.junit.Test;
 import static org.assertj.core.api.Assertions.*;
 
