@@ -21,7 +21,7 @@ public class RoomieTest1 {
     private String pass2 = "iuwshefw";
     private String mail2 = "pablo@gamil.com";
     private Integer edad2 = 30;
-    private Boolean recibirDonacion2 = false;
+    private Boolean recibirDonacion2 = true;
 
     Roomie roomie2 = new Roomie(id2, nombre2, apellido2, nick2, pass2, mail2, edad2, recibirDonacion2);
 
@@ -61,8 +61,28 @@ public class RoomieTest1 {
         //VERPUNTUACION DEBERIA MOSTRAR EL PORCENTAJE DE PUNTUACION TOTAL
         assertThat(roomie2.verPuntuacion()).isEqualTo(25.0);
     }
+    @Test
+    public void queUnRoomiePuedaDonar() {
+       Double donacion =500.0;
+        roomie.donarAOtroRoomie(roomie2,donacion);
+        roomie3.donarAOtroRoomie(roomie2,200.0);
+        Roomie roomie2 = new Roomie(id2, nombre2, apellido2, nick2, pass2, mail2, edad2, recibirDonacion2);
+        Roomie roomie3 = new Roomie(id2, nombre2, apellido2, nick2, pass2, mail2, edad2, recibirDonacion2);
+
+        entoncesSePudoDonar();
 
 
 
 
+    }
+
+    private void entoncesSePudoDonar() {
+
+        assertThat(roomie2.getBilleteraDeDonaciones()).isEqualTo(700.0);
+
+    }
 }
+
+
+
+

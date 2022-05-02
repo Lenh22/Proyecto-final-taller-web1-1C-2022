@@ -5,12 +5,14 @@ public class Roomie extends Usuario{
     private Boolean recibirDonacion;
     private double puntaje;
     private double cantidadTotalPuntuada;
+    private double billeteraDeDonaciones;
 
     public Roomie(Integer id, String nombre, String apellido, String nick, String pass, String mail, Integer edad, Boolean recibirDonacion) {
         super(id, nombre, apellido, nick, pass, mail, edad);
         this.recibirDonacion = recibirDonacion;
         this.puntaje = 0.0;
         this.cantidadTotalPuntuada = 0.0;
+        this.billeteraDeDonaciones=0.0;
     }
 
     public void puntuar(Roomie roomie2, Boolean puntuacion) {
@@ -37,4 +39,25 @@ public class Roomie extends Usuario{
         return resultado;
 
     }
+    public void donarAOtroRoomie(Roomie otro, Double donacion){
+        if(otro.getRecibirDonacion()==true) {
+            otro.billeteraDeDonaciones += donacion;
+
+        }else {
+            otro.billeteraDeDonaciones=0.0;
+        }
+
+
+
+    }
+
+    public Double getBilleteraDeDonaciones() {
+        return billeteraDeDonaciones;
+    }
+
+    public Boolean getRecibirDonacion() {
+        return recibirDonacion;
+    }
+
 }
+
