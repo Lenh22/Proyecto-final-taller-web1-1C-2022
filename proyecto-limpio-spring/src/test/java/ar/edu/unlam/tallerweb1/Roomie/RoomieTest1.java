@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.Roomie;
 import  org.junit.Test;
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.Assert.assertTrue;
 
 public class RoomieTest1 {
 
@@ -11,8 +12,10 @@ public class RoomieTest1 {
     private String pass = "hola123";
     private String mail = "juan@gamil.com";
     private Integer edad = 20;
+
+    private Double ingreso =10.0;
     private Boolean recibirDonacion = true;
-    Roomie roomie = new Roomie(id, nombre, apellido, nick, pass, mail, edad, recibirDonacion);
+    Roomie roomie = new Roomie(id, nombre, apellido, nick, pass, mail, edad, ingreso, recibirDonacion);
 
     private Integer id2 = 2;
     private String nombre2 = "Pablo";
@@ -23,11 +26,15 @@ public class RoomieTest1 {
     private Integer edad2 = 30;
     private Boolean recibirDonacion2 = true;
 
-    Roomie roomie2 = new Roomie(id2, nombre2, apellido2, nick2, pass2, mail2, edad2, recibirDonacion2);
+    private Double ingreso2 = 10.0;
 
-    Roomie roomie3 = new Roomie(2, "Maria", apellido2, nick2, pass2, mail2, edad2, recibirDonacion2);
-    Roomie roomie4 = new Roomie(3, nombre2, apellido2, nick2, pass2, mail2, edad2, recibirDonacion2);
-    Roomie roomie5 = new Roomie(4, nombre2, apellido2, nick2, pass2, mail2, edad2, recibirDonacion2);
+    private Double minimoVitalmovil = 100.0;
+
+    Roomie roomie2 = new Roomie(id2, nombre2, apellido2, nick2, pass2, mail2, edad2, ingreso2, recibirDonacion2);
+
+    Roomie roomie3 = new Roomie(2, "Maria", apellido2, nick2, pass2, mail2, edad2,ingreso2, recibirDonacion2);
+    Roomie roomie4 = new Roomie(3, nombre2, apellido2, nick2, pass2, mail2, edad2,ingreso2, recibirDonacion2);
+    Roomie roomie5 = new Roomie(4, nombre2, apellido2, nick2, pass2, mail2, edad2,ingreso2, recibirDonacion2);
 
     @Test
     public void queSePuedaPuntuarAUnRoomie(){
@@ -53,6 +60,7 @@ public class RoomieTest1 {
         entoncesSePudoPuntuar2();
     }
 
+
     private void entoncesSePudoPuntuar(){
         //VERPUNTUACION DEBERIA MOSTRAR EL PORCENTAJE DE PUNTUACION TOTAL
         assertThat(roomie2.verPuntuacion()).isEqualTo(100);
@@ -61,13 +69,22 @@ public class RoomieTest1 {
         //VERPUNTUACION DEBERIA MOSTRAR EL PORCENTAJE DE PUNTUACION TOTAL
         assertThat(roomie2.verPuntuacion()).isEqualTo(25.0);
     }
+
+    @Test
+    public void puedeRecibirDonaciones(){
+
+        Roomie rommie = new Roomie(id,nombre,apellido,nick,pass,mail,edad,ingreso,recibirDonacion);
+
+        assertTrue(rommie.recibeDonacion(roomie,minimoVitalmovil));
+    }
+
     @Test
     public void queUnRoomiePuedaDonar() {
-       Double donacion =500.0;
+        Double donacion =500.0;
         roomie.donarAOtroRoomie(roomie2,donacion);
         roomie3.donarAOtroRoomie(roomie2,200.0);
-        Roomie roomie2 = new Roomie(id2, nombre2, apellido2, nick2, pass2, mail2, edad2, recibirDonacion2);
-        Roomie roomie3 = new Roomie(id2, nombre2, apellido2, nick2, pass2, mail2, edad2, recibirDonacion2);
+        Roomie roomie2 = new Roomie(id2, nombre2, apellido2, nick2, pass2, mail2, edad2, ingreso, recibirDonacion2);
+        Roomie roomie3 = new Roomie(id2, nombre2, apellido2, nick2, pass2, mail2, edad2, ingreso,recibirDonacion2);
 
         entoncesSePudoDonar();
 

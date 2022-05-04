@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.Roomie;
 
 public class Usuario {
+    public float getingresos;
     private Integer id;
     private String nombre;
     private String apellido;
