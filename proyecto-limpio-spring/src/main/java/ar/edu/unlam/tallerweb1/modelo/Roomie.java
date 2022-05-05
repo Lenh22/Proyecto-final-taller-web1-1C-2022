@@ -1,6 +1,8 @@
-package ar.edu.unlam.tallerweb1.Roomie;
+package ar.edu.unlam.tallerweb1.modelo;
 
-public class Roomie extends Usuario{
+import ar.edu.unlam.tallerweb1.Roomie.Usuario;
+
+public class Roomie extends Usuario {
 
     private Boolean recibirDonacion;
 

@@ -1,4 +1,5 @@
 package ar.edu.unlam.tallerweb1.Roomie;
+import ar.edu.unlam.tallerweb1.modelo.Roomie;
 import  org.junit.Test;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.Assert.assertTrue;

@@ -1,6 +1,8 @@
-package ar.edu.unlam.tallerweb1.Roomie;
+package ar.edu.unlam.tallerweb1.modelo;
 
-public class Propietario extends Usuario{
+import ar.edu.unlam.tallerweb1.Roomie.Usuario;
+
+public class Propietario extends Usuario {
 
     private Vivienda vivienda;
 

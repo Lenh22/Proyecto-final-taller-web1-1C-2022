@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.Roomie;
 
+import ar.edu.unlam.tallerweb1.modelo.CaracteristicasDeUsuario;
+
 public class Usuario {
 
     private Integer id;
