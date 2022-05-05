@@ -1,9 +1,6 @@
 package ar.edu.unlam.tallerweb1.Roomie;
 
-import ar.edu.unlam.tallerweb1.modelo.Alquiler;
-import ar.edu.unlam.tallerweb1.modelo.Propietario;
-import ar.edu.unlam.tallerweb1.modelo.Roomie;
-import ar.edu.unlam.tallerweb1.modelo.Vivienda;
+import ar.edu.unlam.tallerweb1.modelo.*;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.*;
