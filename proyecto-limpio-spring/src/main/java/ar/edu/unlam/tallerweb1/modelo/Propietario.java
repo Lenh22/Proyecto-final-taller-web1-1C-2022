@@ -8,8 +8,8 @@ public class Propietario extends Usuario {
 
 
 
-    public Propietario(Integer id, String nombre, String apellido, String nick, String pass, String mail, Integer edad, Vivienda vivienda){
-        super(id, nombre, apellido, nick, pass, mail, edad);
+    public Propietario(Integer id, String nombre, String apellido, String pass, String mail, Integer edad, Vivienda vivienda){
+        super(id, nombre, apellido, pass, mail, edad);
         this.vivienda=vivienda;
 
 

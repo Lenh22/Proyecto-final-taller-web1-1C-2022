@@ -9,19 +9,17 @@ public class RoomieTest1 {
     private Integer id = 1;
     private String nombre = "Juan";
     private String apellido = "Perez";
-    private String nick = "JuanPe";
     private String pass = "hola123";
     private String mail = "juan@gamil.com";
     private Integer edad = 20;
 
     private Double ingreso =10.0;
     private Boolean recibirDonacion = true;
-    Roomie roomie = new Roomie(id, nombre, apellido, nick, pass, mail, edad, ingreso, recibirDonacion);
+    Roomie roomie = new Roomie(id, nombre, apellido, pass, mail, edad, ingreso, recibirDonacion);
 
     private Integer id2 = 2;
     private String nombre2 = "Pablo";
     private String apellido2 = "Gonzalez";
-    private String nick2 = "PabloGonza";
     private String pass2 = "iuwshefw";
     private String mail2 = "pablo@gamil.com";
     private Integer edad2 = 30;
@@ -31,11 +29,11 @@ public class RoomieTest1 {
 
     private Double minimoVitalmovil = 100.0;
 
-    Roomie roomie2 = new Roomie(id2, nombre2, apellido2, nick2, pass2, mail2, edad2, ingreso2, recibirDonacion2);
+    Roomie roomie2 = new Roomie(id2, nombre2, apellido2, pass2, mail2, edad2, ingreso2, recibirDonacion2);
 
-    Roomie roomie3 = new Roomie(2, "Maria", apellido2, nick2, pass2, mail2, edad2,ingreso2, recibirDonacion2);
-    Roomie roomie4 = new Roomie(3, nombre2, apellido2, nick2, pass2, mail2, edad2,ingreso2, recibirDonacion2);
-    Roomie roomie5 = new Roomie(4, nombre2, apellido2, nick2, pass2, mail2, edad2,ingreso2, recibirDonacion2);
+    Roomie roomie3 = new Roomie(2, "Maria", apellido2, pass2, mail2, edad2,ingreso2, recibirDonacion2);
+    Roomie roomie4 = new Roomie(3, nombre2, apellido2, pass2, mail2, edad2,ingreso2, recibirDonacion2);
+    Roomie roomie5 = new Roomie(4, nombre2, apellido2, pass2, mail2, edad2,ingreso2, recibirDonacion2);
 
     @Test
     public void queSePuedaPuntuarAUnRoomie(){
@@ -74,7 +72,7 @@ public class RoomieTest1 {
     @Test
     public void puedeRecibirDonaciones(){
 
-        Roomie rommie = new Roomie(id,nombre,apellido,nick,pass,mail,edad,ingreso,recibirDonacion);
+        Roomie rommie = new Roomie(id,nombre,apellido,pass,mail,edad,ingreso,recibirDonacion);
 
         assertTrue(rommie.recibeDonacion(roomie,minimoVitalmovil));
     }
@@ -84,8 +82,8 @@ public class RoomieTest1 {
         Double donacion =500.0;
         roomie.donarAOtroRoomie(roomie2,donacion);
         roomie3.donarAOtroRoomie(roomie2,200.0);
-        Roomie roomie2 = new Roomie(id2, nombre2, apellido2, nick2, pass2, mail2, edad2, ingreso, recibirDonacion2);
-        Roomie roomie3 = new Roomie(id2, nombre2, apellido2, nick2, pass2, mail2, edad2, ingreso,recibirDonacion2);
+        Roomie roomie2 = new Roomie(id2, nombre2, apellido2, pass2, mail2, edad2, ingreso, recibirDonacion2);
+        Roomie roomie3 = new Roomie(id2, nombre2, apellido2, pass2, mail2, edad2, ingreso,recibirDonacion2);
 
         entoncesSePudoDonar();
 
