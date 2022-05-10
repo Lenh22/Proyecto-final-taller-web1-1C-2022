@@ -1,6 +1,8 @@
-package ar.edu.unlam.tallerweb1.Roomie;
+package ar.edu.unlam.tallerweb1.modelo;
 
-public class Roomie extends Usuario{
+import ar.edu.unlam.tallerweb1.Roomie.Usuario;
+
+public class Roomie extends Usuario {
 
     private Boolean recibirDonacion;
 
@@ -9,8 +11,8 @@ public class Roomie extends Usuario{
     private double cantidadTotalPuntuada;
     private double billeteraDeDonaciones;
 
-    public Roomie(Integer id, String nombre, String apellido, String nick, String pass, String mail, Integer edad, Double ingreso ,Boolean recibirDonacion) {
-        super(id, nombre, apellido, nick, pass, mail, edad);
+    public Roomie(Integer id, String nombre, String apellido, String pass, String mail, Integer edad, Double ingreso ,Boolean recibirDonacion) {
+        super(id, nombre, apellido, pass, mail, edad);
         this.ingreso = ingreso;
         this.recibirDonacion = recibirDonacion;
         this.puntaje = 0.0;
