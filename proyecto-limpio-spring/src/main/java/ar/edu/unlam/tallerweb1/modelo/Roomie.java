@@ -1,6 +1,9 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import ar.edu.unlam.tallerweb1.Roomie.Atributo;
 import ar.edu.unlam.tallerweb1.Roomie.Usuario;
+
+import java.util.*;
 
 public class Roomie extends Usuario {
 
@@ -10,6 +13,8 @@ public class Roomie extends Usuario {
     private double puntaje;
     private double cantidadTotalPuntuada;
     private double billeteraDeDonaciones;
+    //Tengo dudas de q sea un ArrayList o un TreeSet
+    private TreeSet<Atributo> atributos= new TreeSet<>();
 
     public Roomie(Integer id, String nombre, String apellido, String pass, String mail, Integer edad, Double ingreso ,Boolean recibirDonacion) {
         super(id, nombre, apellido, pass, mail, edad);
@@ -75,7 +80,13 @@ public class Roomie extends Usuario {
     }
 
 
-
+    public void agregarAtributo(Atributo atributo) {
+        atributos.add(atributo);
     }
+
+    public TreeSet<Atributo> mostrarAtributos(){
+    return atributos;
+    }
+}
 
 
