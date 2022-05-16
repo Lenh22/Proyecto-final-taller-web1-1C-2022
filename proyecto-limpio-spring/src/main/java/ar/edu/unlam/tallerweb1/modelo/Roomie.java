@@ -1,7 +1,6 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
-import ar.edu.unlam.tallerweb1.Roomie.Atributo;
-import ar.edu.unlam.tallerweb1.Roomie.Usuario;
+import ar.edu.unlam.tallerweb1.modelo.Atributo;
 
 import java.util.*;
 
@@ -14,28 +13,73 @@ public class Roomie extends Usuario {
     private double cantidadTotalPuntuada;
     private double billeteraDeDonaciones;
 
-
-
     //Tengo dudas de q sea un ArrayList o un TreeSet
     private TreeSet<Atributo> atributos= new TreeSet<>();
-
-
     public void setCoincidencia(double coincidencia) {
         this.coincidencia = coincidencia;
     }
 
     private double coincidencia;
 
-
-
-    public Roomie(Integer id, String nombre, String apellido, String pass, String mail, Integer edad, Double ingreso , Boolean recibirDonacion) {
-        super(id, nombre, apellido, pass, mail, edad);
+    /*public Roomie(String nombre, String apellido, String password, String mail, Integer edad, Double ingreso , Boolean recibirDonacion) {
+        super( nombre, apellido, password, mail, edad);
         this.ingreso = ingreso;
         this.recibirDonacion = recibirDonacion;
         this.puntaje = 0.0;
         this.cantidadTotalPuntuada = 0.0;
         this.billeteraDeDonaciones=0.0;
+    }*/
 
+    public Roomie() {
+    }
+
+    public Roomie(String nombre, String apellido, Integer edad, String email, String password, Boolean recibirDonacion, double ingreso, double puntaje, double cantidadTotalPuntuada, double billeteraDeDonaciones) {
+        super(nombre, apellido, edad, email, password);
+        this.recibirDonacion = recibirDonacion;
+        this.ingreso = ingreso;
+        this.puntaje = puntaje;
+        this.cantidadTotalPuntuada = cantidadTotalPuntuada;
+        this.billeteraDeDonaciones = billeteraDeDonaciones;
+    }
+
+    public void setRecibirDonacion(Boolean recibirDonacion) {
+        this.recibirDonacion = recibirDonacion;
+    }
+
+    public double getIngreso() {
+        return ingreso;
+    }
+
+    public void setIngreso(double ingreso) {
+        this.ingreso = ingreso;
+    }
+
+    public double getPuntaje() {
+        return puntaje;
+    }
+
+    public void setPuntaje(double puntaje) {
+        this.puntaje = puntaje;
+    }
+
+    public double getCantidadTotalPuntuada() {
+        return cantidadTotalPuntuada;
+    }
+
+    public void setCantidadTotalPuntuada(double cantidadTotalPuntuada) {
+        this.cantidadTotalPuntuada = cantidadTotalPuntuada;
+    }
+
+    public void setBilleteraDeDonaciones(double billeteraDeDonaciones) {
+        this.billeteraDeDonaciones = billeteraDeDonaciones;
+    }
+
+    public TreeSet<Atributo> getAtributos() {
+        return atributos;
+    }
+
+    public void setAtributos(TreeSet<Atributo> atributos) {
+        this.atributos = atributos;
     }
 
     public void puntuar(Roomie roomie2, Boolean puntuacion) {
