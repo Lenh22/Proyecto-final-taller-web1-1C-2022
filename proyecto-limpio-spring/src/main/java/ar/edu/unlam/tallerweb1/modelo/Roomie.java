@@ -13,16 +13,29 @@ public class Roomie extends Usuario {
     private double puntaje;
     private double cantidadTotalPuntuada;
     private double billeteraDeDonaciones;
+
+
+
     //Tengo dudas de q sea un ArrayList o un TreeSet
     private TreeSet<Atributo> atributos= new TreeSet<>();
 
-    public Roomie(Integer id, String nombre, String apellido, String pass, String mail, Integer edad, Double ingreso ,Boolean recibirDonacion) {
+
+    public void setCoincidencia(double coincidencia) {
+        this.coincidencia = coincidencia;
+    }
+
+    private double coincidencia;
+
+
+
+    public Roomie(Integer id, String nombre, String apellido, String pass, String mail, Integer edad, Double ingreso , Boolean recibirDonacion) {
         super(id, nombre, apellido, pass, mail, edad);
         this.ingreso = ingreso;
         this.recibirDonacion = recibirDonacion;
         this.puntaje = 0.0;
         this.cantidadTotalPuntuada = 0.0;
         this.billeteraDeDonaciones=0.0;
+
     }
 
     public void puntuar(Roomie roomie2, Boolean puntuacion) {
@@ -87,6 +100,14 @@ public class Roomie extends Usuario {
     public TreeSet<Atributo> mostrarAtributos(){
     return atributos;
     }
+    public double getCoincidencia() {
+        return coincidencia;
+    }
+
+
+
+
 }
+
 
 

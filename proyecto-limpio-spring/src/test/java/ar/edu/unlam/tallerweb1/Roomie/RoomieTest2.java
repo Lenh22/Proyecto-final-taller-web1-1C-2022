@@ -28,17 +28,17 @@ public class RoomieTest2 {
 
     }
 
-    @Test
+   /* @Test
     public void queSePuedanCompararDosRoomies(){
         roomie1.agregarAtributo(Atributo.FUMADOR);
         roomie2.agregarAtributo(Atributo.FUMADOR);
 //Se crea una clase coincidencia para comparacion de 2 objetos Roomie
         Coincidencia coincidencia = new Coincidencia();
 //La comparacion deberia retornar el porcentaje que machean
-        Double resultado= coincidencia.compararCoincidencia(roomie1,roomie2);
+       /* Double resultado= coincidencia.compararCoincidencia(roomie1,roomie2);
 
-        assertThat(resultado).isEqualTo(100.0);
-    }
+        assertThat(resultado).isEqualTo(100.0);*/
+
     /*
     @Test
     public void queSePuedanCompararRoomieYVivienda(){
@@ -49,4 +49,23 @@ public class RoomieTest2 {
         assertThat(resultado).isEqualTo(60.0);
     }*/
 
+
+
+    @Test
+    public void porcentajeDeMatcheo(){
+
+
+
+
+        roomie2.agregarAtributo(Atributo.NOCTURNO);
+
+        roomie1.agregarAtributo(Atributo.DIURNO);
+
+
+        Coincidencia coincidencia = new Coincidencia();
+
+       Double resultado= coincidencia.matcheoDeRoomie(roomie1,roomie2);
+
+        assertThat(resultado).isEqualTo(0.0);
+    }
 }
