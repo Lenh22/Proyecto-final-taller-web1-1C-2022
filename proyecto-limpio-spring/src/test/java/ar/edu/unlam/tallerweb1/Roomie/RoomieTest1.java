@@ -78,9 +78,17 @@ public class RoomieTest1 {
     @Test
     public void puedeRecibirDonaciones(){
 
-        Roomie rommie = new Roomie(nombre,apellido,edad,mail,pass,recibirDonacion,ingreso,0.0,0.0,0.0);
+       // Roomie rommie = new Roomie(nombre,apellido,edad,mail,pass,recibirDonacion,ingreso,0.0,0.0,0.0);
 
-        assertTrue(rommie.recibeDonacion(roomie,minimoVitalmovil));
+        //assertTrue(rommie.recibeDonacion(roomie,minimoVitalmovil));
+
+
+            Roomie rommie = new Roomie(nombre2,apellido2,edad2,mail2,pass2,recibirDonacion2,ingreso2,0.0,0.0,0.0);
+
+
+            assertThat(roomie.getRecibirDonacion()).isTrue();
+
+
     }
 
     @Test
