@@ -82,20 +82,11 @@ public class Roomie extends Usuario {
         this.atributos = atributos;
     }
 
-    public void puntuar(Roomie roomie2, Boolean puntuacion) {
-
-        if (puntuacion == true) {
-            roomie2.subirPuntaje();
-        } else {
-            roomie2.bajarPuntaje();
-        }
-    }
-
-    private void bajarPuntaje() {
+    public void bajarPuntaje() {
         this.cantidadTotalPuntuada++;
     }
 
-    private void subirPuntaje() {
+    public void subirPuntaje() {
         this.cantidadTotalPuntuada++;
         this.puntaje++;
     }
