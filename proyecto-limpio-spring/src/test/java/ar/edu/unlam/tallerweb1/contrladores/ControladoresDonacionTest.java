@@ -25,17 +25,20 @@ public class ControladoresDonacionTest {
 
         //verificacion
 
-        entoncesEncuentro(mav.getModel().get("donatarios"));
-        entoncesMeLLevaALaVista("listadoDonatario",mav.getViewName());
+        entoncesEncuentro((List<Roomie>) mav.getModel().get("donatarios"), 10);
+
+        entoncesMeLLevaALaVista("listadoDeDonatarios",mav.getViewName());
    
+    }
+
+    @Test
+    public void validarPedirUnTipoValidoLleveAlaPantallaError(){
+        dadoQueExisteDonatario(10);
     }
 
     private void entoncesMeLLevaALaVista(String vistaEsperada, String vistasRecibida) {
     assertThat(vistasRecibida).isEqualTo(vistasRecibida);
 
-    }
-
-    private void entoncesEncuentro(Object donatarios) {
     }
 
     private void entoncesEncuentro(List<Roomie> lista, int catidadEsperada) {

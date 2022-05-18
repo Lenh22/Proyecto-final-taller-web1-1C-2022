@@ -98,16 +98,17 @@ public class Roomie extends Usuario {
         return resultado;
 
     }
-    public boolean recibeDonacion(Roomie otro, Double minimovitalmovil) {
+    /*
+   public boolean recibeDonacion(Roomie otro, Double minimovitalmovil) {
 
 
-        if (otro.ingreso < minimovitalmovil) {
-            return recibirDonacion = true;
+       if (otro.ingreso < minimovitalmovil) {
+           return recibirDonacion = true;
         } else {
             return recibirDonacion = false;
-        }
+       }
     }
-
+*/
     public void donarAOtroRoomie(Roomie otro, Double donacion){
         if(otro.getRecibirDonacion()==true) {
             otro.billeteraDeDonaciones += donacion;
