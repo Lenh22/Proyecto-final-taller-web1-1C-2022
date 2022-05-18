@@ -15,8 +15,11 @@
             <h3 class="form-signin-heading">Nuevo Usuario</h3>
             <hr class="colorgraph"><br>
 
-            <form:input path="email" id="email" class="form-control" />
-            <form:input path="clave" type="password" id="clave" class="form-control"/>
+            <form:input path="nombre" type="text" id="nombre" class="form-control" />
+            <form:input path="apellido" type="text" id="apellido" class="form-control" />
+            <form:input path="edad" type="numbre" id="edad" class="form-control" />
+            <form:input path="email" type="email" id="email" class="form-control" />
+            <form:input path="password" type="password" id="password" class="form-control"/>
 
             <button id="btn-registrarme" class="btn btn-lg btn-primary btn-block" Type="Submit"/>Registrarme</button>
         </form:form>

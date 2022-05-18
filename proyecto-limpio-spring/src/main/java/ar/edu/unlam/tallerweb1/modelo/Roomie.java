@@ -15,6 +15,7 @@ public class Roomie extends Usuario {
 
     //Tengo dudas de q sea un ArrayList o un TreeSet
     private TreeSet<Atributo> atributos= new TreeSet<>();
+
     public void setCoincidencia(double coincidencia) {
         this.coincidencia = coincidencia;
     }

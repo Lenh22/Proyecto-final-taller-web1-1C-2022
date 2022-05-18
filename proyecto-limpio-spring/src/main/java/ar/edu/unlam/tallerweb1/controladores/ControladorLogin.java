@@ -40,6 +40,18 @@ public class ControladorLogin {
 		return new ModelAndView("login", modelo);
 	}
 
+	@RequestMapping("/registro-usuario")
+	public ModelAndView irARegistro() {
+
+		ModelMap modelo = new ModelMap();
+		// Se agrega al modelo un objeto con key 'datosLogin' para que el mismo sea asociado
+		// al model attribute del form que esta definido en la vista 'login'
+		modelo.put("usuario", new Usuario());
+		// Se va a la vista login (el nombre completo de la lista se resuelve utilizando el view resolver definido en el archivo spring-servlet.xml)
+		// y se envian los datos a la misma  dentro del modelo
+		return new ModelAndView("registro-usuario", modelo);
+	}
+
 	// Este metodo escucha la URL validar-login siempre y cuando se invoque con metodo http POST
 	// El metodo recibe un objeto Usuario el que tiene los datos ingresados en el form correspondiente y se corresponde con el modelAttribute definido en el
 	// tag form:form
