@@ -9,4 +9,6 @@ public interface IRepositorioEmparejamiento {
     List<Roomie> ObtenerRoomies();
 
     Roomie ObtenerRoomiePorId(Long id);
+
+    void AgregarRoomie(Roomie roomie);
 }
