@@ -13,7 +13,7 @@ import java.util.List;
 @Table(name = "propietario")
 public class Propietario extends Usuario {
 
-    @OneToMany(mappedBy = "Prpietario", cascade = CascadeType.ALL)
+    @OneToMany
     private List<Vivienda> vivienda;
 
     public Propietario(String nombre, String apellido, Integer edad, String email, String password, String rol, Boolean activo) {

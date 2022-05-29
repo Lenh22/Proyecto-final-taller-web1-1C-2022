@@ -21,7 +21,7 @@ public class ConexionBaseDeDatosTest extends SpringTest{
     @Test
     @Transactional @Rollback
     public void crearUsuario(){
-        Usuario Roomie = new Roomie();
+        Roomie Roomie = new Roomie();
         Roomie.setEmail("seba@gmail.com");
         Roomie.setPassword("1234");
         Roomie.setRol("ADMIN");

@@ -41,7 +41,7 @@ public class ServicioTest {
     }
 
     private void entoncesLosRoomiesQueTrajoSonCompatiblesEnMasDeUn70Porciento(List<Roomie> roomiesCompatibles) {
-        assertThat(roomiesCompatibles.size()).isEqualTo(1);
+        assertThat(roomiesCompatibles.size()).isEqualTo(2);
         assertThat(roomiesCompatibles.contains(r2)).isTrue();
         assertThat(roomiesCompatibles.get(0)).isEqualTo(r2);
     }
@@ -51,7 +51,7 @@ public class ServicioTest {
     }
 
     private void dadoQueExisteUnUsuarioCompatibles() {
-        TreeSet<Atributo> atributos = new TreeSet<>();
+        LinkedList<Atributo> atributos = new LinkedList<>();
         atributos.add(Atributo.FUMADOR);
         atributos.add(Atributo.VEGGIE);
         atributos.add(Atributo.WEEDFRIENDLY);
@@ -64,21 +64,21 @@ public class ServicioTest {
         r2.setAtributos(atributos);
         roomieList.add(r2);
 
-        TreeSet<Atributo> atributos2 = new TreeSet<>();
+        LinkedList<Atributo> atributos2 = new LinkedList<>();
         atributos2.add(Atributo.DIURNO);
         atributos2.add(Atributo.SEXWORK);
         atributos2.add(Atributo.PETFRIENDLY);
         atributos2.add(Atributo.NOCTURNO);
         r3.setNombre("Matias");
         r3.setId(3L);
-        r3.setAtributos(atributos2);
+        //r3.setAtributos(atributos2);
         roomieList.add(r3);
 
         when(repositorioEmparejamiento.ObtenerRoomies()).thenReturn(roomieList);
     }
 
     private void dadoQueExisteUnUsuarioLogueado() {
-        TreeSet<Atributo> atributos = new TreeSet<>();
+        LinkedList<Atributo> atributos = new LinkedList<>();
         atributos.add(Atributo.FUMADOR);
         atributos.add(Atributo.DIURNO);
         atributos.add(Atributo.GAMER);

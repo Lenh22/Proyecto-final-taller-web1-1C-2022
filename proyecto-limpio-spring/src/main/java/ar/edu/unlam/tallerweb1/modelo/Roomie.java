@@ -16,9 +16,8 @@ public class Roomie extends Usuario {
     private double cantidadTotalPuntuada;
     private double billeteraDeDonaciones;
     @ElementCollection
-    private TreeSet<Atributo> atributos= new TreeSet<>();
-    @ManyToOne
-    @JoinColumn(name = "alquiler_id")
+    private List<Atributo> atributos;
+    @ManyToOne(optional = true)
     private  Alquiler alquiler;
 
     public Roomie() { }
@@ -26,7 +25,7 @@ public class Roomie extends Usuario {
     //Constructor para un roomie con la lista de atributos ya armadas
     public Roomie(String nombre, String apellido, Integer edad, String email, String password, String rol
             , Boolean activo, Boolean recibirDonacion, double ingreso, double puntaje, double cantidadTotalPuntuada
-            , double billeteraDeDonaciones, TreeSet<Atributo> atributos) {
+            , double billeteraDeDonaciones, LinkedList<Atributo> atributos) {
         super(nombre, apellido, edad, email, password, rol, activo);
         this.recibirDonacion = recibirDonacion;
         this.ingreso = ingreso;
@@ -46,7 +45,7 @@ public class Roomie extends Usuario {
         this.puntaje = puntaje;
         this.cantidadTotalPuntuada = cantidadTotalPuntuada;
         this.billeteraDeDonaciones = billeteraDeDonaciones;
-        this.atributos = new TreeSet<Atributo>();
+        //this.atributos = new List<Atributo>();
     }
 
     //Constructor para armar un roomie,  solo con los atributos de usuarios
@@ -86,11 +85,11 @@ public class Roomie extends Usuario {
         this.billeteraDeDonaciones = billeteraDeDonaciones;
     }
 
-    public TreeSet<Atributo> getAtributos() {
+    public List<Atributo> getAtributos() {
         return atributos;
     }
 
-    public void setAtributos(TreeSet<Atributo> atributos) {
+    public void setAtributos(LinkedList<Atributo> atributos) {
         this.atributos = atributos;
     }
     public Double getBilleteraDeDonaciones() {

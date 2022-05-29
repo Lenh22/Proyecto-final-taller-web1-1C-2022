@@ -84,7 +84,7 @@ public class ControladorTest {
     }
 
     private void dadoQueExisteUnRoomieCompatibleDos() {
-        TreeSet<Atributo> atributos = new TreeSet<>();
+        LinkedList<Atributo> atributos = new LinkedList<>();
         atributos.add(Atributo.FUMADOR);
         r3.setNombre("Matias");
         r3.setId(3L);
@@ -93,7 +93,7 @@ public class ControladorTest {
     }
 
     private void dadoQueExisteUnRoomieCompatible() {
-        TreeSet<Atributo> atributos = new TreeSet<>();
+        LinkedList<Atributo> atributos = new LinkedList<>();
         atributos.add(Atributo.FUMADOR);
         r2.setNombre("Leandro");
         r2.setId(2L);
@@ -102,7 +102,7 @@ public class ControladorTest {
     }
 
     private void dadoQueExisteUnRoomieLogueado() {
-        TreeSet<Atributo> atributos = new TreeSet<>();
+        LinkedList<Atributo> atributos = new LinkedList<>();
         atributos.add(Atributo.FUMADOR);
         r1.setNombre("Ariel");
         r1.setId(1L);

@@ -8,15 +8,15 @@ public class Vivienda {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_vivienda;
+    private Integer vivienda;
 
     @ManyToOne
+    @JoinColumn(name = "propietario_id")
     private Propietario propietario;
 
     private String direccion;
 
     @OneToOne
-    @JoinColumn(name= "id_alquiler")
     private Alquiler alquiler;
     private Integer cantidadMaximaRoomies;
 

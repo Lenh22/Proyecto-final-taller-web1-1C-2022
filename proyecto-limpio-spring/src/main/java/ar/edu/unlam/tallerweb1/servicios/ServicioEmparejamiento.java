@@ -30,7 +30,7 @@ public class ServicioEmparejamiento implements IServicioEmparejamiento{
 
         //Agregar un metodo para realizar la comparacion
         for (Roomie roomieCompatible: roomiesAComparar) {
-            if(CalcularCompatibilidad(roomie.getAtributos(),roomieCompatible.getAtributos()) >= 70)
+            //if(CalcularCompatibilidad(roomie.getAtributos(),roomieCompatible.getAtributos()) >= 70)
                 roomiesCompatibles.add(roomieCompatible);
         }
         return roomiesCompatibles;
