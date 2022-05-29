@@ -3,19 +3,24 @@ package ar.edu.unlam.tallerweb1.modelo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.Vivienda;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import java.util.List;
+
+@Entity
+@Table(name = "propietario")
 public class Propietario extends Usuario {
 
+    @OneToMany(mappedBy = "Prpietario", cascade = CascadeType.ALL)
+    private List<Vivienda> vivienda;
 
-    private Vivienda vivienda1;
+    public Propietario(String nombre, String apellido, Integer edad, String email, String password, String rol, Boolean activo) {
+        super(nombre, apellido, edad, email, password, rol, activo);
+    }
 
-    /*public Propietario(Integer id, String nombre, String apellido, String pass, String mail, Integer edad, Vivienda vivienda1) {
-        super(id, nombre, apellido, pass, mail, edad);
+    public Propietario() {
 
-        this.vivienda1 = vivienda1;
-    }*/
-
-    public Propietario(String nombre, String apellido, Integer edad, String email, String password, Vivienda vivienda1) {
-        super(nombre, apellido, edad, email, password);
-        this.vivienda1 = vivienda1;
     }
 }

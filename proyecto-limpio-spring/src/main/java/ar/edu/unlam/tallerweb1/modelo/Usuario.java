@@ -9,7 +9,7 @@ import javax.persistence.Id;
 // el paquete ar.edu.unlam.tallerweb1.modelo esta indicado en el archivo hibernateCOntext.xml para que hibernate
 // busque entities en el
 @Entity
-public class Usuario {
+public abstract class Usuario {
 
 	// La anotacion id indica que este atributo es el utilizado como clave primaria de la entity, se indica que el valor es autogenerado.
 	@Id
@@ -25,15 +25,18 @@ public class Usuario {
 	private String rol;
 	private Boolean activo = false;
 
-	public Usuario() {
-	}
-
-	public Usuario(String nombre, String apellido, Integer edad, String email, String password) {
+	public Usuario(String nombre, String apellido, Integer edad, String email, String password, String rol, Boolean activo) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.edad = edad;
 		this.email = email;
 		this.password = password;
+		this.rol = rol;
+		this.activo = activo;
+	}
+
+	public Usuario() {
+
 	}
 
 	public String getNombre() {
@@ -93,9 +96,9 @@ public class Usuario {
 
 	public boolean activo() {
 		return activo;
-    }
+	}
 
-    public void activar() {
+	public void activar() {
 		activo = true;
-    }
+	}
 }

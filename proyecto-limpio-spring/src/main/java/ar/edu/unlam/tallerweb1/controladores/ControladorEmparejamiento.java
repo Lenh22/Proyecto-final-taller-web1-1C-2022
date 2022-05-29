@@ -1,8 +1,8 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
-import ar.edu.unlam.tallerweb1.modelo.Atributo;
 import ar.edu.unlam.tallerweb1.modelo.Roomie;
-import org.apache.taglibs.standard.extra.spath.Path;
+import ar.edu.unlam.tallerweb1.servicios.ServicioEmparejamiento;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,27 +10,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.TreeSet;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 @Controller
 public class ControladorEmparejamiento {
 
+    private List<Roomie> roomiesCompatibles;
+    private ServicioEmparejamiento servicioEmparejamiento;
+
+    //Aplico inyeccion de dependencia con la anotacion Autowired, indicandole que el service tambien es un bean
+    @Autowired
+    public ControladorEmparejamiento(ServicioEmparejamiento servicioEmparejamiento){
+        this.servicioEmparejamiento = servicioEmparejamiento;
+    }
+
     //Pasamos primeramente el id que guardaremos en la vista apra despues consultarlo en la base de datos y devolverlo
     @RequestMapping(path="/home/{id}" ,method = RequestMethod.GET)
-    public ModelAndView irAResultadoRoomieCompatibles(@PathVariable("id") Integer id) {
-        //Agregar Service que haga la consulta que devuelva el usuario
+    public ModelAndView irAResultadoRoomieCompatibles(@PathVariable("id") Long id) {
         ModelMap map = new ModelMap();
-        TreeSet< Atributo > atributos = new TreeSet<Atributo>();
-        atributos.add(Atributo.FUMADOR);
-        Roomie r2 = new Roomie();
-        r2.setAtributos(atributos);
-
         try{
-            map.put("RoomieEncontrado",r2);
+            roomiesCompatibles = servicioEmparejamiento.ObtenerRoomiesCompatibles(id);
         }catch (Exception exception){
-            map.put("msg-error", "tipo inexistente");
+            map.put("msg-error", "NOT FOUND 404");
+            return new ModelAndView("resultado-roomies-compatibles",map);
         }
-        ModelAndView mav = new ModelAndView("resultado-roomies-compatibles",map);
-        return mav;
+        if(roomiesCompatibles.isEmpty())
+            map.put("sin-emparejamiento","No se encontro un roomie compatible para usted");
+        else
+            map.put("RoomieEncontrado",roomiesCompatibles);
+
+        return new ModelAndView("resultado-roomies-compatibles",map);
     }
 }

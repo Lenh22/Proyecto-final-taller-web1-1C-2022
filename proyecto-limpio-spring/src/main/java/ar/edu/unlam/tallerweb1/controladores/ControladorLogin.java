@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import ar.edu.unlam.tallerweb1.modelo.Roomie;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +47,7 @@ public class ControladorLogin {
 		ModelMap modelo = new ModelMap();
 		// Se agrega al modelo un objeto con key 'datosLogin' para que el mismo sea asociado
 		// al model attribute del form que esta definido en la vista 'login'
-		modelo.put("usuario", new Usuario());
+		modelo.put("usuario", new Roomie());
 		// Se va a la vista login (el nombre completo de la lista se resuelve utilizando el view resolver definido en el archivo spring-servlet.xml)
 		// y se envian los datos a la misma  dentro del modelo
 		return new ModelAndView("registro-usuario", modelo);

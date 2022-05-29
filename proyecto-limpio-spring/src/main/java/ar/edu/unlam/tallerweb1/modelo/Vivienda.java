@@ -1,24 +1,24 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "vivienda")
 public class Vivienda {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_vivienda;
 
+    @ManyToOne
+    private Propietario propietario;
 
     private String direccion;
-    private Alquiler alquiler;
 
+    @OneToOne
+    @JoinColumn(name= "id_alquiler")
+    private Alquiler alquiler;
     private Integer cantidadMaximaRoomies;
 
 
-
-    public Vivienda(Integer id_vivienda, String direccion ,Integer cantidadMaximaRoomies,Alquiler alquiler) {
-        this.id_vivienda=id_vivienda;
-        this.direccion=direccion;
-        this.cantidadMaximaRoomies=cantidadMaximaRoomies;
-        this.alquiler=alquiler;
-
-
-
-    }
 }

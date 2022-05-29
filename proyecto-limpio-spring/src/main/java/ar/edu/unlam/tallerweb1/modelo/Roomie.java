@@ -2,8 +2,11 @@ package ar.edu.unlam.tallerweb1.modelo;
 
 import ar.edu.unlam.tallerweb1.modelo.Atributo;
 
+import javax.persistence.*;
 import java.util.*;
 
+@Entity
+@Table(name = "Roomie")
 public class Roomie extends Usuario {
 
     private Boolean recibirDonacion;
@@ -12,35 +15,43 @@ public class Roomie extends Usuario {
     private double puntaje;
     private double cantidadTotalPuntuada;
     private double billeteraDeDonaciones;
-
-    //Tengo dudas de q sea un ArrayList o un TreeSet
+    @ElementCollection
     private TreeSet<Atributo> atributos= new TreeSet<>();
+    @ManyToOne
+    @JoinColumn(name = "alquiler_id")
+    private  Alquiler alquiler;
 
-    public void setCoincidencia(double coincidencia) {
-        this.coincidencia = coincidencia;
-    }
+    public Roomie() { }
 
-    private double coincidencia;
-
-    /*public Roomie(String nombre, String apellido, String password, String mail, Integer edad, Double ingreso , Boolean recibirDonacion) {
-        super( nombre, apellido, password, mail, edad);
-        this.ingreso = ingreso;
-        this.recibirDonacion = recibirDonacion;
-        this.puntaje = 0.0;
-        this.cantidadTotalPuntuada = 0.0;
-        this.billeteraDeDonaciones=0.0;
-    }*/
-
-    public Roomie() {
-    }
-
-    public Roomie(String nombre, String apellido, Integer edad, String email, String password, Boolean recibirDonacion, double ingreso, double puntaje, double cantidadTotalPuntuada, double billeteraDeDonaciones) {
-        super(nombre, apellido, edad, email, password);
+    //Constructor para un roomie con la lista de atributos ya armadas
+    public Roomie(String nombre, String apellido, Integer edad, String email, String password, String rol
+            , Boolean activo, Boolean recibirDonacion, double ingreso, double puntaje, double cantidadTotalPuntuada
+            , double billeteraDeDonaciones, TreeSet<Atributo> atributos) {
+        super(nombre, apellido, edad, email, password, rol, activo);
         this.recibirDonacion = recibirDonacion;
         this.ingreso = ingreso;
         this.puntaje = puntaje;
         this.cantidadTotalPuntuada = cantidadTotalPuntuada;
         this.billeteraDeDonaciones = billeteraDeDonaciones;
+        this.atributos = atributos;
+    }
+
+    //Constructor para un Roomie con la list de atributos vacias
+    public Roomie(String nombre, String apellido, Integer edad, String email, String password, String rol
+            , Boolean activo, Boolean recibirDonacion, double ingreso, double puntaje, double cantidadTotalPuntuada
+            , double billeteraDeDonaciones) {
+        super(nombre, apellido, edad, email, password, rol, activo);
+        this.recibirDonacion = recibirDonacion;
+        this.ingreso = ingreso;
+        this.puntaje = puntaje;
+        this.cantidadTotalPuntuada = cantidadTotalPuntuada;
+        this.billeteraDeDonaciones = billeteraDeDonaciones;
+        this.atributos = new TreeSet<Atributo>();
+    }
+
+    //Constructor para armar un roomie,  solo con los atributos de usuarios
+    public Roomie(String nombre, String apellido, Integer edad, String email, String password, String rol, Boolean activo) {
+        super(nombre, apellido, edad, email, password, rol, activo);
     }
 
     public void setRecibirDonacion(Boolean recibirDonacion) {
@@ -82,45 +93,6 @@ public class Roomie extends Usuario {
     public void setAtributos(TreeSet<Atributo> atributos) {
         this.atributos = atributos;
     }
-
-    public void bajarPuntaje() {
-        this.cantidadTotalPuntuada++;
-    }
-
-    public void subirPuntaje() {
-        this.cantidadTotalPuntuada++;
-        this.puntaje++;
-    }
-
-    public Double verPuntuacion() {
-        Double resultado = 0.0;
-        resultado = (this.puntaje / this.cantidadTotalPuntuada) * 100;
-        return resultado;
-
-    }
-    /*
-   public boolean recibeDonacion(Roomie otro, Double minimovitalmovil) {
-
-
-       if (otro.ingreso < minimovitalmovil) {
-           return recibirDonacion = true;
-        } else {
-            return recibirDonacion = false;
-       }
-    }
-*/
-    public void donarAOtroRoomie(Roomie otro, Double donacion){
-        if(otro.getRecibirDonacion()==true) {
-            otro.billeteraDeDonaciones += donacion;
-
-        }else {
-            otro.billeteraDeDonaciones=0.0;
-        }
-
-
-
-    }
-
     public Double getBilleteraDeDonaciones() {
         return billeteraDeDonaciones;
     }
@@ -129,20 +101,14 @@ public class Roomie extends Usuario {
         return recibirDonacion;
     }
 
-
-    public void agregarAtributo(Atributo atributo) {
+    //Agregar a capa de servicio de Roomie
+    public void addAtributo(Atributo atributo) {
         atributos.add(atributo);
     }
 
-    public TreeSet<Atributo> mostrarAtributos(){
-    return atributos;
+    public void eliminarAtributo(Atributo atributo){
+        atributos.remove(atributo);
     }
-    public double getCoincidencia() {
-        return coincidencia;
-    }
-
-
-
 
 }
 

@@ -5,5 +5,13 @@ public enum Atributo {
     FUMADOR,
     DIURNO,
     NOCTURNO,
+    PETFRIENDLY,
+    VEGGIE,
+    OMNIVORO,
+    INCLUSIVO,
+    GAMER,
+    SEXWORK,
+    WEEDFRIENDLY,
+
 
 }
