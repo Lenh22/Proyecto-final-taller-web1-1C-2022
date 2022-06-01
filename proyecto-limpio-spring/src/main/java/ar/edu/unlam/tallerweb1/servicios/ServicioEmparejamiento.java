@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.*;
 
 @Service
-@Transactional
 public class ServicioEmparejamiento implements IServicioEmparejamiento{
 
     IRepositorioEmparejamiento repositorioEmparejamiento;

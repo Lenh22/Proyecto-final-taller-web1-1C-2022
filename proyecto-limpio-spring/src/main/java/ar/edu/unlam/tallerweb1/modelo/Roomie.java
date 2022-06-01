@@ -1,6 +1,5 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
-import ar.edu.unlam.tallerweb1.modelo.Atributo;
 
 import javax.persistence.*;
 import java.util.*;
