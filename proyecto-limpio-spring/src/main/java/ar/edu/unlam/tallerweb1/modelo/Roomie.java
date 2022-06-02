@@ -52,6 +52,9 @@ public class Roomie extends Usuario {
         super(nombre, apellido, edad, email, password, rol, activo);
     }
 
+    public Roomie(String maria, String gonzalez, int i, String mail, String pass, boolean b, double v, double v1, double v2, double v3) {
+    }
+
     public void setRecibirDonacion(Boolean recibirDonacion) {
         this.recibirDonacion = recibirDonacion;
     }
