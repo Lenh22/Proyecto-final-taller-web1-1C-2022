@@ -36,7 +36,7 @@ public class ControladorDonaciones {
         return new ModelAndView("listadoDeDonatarios", model);
     }
 
-    @RequestMapping(path = "home/donatarios/{roomie}")
+    @RequestMapping(path = "home/donatarios/roomie")
     public ModelAndView mostrarBilletera(@PathVariable("roomie") Roomie roomieDonatario) {
         double billetera = 0.0;
         ModelMap model = new ModelMap();
@@ -46,7 +46,7 @@ public class ControladorDonaciones {
 
     }
 
-    @RequestMapping(path = "home/donatarios/{roomie}")
+    @RequestMapping(path = "home/donatarios/roomie")
     public ModelAndView MensajeDeExito(Roomie donatario, Double monto) {
 
         ModelMap model= new ModelMap();
