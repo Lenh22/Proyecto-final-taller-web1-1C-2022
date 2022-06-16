@@ -2,8 +2,6 @@ package ar.edu.unlam.tallerweb1.servicios;
 
 import ar.edu.unlam.tallerweb1.modelo.Roomie;
 import ar.edu.unlam.tallerweb1.repositorios.IRepositorioRoomie;
-import ar.edu.unlam.tallerweb1.repositorios.RepositorioRoomie;
-import ar.edu.unlam.tallerweb1.repositorios.RepositorioUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,10 +33,12 @@ public class ServicioDonacion implements IServicioDonaciones{
         return roomiesADonar;
     }
     @Override
-    public Boolean darDonacion(Roomie roomieDonatario, Double donacion) {
+    public Boolean darDonacion(String roomieDonatario, Double donacion) {
 
-        if (donacion>0.0 && roomieDonatario.getRecibirDonacion()){
-            incrementaBilletera(roomieDonatario,donacion);
+        Roomie Donatario = repositorioRoomies.ObtenerUnRoomie(roomieDonatario);
+
+        if (donacion>0.0 && Donatario.getRecibirDonacion()){
+            incrementaBilletera(Donatario,donacion);
             return true;
         }
         return false;
@@ -53,8 +53,6 @@ public class ServicioDonacion implements IServicioDonaciones{
     }
     @Override
     public Roomie buscarDonatario(Roomie roomieDonatario) {
-        //Puede ser que no exista, como manejo eso?
-        //Primero traemlos la lista de roomies de repositorio //HayQueHacerElMetodo
         List<Roomie> roomiesADonar = repositorioRoomies.obtenerRoomies();
         Roomie econtrado = null;
         for (Roomie roomieDonatarios : roomiesADonar)
@@ -66,9 +64,9 @@ public class ServicioDonacion implements IServicioDonaciones{
 
     //metodo para devolver usuarios que quieran recibir donacion
     @Override
-    public Double billeteraDelRoomie(Roomie roomieDonatario) {
-
-        return roomieDonatario.getBilleteraDeDonaciones();
+    public Double billeteraDelRoomie(String roomieDonatario) {
+        Roomie Donatario = repositorioRoomies.buscar(roomieDonatario);
+        return Donatario.getBilleteraDeDonaciones();
     }
 
 

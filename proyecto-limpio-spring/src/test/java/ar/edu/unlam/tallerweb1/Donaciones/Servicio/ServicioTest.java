@@ -30,20 +30,21 @@ public class ServicioTest {
     }
     @Test
     public void IncrementarBilletera(){
-        Roomie donatario = DadoQueExisteDonatario(mail) ;
-        CuandoHagoLaDonacion(roomie2,donacion);
+        DadoQueExisteDonatario(mail) ;
+        CuandoHagoLaDonacion(mail,donacion);
         EntoncesAumentaBilletera(roomie2,donacion);
     }
     private void EntoncesAumentaBilletera(Roomie roomie, Double donacion) {
         assertThat(servicioDeDonacion.incrementaBilletera(roomie,donacion)).isEqualTo(2.00);
     }
-    private void CuandoHagoLaDonacion(Roomie rommie, Double donacion) {
+    private void CuandoHagoLaDonacion(String rommie, Double donacion) {
         servicioDeDonacion.darDonacion(rommie,donacion);
+
     }
     private Roomie DadoQueExisteDonatario(String mail) {
         roomie2.setRecibirDonacion(true);
-        when(repositorioRoomies.buscar(mail)).thenReturn(roomie2);
-        return repositorioRoomies.buscar(mail);
+        when(repositorioRoomies.ObtenerUnRoomie(mail)).thenReturn(roomie2);
+        return repositorioRoomies.ObtenerUnRoomie(mail);
 
     }
 }

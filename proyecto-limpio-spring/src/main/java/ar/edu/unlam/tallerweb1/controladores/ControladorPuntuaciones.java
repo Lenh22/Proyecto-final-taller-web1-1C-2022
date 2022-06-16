@@ -40,5 +40,34 @@ public class ControladorPuntuaciones {
         return new ModelAndView("ver-puntuacion", model);
     }
 
+    public static class DatosDonacion
+    {
+        private String roomie;
+        private double monto;
+
+
+        @Autowired
+        public DatosDonacion(String roomie, double monto) {
+            this.roomie = roomie;
+            this.monto = monto;
+        }
+
+        public String getRoomie() {
+
+            return roomie;
+        }
+
+        public void setRoomie(String roomie) {
+            this.roomie = roomie;
+        }
+
+        public double getMonto() {
+            return monto;
+        }
+
+        public void setMonto(double monto) {
+            this.monto = monto;
+        }
+    }
 }
 

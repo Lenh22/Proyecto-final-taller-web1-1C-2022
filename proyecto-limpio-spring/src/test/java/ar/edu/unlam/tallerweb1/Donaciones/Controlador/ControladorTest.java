@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.Donaciones.Controlador;
 
+
+
 import ar.edu.unlam.tallerweb1.controladores.ControladorDonaciones;
 import ar.edu.unlam.tallerweb1.modelo.Roomie;
 import ar.edu.unlam.tallerweb1.servicios.IServicioDonaciones;
@@ -55,7 +57,7 @@ public class ControladorTest {
 
         entoncesEncuentro((List<Roomie>) mav.getModel().get("donatarios"), 10);
 
-        entoncesMeLLevaALaVista("listadoDeDonatarios",mav.getViewName());
+        entoncesMeLLevaALaVista("donatarios",mav.getViewName());
 
     }
     @Test
@@ -65,7 +67,7 @@ public class ControladorTest {
 
         ModelAndView mav = controladorDonaciones.listar(false);
 
-        entoncesMeLLevaALaVista("listadoDeDonatarios", mav.getViewName());
+        entoncesMeLLevaALaVista("donatarios", mav.getViewName());
 
         entoncesReciboElMensaje(MENSAJE_SIN_DONATARIO,mav.getModel());
     }
@@ -75,21 +77,24 @@ public class ControladorTest {
     public void QueAlPedirBilleteraDeUnUsuarioSeMuestre (){
         dadoQueExisteUndonatario (roomieDonatario2);
         //ejecución
-        ModelAndView mav = controladorDonaciones.mostrarBilletera(roomieDonatario2);
+        ModelAndView mav = controladorDonaciones.mostrarBilletera(roomieDonatario2.getEmail());
         //verificacion
         entoncesMeLLevaALaVista("ver-billetera",mav.getViewName());
 
     }
 
+
     @Test
     public void DarDonacion (){
         dadoQueExisteUndonatario (roomieDonatario2);
-        ModelAndView mav = controladorDonaciones.mostrarBilletera(roomieDonatario2);
-        ModelAndView mav2 = ledoyUnaDonacion(roomieDonatario2,donacion);
+        ModelAndView mav = controladorDonaciones.mostrarBilletera(roomieDonatario2.getEmail());
+        ModelAndView mav2 = ledoyUnaDonacion(roomieDonatario2.getEmail(),donacion);
         entoncesLaBilleteraAhoraTiene (roomieDonatario2, donacion);
         entoncesMeLLevaALaVista("ver-billetera", mav.getViewName());
         entoncesReciboElMensaje(MENSAJE_DE_EXITO,mav2.getModel());
     }
+
+
 
     private void entoncesReciboElMensaje(String mensajeDeExito, Map<String, Object> model) {
         assertThat(model.get("msg-error")).isEqualTo(mensajeDeExito);
@@ -105,11 +110,14 @@ public class ControladorTest {
         servicioDeDonacion.incrementaBilletera(roomieDonatario, donacion);
     }
 
-    private ModelAndView ledoyUnaDonacion(Roomie roomieDonatario, Double donacion) {
+
+    private ModelAndView ledoyUnaDonacion(String roomieDonatario, Double donacion) {
         when(servicioDeDonacion.darDonacion(roomieDonatario, donacion)).thenReturn(pudoDonar);
-        return controladorDonaciones.MensajeDeExito(roomieDonatario,donacion);
+      return controladorDonaciones.MensajeDeExito(roomieDonatario,donacion);
 
     }
+
+
 
     private void dadoQueExisteUndonatario(Roomie roomieDonatario) {
 
