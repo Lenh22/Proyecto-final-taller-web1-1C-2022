@@ -1,15 +1,14 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 // Clase que modela el concepto de Usuario, la anotacion @Entity le avisa a hibernate que esta clase es persistible
 // el paquete ar.edu.unlam.tallerweb1.modelo esta indicado en el archivo hibernateCOntext.xml para que hibernate
 // busque entities en el
 @Entity
-public abstract class Usuario {
+@Table(name = "usuario")
+@Inheritance(strategy=InheritanceType.JOINED)
+public class Usuario {
 
 	// La anotacion id indica que este atributo es el utilizado como clave primaria de la entity, se indica que el valor es autogenerado.
 	@Id
@@ -37,6 +36,15 @@ public abstract class Usuario {
 
 	public Usuario() {
 
+	}
+
+	public Usuario(String nombre, String apellido, Integer edad, String email, String password, String rol) {
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.edad = edad;
+		this.email = email;
+		this.password = password;
+		this.rol = rol;
 	}
 
 	public String getNombre() {
@@ -94,11 +102,4 @@ public abstract class Usuario {
 		this.activo = activo;
 	}
 
-	public boolean activo() {
-		return activo;
-	}
-
-	public void activar() {
-		activo = true;
-	}
 }

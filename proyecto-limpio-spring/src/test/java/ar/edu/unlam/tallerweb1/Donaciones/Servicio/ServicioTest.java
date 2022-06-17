@@ -1,10 +1,8 @@
 package ar.edu.unlam.tallerweb1.Donaciones.Servicio;
 
 import ar.edu.unlam.tallerweb1.modelo.Roomie;
-import ar.edu.unlam.tallerweb1.repositorios.IRepositorioRoomie;
-import ar.edu.unlam.tallerweb1.repositorios.RepositorioRoomie;
-import ar.edu.unlam.tallerweb1.repositorios.RepositorioUsuario;
-import ar.edu.unlam.tallerweb1.servicios.IServicioDonaciones;
+import ar.edu.unlam.tallerweb1.repositorios.Interfaces.IRepositorioRoomie;
+import ar.edu.unlam.tallerweb1.servicios.Interfaces.IServicioDonaciones;
 import ar.edu.unlam.tallerweb1.servicios.ServicioDonacion;
 import org.junit.Before;
 import org.junit.Test;

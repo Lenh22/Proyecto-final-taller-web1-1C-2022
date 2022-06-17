@@ -1,17 +1,14 @@
 package ar.edu.unlam.tallerweb1.Emparejamiento.Servicios;
 
-import ar.edu.unlam.tallerweb1.controladores.ControladorEmparejamiento;
 import ar.edu.unlam.tallerweb1.modelo.Atributo;
 import ar.edu.unlam.tallerweb1.modelo.Roomie;
-import ar.edu.unlam.tallerweb1.repositorios.IRepositorioEmparejamiento;
-import ar.edu.unlam.tallerweb1.servicios.IServicioEmparejamiento;
+import ar.edu.unlam.tallerweb1.repositorios.Interfaces.IRepositorioEmparejamiento;
 import ar.edu.unlam.tallerweb1.servicios.ServicioEmparejamiento;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.TreeSet;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
 import static org.mockito.Mockito.mock;
@@ -47,7 +44,7 @@ public class ServicioTest {
     }
 
     private List<Roomie> entoncesMeDevuelveUnaListaDeUsuariosCompatible() {
-        return servicioEmparejamiento.ObtenerRoomiesCompatibles(r1.getId());
+        return servicioEmparejamiento.obtenerRoomiesCompatibles(r1.getId());
     }
 
     private void dadoQueExisteUnUsuarioCompatibles() {
@@ -74,7 +71,7 @@ public class ServicioTest {
         //r3.setAtributos(atributos2);
         roomieList.add(r3);
 
-        when(repositorioEmparejamiento.ObtenerRoomies()).thenReturn(roomieList);
+        when(repositorioEmparejamiento.obtenerRoomies()).thenReturn(roomieList);
     }
 
     private void dadoQueExisteUnUsuarioLogueado() {
@@ -89,6 +86,6 @@ public class ServicioTest {
         r1.setId(1L);
         r1.setAtributos(atributos);
 
-        when(repositorioEmparejamiento.ObtenerRoomiePorId(r1.getId())).thenReturn(r1);
+        when(repositorioEmparejamiento.obtenerRoomiePorId(r1.getId())).thenReturn(r1);
     }
 }

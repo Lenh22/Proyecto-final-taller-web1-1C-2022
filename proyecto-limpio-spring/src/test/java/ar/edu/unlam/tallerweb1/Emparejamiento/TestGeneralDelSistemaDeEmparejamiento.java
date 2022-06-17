@@ -6,12 +6,9 @@ import ar.edu.unlam.tallerweb1.modelo.Atributo;
 import ar.edu.unlam.tallerweb1.modelo.Roomie;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioEmparejamiento;
 import ar.edu.unlam.tallerweb1.servicios.ServicioEmparejamiento;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -20,7 +17,7 @@ import java.util.LinkedList;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
 
-public class Testeo extends SpringTest {
+public class TestGeneralDelSistemaDeEmparejamiento extends SpringTest {
     private ControladorEmparejamiento controller;
     private ServicioEmparejamiento service;
     @Autowired
@@ -79,8 +76,8 @@ public class Testeo extends SpringTest {
         r3.setNombre("Matias");
         r3.setId(3L);
         r3.setAtributos(atributos2);
-        repositorioEmparejamiento.AgregarRoomie(r2);
-        repositorioEmparejamiento.AgregarRoomie(r3);
+        repositorioEmparejamiento.agregarRoomie(r2);
+        repositorioEmparejamiento.agregarRoomie(r3);
 
 
     }
@@ -98,6 +95,6 @@ public class Testeo extends SpringTest {
         r1.setEmail("lean@gmail.com");
         r1.setId(1L);
         r1.setAtributos(atributos);
-        repositorioEmparejamiento.AgregarRoomie(r1);
+        repositorioEmparejamiento.agregarRoomie(r1);
     }
 }

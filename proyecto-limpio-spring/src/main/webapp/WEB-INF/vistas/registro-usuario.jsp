@@ -11,17 +11,28 @@
 <body>
 <div class = "container">
     <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-        <form:form action="registrarme" method="POST" modelAttribute="usuario">
-            <h3 class="form-signin-heading">Nuevo Usuario</h3>
+        <%--@elvariable id="datosRegistro" type="java"--%>
+        <form:form action="validar-registro" method="POST" modelAttribute="datosRegistro">
+            <h3 class="form-signin-heading">Nuevo Roomie</h3>
             <hr class="colorgraph"><br>
 
+            <label>Nombre</label>
             <form:input path="nombre" type="text" id="nombre" class="form-control" />
+            <label>Apellido</label>
             <form:input path="apellido" type="text" id="apellido" class="form-control" />
+            <label>Edad</label>
             <form:input path="edad" type="numbre" id="edad" class="form-control" />
+            <label>Email</label>
             <form:input path="email" type="email" id="email" class="form-control" />
+            <label>Password</label>
             <form:input path="password" type="password" id="password" class="form-control"/>
-
-            <button id="btn-registrarme" class="btn btn-lg btn-primary btn-block" Type="Submit"/>Registrarme</button>
+            <label>Seleccione el tipo de cuenta que quiere registrar:</label>
+            <br>
+            <label>Roomie</label>
+            <form:radiobutton path="rol" value="roomie"/>
+            <label>Propietario</label>
+            <form:radiobutton path="rol" value="propietario"/>
+            <button id="btn-registrarme" class="btn btn-lg btn-primary btn-block" Type="Submit"/>Seguir con el Registrarme</button>
         </form:form>
 
         <c:if test="${not empty error}">

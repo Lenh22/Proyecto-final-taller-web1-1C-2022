@@ -3,7 +3,7 @@ package ar.edu.unlam.tallerweb1.Puntuacion;
 import ar.edu.unlam.tallerweb1.SpringTest;
 import ar.edu.unlam.tallerweb1.controladores.ControladorPuntuaciones;
 import ar.edu.unlam.tallerweb1.modelo.Roomie;
-import ar.edu.unlam.tallerweb1.repositorios.IRepositorioPuntuaciones;
+import ar.edu.unlam.tallerweb1.repositorios.Interfaces.IRepositorioPuntuaciones;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPuntuacion;
 import org.junit.Before;
 import org.junit.Test;
@@ -38,11 +38,11 @@ public class Testeo extends SpringTest {
         roomie.setEmail("algo@algo");
         roomie.setPassword("algo");
 
-        repositorioPuntuacion.AgregarRoomie(roomie);
+        repositorioPuntuacion.agregarRoomie(roomie);
 
         service.puntuacionRoomie(roomie, true);
 
-        ModelAndView mav = controller.MostrarPuntuacion(roomie, true);
+        ModelAndView mav = controller.mostrarPuntuacion(roomie, true);
 
         assertThat(mav.getViewName()).isEqualTo("ver-puntuacion");
 

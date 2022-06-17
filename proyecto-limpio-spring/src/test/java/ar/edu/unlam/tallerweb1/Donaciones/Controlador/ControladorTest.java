@@ -2,7 +2,7 @@ package ar.edu.unlam.tallerweb1.Donaciones.Controlador;
 
 import ar.edu.unlam.tallerweb1.controladores.ControladorDonaciones;
 import ar.edu.unlam.tallerweb1.modelo.Roomie;
-import ar.edu.unlam.tallerweb1.servicios.IServicioDonaciones;
+import ar.edu.unlam.tallerweb1.servicios.Interfaces.IServicioDonaciones;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.web.servlet.ModelAndView;
@@ -107,7 +107,7 @@ public class ControladorTest {
 
     private ModelAndView ledoyUnaDonacion(Roomie roomieDonatario, Double donacion) {
         when(servicioDeDonacion.darDonacion(roomieDonatario, donacion)).thenReturn(pudoDonar);
-        return controladorDonaciones.MensajeDeExito(roomieDonatario,donacion);
+        return controladorDonaciones.mensajeDeExito(roomieDonatario,donacion);
 
     }
 

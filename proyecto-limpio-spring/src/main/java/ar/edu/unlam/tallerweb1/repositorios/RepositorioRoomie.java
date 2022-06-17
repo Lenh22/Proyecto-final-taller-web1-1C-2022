@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
 import ar.edu.unlam.tallerweb1.modelo.Roomie;
+import ar.edu.unlam.tallerweb1.repositorios.Interfaces.IRepositorioRoomie;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -9,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Repository("repositorioRoomie")
-public class RepositorioRoomie implements IRepositorioRoomie{
+public class RepositorioRoomie implements IRepositorioRoomie {
 
     private SessionFactory sessionFactory;
 

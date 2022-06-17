@@ -25,7 +25,7 @@ public class RepositorioTest extends SpringTest{
         Roomie roomie1 = new Roomie();
         roomie1.setEmail("len@gmail.com");
         session().save(roomie1);
-        Roomie roomie2= repositorioPuntuacion.ObtenerUnRoomie(roomie1.getEmail());
+        Roomie roomie2= repositorioPuntuacion.obtenerUnRoomie(roomie1.getEmail());
         assertThat(roomie2).isEqualTo(roomie1);
     }
 

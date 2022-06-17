@@ -2,16 +2,15 @@ package ar.edu.unlam.tallerweb1.servicios;
 
 import ar.edu.unlam.tallerweb1.modelo.Atributo;
 import ar.edu.unlam.tallerweb1.modelo.Roomie;
-import ar.edu.unlam.tallerweb1.repositorios.IRepositorioEmparejamiento;
-import ar.edu.unlam.tallerweb1.repositorios.RepositorioEmparejamiento;
+import ar.edu.unlam.tallerweb1.repositorios.Interfaces.IRepositorioEmparejamiento;
+import ar.edu.unlam.tallerweb1.servicios.Interfaces.IServicioEmparejamiento;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
 @Service
-public class ServicioEmparejamiento implements IServicioEmparejamiento{
+public class ServicioEmparejamiento implements IServicioEmparejamiento {
 
     IRepositorioEmparejamiento repositorioEmparejamiento;
     private List<Roomie> roomiesCompatibles = new LinkedList<>();
@@ -22,20 +21,20 @@ public class ServicioEmparejamiento implements IServicioEmparejamiento{
     }
 
     @Override
-    public List<Roomie> ObtenerRoomiesCompatibles(Long id) {
+    public List<Roomie> obtenerRoomiesCompatibles(Long id) {
         //Primero traemlos la lista de roomies de repositorio
-        Roomie roomie = repositorioEmparejamiento.ObtenerRoomiePorId(id);
-        List<Roomie> roomiesAComparar = repositorioEmparejamiento.ObtenerRoomies();
+        Roomie roomie = repositorioEmparejamiento.obtenerRoomiePorId(id);
+        List<Roomie> roomiesAComparar = repositorioEmparejamiento.obtenerRoomies();
 
         //Agregar un metodo para realizar la comparacion
         for (Roomie roomieCompatible: roomiesAComparar) {
-            //if(CalcularCompatibilidad(roomie.getAtributos(),roomieCompatible.getAtributos()) >= 70)
+            if(calcularCompatibilidad(roomie.getAtributos(),roomieCompatible.getAtributos()) >= 70)
                 roomiesCompatibles.add(roomieCompatible);
         }
         return roomiesCompatibles;
     }
 
-    public Integer CalcularCompatibilidad(TreeSet<Atributo> atributos, TreeSet<Atributo> atributosAComparar) {
+    public Integer calcularCompatibilidad(List<Atributo> atributos, List<Atributo> atributosAComparar) {
         //implementar hash
         int coincidencia = 0;
         for (Atributo atributo: Atributo.values()) {

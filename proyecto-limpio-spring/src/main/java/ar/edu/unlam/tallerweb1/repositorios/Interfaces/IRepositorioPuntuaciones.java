@@ -1,4 +1,4 @@
-package ar.edu.unlam.tallerweb1.repositorios;
+package ar.edu.unlam.tallerweb1.repositorios.Interfaces;
 
 import ar.edu.unlam.tallerweb1.modelo.Roomie;
 
@@ -6,11 +6,11 @@ import java.util.List;
 
 public interface IRepositorioPuntuaciones {
 
-    List<Roomie> ObtenerRoomies();
+    List<Roomie> obtenerRoomies();
 
-    Roomie ObtenerUnRoomie(String email);;
+    Roomie obtenerUnRoomie(String email);;
 
     Roomie buscarUsuario(String email, String password);
 
-    void AgregarRoomie(Roomie roomie);
+    void agregarRoomie(Roomie roomie);
 }

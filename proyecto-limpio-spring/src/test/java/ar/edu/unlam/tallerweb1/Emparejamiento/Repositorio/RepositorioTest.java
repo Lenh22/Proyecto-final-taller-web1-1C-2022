@@ -3,7 +3,6 @@ package ar.edu.unlam.tallerweb1.Emparejamiento.Repositorio;
 import ar.edu.unlam.tallerweb1.SpringTest;
 import ar.edu.unlam.tallerweb1.modelo.Roomie;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioEmparejamiento;
-import org.hibernate.Session;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
@@ -25,7 +24,7 @@ public class RepositorioTest extends SpringTest {
         Roomie roomie1 = new Roomie();
         roomie1.setEmail("len@gmail.com");
         session().save(roomie1);
-        Roomie roomie2= repositorioRoomie.ObtenerRoomiePorId(roomie1.getId());
+        Roomie roomie2= repositorioRoomie.obtenerRoomiePorId(roomie1.getId());
         assertThat(roomie2).isEqualTo(roomie1);
     }
 
@@ -41,7 +40,7 @@ public class RepositorioTest extends SpringTest {
     }
 
     private List<Roomie> entoncesQueMeRetorneLaLista() {
-        return repositorioRoomie.ObtenerRoomies();
+        return repositorioRoomie.obtenerRoomies();
     }
 
     private void dadoQueExisteUnaListaDeRoomie() {
@@ -61,7 +60,7 @@ public class RepositorioTest extends SpringTest {
         lista.add(roomie6);
 
         for (Roomie romie:lista) {
-            repositorioRoomie.AgregarRoomie(romie);
+            repositorioRoomie.agregarRoomie(romie);
         }
 
 

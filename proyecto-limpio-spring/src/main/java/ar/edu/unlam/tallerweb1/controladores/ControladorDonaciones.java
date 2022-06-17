@@ -1,7 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
 import ar.edu.unlam.tallerweb1.modelo.Roomie;
-import ar.edu.unlam.tallerweb1.servicios.IServicioDonaciones;
+import ar.edu.unlam.tallerweb1.servicios.Interfaces.IServicioDonaciones;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -47,7 +47,7 @@ public class ControladorDonaciones {
     }
 
    //@RequestMapping(path = "home/{email}")
-    public ModelAndView MensajeDeExito(Roomie donatario, Double monto) {
+    public ModelAndView mensajeDeExito(Roomie donatario, Double monto) {
 
         ModelMap model= new ModelMap();
 

@@ -1,9 +1,8 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
 import ar.edu.unlam.tallerweb1.modelo.Roomie;
-import ar.edu.unlam.tallerweb1.repositorios.IRepositorioRoomie;
-import ar.edu.unlam.tallerweb1.repositorios.RepositorioRoomie;
-import ar.edu.unlam.tallerweb1.repositorios.RepositorioUsuario;
+import ar.edu.unlam.tallerweb1.repositorios.Interfaces.IRepositorioRoomie;
+import ar.edu.unlam.tallerweb1.servicios.Interfaces.IServicioDonaciones;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,7 +12,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class ServicioDonacion implements IServicioDonaciones{
+public class ServicioDonacion implements IServicioDonaciones {
     private IRepositorioRoomie repositorioRoomies;
 
     @Autowired

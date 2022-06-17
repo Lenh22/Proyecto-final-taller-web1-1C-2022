@@ -1,4 +1,4 @@
-package ar.edu.unlam.tallerweb1.repositorios;
+package ar.edu.unlam.tallerweb1.repositorios.Interfaces;
 
 import ar.edu.unlam.tallerweb1.modelo.Roomie;
 

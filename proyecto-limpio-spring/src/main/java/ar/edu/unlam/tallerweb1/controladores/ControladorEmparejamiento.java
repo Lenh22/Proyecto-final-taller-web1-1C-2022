@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 @Controller
@@ -31,7 +29,7 @@ public class ControladorEmparejamiento {
     public ModelAndView irAResultadoRoomieCompatibles(@PathVariable("id") Long id) {
         ModelMap map = new ModelMap();
         try{
-            roomiesCompatibles = servicioEmparejamiento.ObtenerRoomiesCompatibles(id);
+            roomiesCompatibles = servicioEmparejamiento.obtenerRoomiesCompatibles(id);
         }catch (Exception exception){
             map.put("msg-error", "NOT FOUND 404");
             return new ModelAndView("resultado-roomies-compatibles",map);

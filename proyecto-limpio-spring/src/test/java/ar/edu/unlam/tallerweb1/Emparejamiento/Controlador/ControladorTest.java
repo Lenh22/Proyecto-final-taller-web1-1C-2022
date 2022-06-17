@@ -4,15 +4,12 @@ import ar.edu.unlam.tallerweb1.controladores.ControladorEmparejamiento;
 import ar.edu.unlam.tallerweb1.modelo.Atributo;
 import ar.edu.unlam.tallerweb1.modelo.Roomie;
 import ar.edu.unlam.tallerweb1.servicios.ServicioEmparejamiento;
-import org.hibernate.boot.model.source.spi.SingularAttributeSourceOneToOne;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.LinkedList;
-import java.util.List;
-import java.util.TreeSet;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.anyList;
@@ -39,7 +36,7 @@ public class ControladorTest {
         dadoQueExisteUnRoomieCompatible();
         dadoQueExisteUnRoomieCompatibleDos();
 
-        when(servicioEmparejamiento.ObtenerRoomiesCompatibles(r1.getId())).thenReturn(roomieList);
+        when(servicioEmparejamiento.obtenerRoomiesCompatibles(r1.getId())).thenReturn(roomieList);
 
         ModelAndView mav = entoncesQueMeDevuelvaUnaVistaConElRoomie(r1.getId());
         entoncesMeDevuelveLaVistaConDosRoomie(mav);
@@ -50,7 +47,7 @@ public class ControladorTest {
         dadoQueExisteUnRoomieLogueado();
         dadoQueExisteUnRoomieCompatible();
 
-        when(servicioEmparejamiento.ObtenerRoomiesCompatibles(r1.getId())).thenReturn(roomieList);
+        when(servicioEmparejamiento.obtenerRoomiesCompatibles(r1.getId())).thenReturn(roomieList);
 
         ModelAndView mav = entoncesQueMeDevuelvaUnaVistaConElRoomie(r1.getId());
         entoncesMeDevuelveLaVistaConUnRoomie(mav);
@@ -60,7 +57,7 @@ public class ControladorTest {
     public void queElControladorDevuelvaNingunUsuarioCompatible(){
         dadoQueExisteUnRoomieLogueado();
 
-        when(servicioEmparejamiento.ObtenerRoomiesCompatibles(r1.getId())).thenReturn(anyList());
+        when(servicioEmparejamiento.obtenerRoomiesCompatibles(r1.getId())).thenReturn(anyList());
 
         ModelAndView mav = entoncesQueMeDevuelvaUnaVistaConUnMensajeDeSinEmparejamiento(r1.getId());
         entoncesMeDevuelveLaVistaConUnaListaVacia(mav);
@@ -68,7 +65,7 @@ public class ControladorTest {
 
     @Test
     public void queElControladorDevuelvaUnError(){
-        when(servicioEmparejamiento.ObtenerRoomiesCompatibles(r1.getId())).thenThrow(new RuntimeException());
+        when(servicioEmparejamiento.obtenerRoomiesCompatibles(r1.getId())).thenThrow(new RuntimeException());
 
         ModelAndView mav = EntoncesMeDevuelveUnaVistaConError(r1.getId());
         EntoncesObtengoElMensajeDeErrorDeLaVista(mav.getViewName(), mav.getModelMap());

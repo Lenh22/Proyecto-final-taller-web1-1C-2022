@@ -3,7 +3,7 @@ package ar.edu.unlam.tallerweb1.Puntuacion.Controlador;
 import ar.edu.unlam.tallerweb1.controladores.ControladorPuntuaciones;
 import ar.edu.unlam.tallerweb1.modelo.Roomie;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
-import ar.edu.unlam.tallerweb1.servicios.IServicioPuntuaciones;
+import ar.edu.unlam.tallerweb1.servicios.Interfaces.IServicioPuntuaciones;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.web.servlet.ModelAndView;
@@ -66,7 +66,7 @@ public class ControladorTest {
     }
 
     private ModelAndView mostrarPuntuacion(Roomie roomie2, Boolean puntuacion) {
-        return controladorPuntuaciones.MostrarPuntuacion(roomie2, puntuacion);
+        return controladorPuntuaciones.mostrarPuntuacion(roomie2, puntuacion);
     }
 
     private void dadoQueExisteRoomiePuntuado(Roomie roomie, Boolean puntuacion) {

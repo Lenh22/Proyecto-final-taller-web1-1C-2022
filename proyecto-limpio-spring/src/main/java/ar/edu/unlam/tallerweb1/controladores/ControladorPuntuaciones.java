@@ -1,7 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
 import ar.edu.unlam.tallerweb1.modelo.Roomie;
-import ar.edu.unlam.tallerweb1.servicios.IServicioPuntuaciones;
+import ar.edu.unlam.tallerweb1.servicios.Interfaces.IServicioPuntuaciones;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -23,7 +23,7 @@ public class ControladorPuntuaciones {
     //Las path variables entre "" indica a la variable nombrada en el .jsp
     //Por ende al crear la interfaz correspondiente, en la zona de puntuar, las variables
     //deberian llamarse "roomie" y "puntuacion"
-    public ModelAndView MostrarPuntuacion(@PathVariable("roomie") Roomie roomie,
+    public ModelAndView mostrarPuntuacion(@PathVariable("roomie") Roomie roomie,
                                           @PathVariable ("puntuacion") Boolean puntuacion){
 
         ModelMap model = new ModelMap();

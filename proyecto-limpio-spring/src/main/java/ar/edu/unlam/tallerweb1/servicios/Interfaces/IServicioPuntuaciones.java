@@ -1,4 +1,4 @@
-package ar.edu.unlam.tallerweb1.servicios;
+package ar.edu.unlam.tallerweb1.servicios.Interfaces;
 
 import ar.edu.unlam.tallerweb1.modelo.Roomie;
 import ar.edu.unlam.tallerweb1.modelo.UsuarioExistente;

@@ -3,12 +3,13 @@ package ar.edu.unlam.tallerweb1.servicios;
 import ar.edu.unlam.tallerweb1.modelo.Roomie;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.UsuarioExistente;
-import ar.edu.unlam.tallerweb1.repositorios.IRepositorioPuntuaciones;
+import ar.edu.unlam.tallerweb1.repositorios.Interfaces.IRepositorioPuntuaciones;
+import ar.edu.unlam.tallerweb1.servicios.Interfaces.IServicioPuntuaciones;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ServicioPuntuacion implements IServicioPuntuaciones{
+public class ServicioPuntuacion implements IServicioPuntuaciones {
 
     private IRepositorioPuntuaciones repositorioUsuario;
 

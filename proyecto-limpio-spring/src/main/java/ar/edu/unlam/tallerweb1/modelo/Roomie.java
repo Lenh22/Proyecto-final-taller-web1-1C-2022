@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
-@Table(name = "Roomie")
+@PrimaryKeyJoinColumn(name="usuario_id")
 public class Roomie extends Usuario {
 
     private Boolean recibirDonacion;
@@ -53,6 +53,14 @@ public class Roomie extends Usuario {
     }
 
     public Roomie(String maria, String gonzalez, int i, String mail, String pass, boolean b, double v, double v1, double v2, double v3) {
+    }
+
+    //Constructor para datos registro
+    public Roomie(String nombre, String apellido, Integer edad, String email, String password, String rol, Boolean recibirDonaciones, double ingreso, List<Atributo> atributos) {
+        super(nombre, apellido, edad, email, password, rol);
+        this.recibirDonacion = recibirDonacion;
+        this.ingreso = ingreso;
+        this.atributos = atributos;
     }
 
     public void setRecibirDonacion(Boolean recibirDonacion) {
