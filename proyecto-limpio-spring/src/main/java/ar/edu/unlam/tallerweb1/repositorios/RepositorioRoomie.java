@@ -37,6 +37,7 @@ public class RepositorioRoomie implements IRepositorioRoomie{
 
     @Override
     public Roomie ObtenerUnRoomie(String emailAEncontrar) {
+        //
         return (Roomie) sessionFactory.getCurrentSession()
                 .createQuery("from Roomie where email =:email").setParameter("email", emailAEncontrar).uniqueResult();
     }

@@ -1,8 +1,7 @@
 package ar.edu.unlam.tallerweb1.Donaciones.Controlador;
 
-
-
 import ar.edu.unlam.tallerweb1.controladores.ControladorDonaciones;
+import ar.edu.unlam.tallerweb1.controladores.DatosDonacion;
 import ar.edu.unlam.tallerweb1.modelo.Roomie;
 import ar.edu.unlam.tallerweb1.servicios.IServicioDonaciones;
 import org.junit.Before;
@@ -20,12 +19,10 @@ import static org.mockito.Mockito.when;
 public class ControladorTest {
 
     public static final String MENSAJE_SIN_DONATARIO ="No hay Roomies que acepten donaciones";
-
-    public static final String MENSAJE_DE_EXITO ="se ha realizado donacion con exito";
-
     private ControladorDonaciones controladorDonaciones;
     private IServicioDonaciones servicioDeDonacion;
 
+    private DatosDonacion  datos = new DatosDonacion("mail", 100.0);
     public Double billeteraDeDonaciones = 5.0;
     public Roomie roomieDonatario2 = new Roomie("Maria", "Gonzalez", 20, "mail", "pass", true, 50000.0,0.0, 0.0,billeteraDeDonaciones);
 
@@ -87,11 +84,12 @@ public class ControladorTest {
     @Test
     public void DarDonacion (){
         dadoQueExisteUndonatario (roomieDonatario2);
-        ModelAndView mav = controladorDonaciones.mostrarBilletera(roomieDonatario2.getEmail());
-        ModelAndView mav2 = ledoyUnaDonacion(roomieDonatario2.getEmail(),donacion);
+        datos.setEmail(roomieDonatario2.getEmail());
+        datos.setBilleteraDeDonaciones(donacion);
+        ModelAndView mav2 = ledoyUnaDonacion(datos.getEmail(),datos.getBilleteraDeDonaciones());
         entoncesLaBilleteraAhoraTiene (roomieDonatario2, donacion);
-        entoncesMeLLevaALaVista("ver-billetera", mav.getViewName());
-        entoncesReciboElMensaje(MENSAJE_DE_EXITO,mav2.getModel());
+        entoncesMeLLevaALaVista("ver-billetera", mav2.getViewName());
+
     }
 
 
@@ -113,7 +111,7 @@ public class ControladorTest {
 
     private ModelAndView ledoyUnaDonacion(String roomieDonatario, Double donacion) {
         when(servicioDeDonacion.darDonacion(roomieDonatario, donacion)).thenReturn(pudoDonar);
-      return controladorDonaciones.MensajeDeExito(roomieDonatario,donacion);
+      return controladorDonaciones.MensajeDeExito(datos);
 
     }
 

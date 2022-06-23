@@ -37,7 +37,7 @@ public class ServicioDonacion implements IServicioDonaciones{
 
         Roomie Donatario = repositorioRoomies.ObtenerUnRoomie(roomieDonatario);
 
-        if (donacion>0.0 && Donatario.getRecibirDonacion()){
+        if (Donatario!=null && donacion>0.0 && Donatario.getRecibirDonacion()){
             incrementaBilletera(Donatario,donacion);
             return true;
         }

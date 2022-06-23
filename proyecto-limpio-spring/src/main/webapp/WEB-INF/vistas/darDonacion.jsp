@@ -19,15 +19,17 @@
             <hr class="colorgraph">
             <%--Elementos de entrada de datos, el elemento path debe indicar en que atributo del objeto usuario se guardan los datos ingresados--%>
             <p>Ingrese email</p>
-             <form:input  path="email" id="email" type="email" class="form-control"/>
+            <form:input  path="email" id="email" type="email" class="form-control"/>
             <p>Ingrese monto</p>
              <form:input path="billeteraDeDonaciones" type="number" id="billeteraDeDonaciones" class="form-control"/>
             <br>
             <button class="btn btn-lg btn-primary btn-block" Type="Submit"/>Donar</button>
          </form:form>
-         <%--Bloque que es visible si el elemento error no esta vacio	--%>
-        <c:if test="${not empty error}">
-            <h4><span>${msg-error}</span></h4>
+            <a href="donatarios">Ver la lista de Roomies Donatarios</a>
+        <c:if test="${not empty error}" >
+            <br>
+            <br>
+            <h4><span class="alert alert-danger" role="alert" >${error}</span></h4>
             <br>
         </c:if>
         ${msg}

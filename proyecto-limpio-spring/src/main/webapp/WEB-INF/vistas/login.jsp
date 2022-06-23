@@ -28,14 +28,15 @@
 				</form:form>
 				<a href="registrar-usuario"	>Registrarme</a>
 				<%--Bloque que es visible si el elemento error no esta vacio	--%>
-				<c:if test="${not empty error}">
+
+					<c:if test="${not empty error}">
 			        <h4><span>${error}</span></h4>
 			        <br>
 		        </c:if>
 				${msg}
 			</div>
 		</div>
-		
+
 		<!-- Placed at the end of the document so the pages load faster -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" ></script>
 		<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
