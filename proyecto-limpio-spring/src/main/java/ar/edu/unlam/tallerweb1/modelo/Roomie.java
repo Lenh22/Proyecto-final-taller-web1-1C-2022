@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
-@Table(name = "Roomie")
+@PrimaryKeyJoinColumn(name="usuario_id")
 public class Roomie extends Usuario {
 
     private Boolean recibirDonacion;
@@ -14,6 +14,7 @@ public class Roomie extends Usuario {
     private double puntaje;
     private double cantidadTotalPuntuada;
     private double billeteraDeDonaciones;
+    private Boolean puntuacion;
     @ElementCollection
     private List<Atributo> atributos;
     @ManyToOne(optional = true)
@@ -32,6 +33,18 @@ public class Roomie extends Usuario {
         this.cantidadTotalPuntuada = cantidadTotalPuntuada;
         this.billeteraDeDonaciones = billeteraDeDonaciones;
         this.atributos = atributos;
+    }
+
+    public Roomie(Boolean puntuacion) {
+        this.puntuacion = puntuacion;
+    }
+
+    public Boolean getPuntuacion() {
+        return puntuacion;
+    }
+
+    public void setPuntuacion(Boolean puntuacion) {
+        this.puntuacion = puntuacion;
     }
 
     //Constructor para un Roomie con la list de atributos vacias

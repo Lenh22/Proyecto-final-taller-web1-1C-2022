@@ -1,21 +1,19 @@
 package ar.edu.unlam.tallerweb1.Puntuacion.servicio;
 
+import ar.edu.unlam.tallerweb1.modelo.Excepciones.UsuarioExistente;
 import ar.edu.unlam.tallerweb1.modelo.Roomie;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
-import ar.edu.unlam.tallerweb1.modelo.UsuarioExistente;
-import ar.edu.unlam.tallerweb1.repositorios.IRepositorioPuntuaciones;
-import ar.edu.unlam.tallerweb1.servicios.IServicioPuntuaciones;
+import ar.edu.unlam.tallerweb1.repositorios.RepositorioPuntuacion;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPuntuacion;
 import org.junit.Before;
 import org.junit.Test;
-
 import static org.assertj.core.api.Java6Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 public class ServicioTest {
 
-    private IRepositorioPuntuaciones repositorioUsuario;
-    private IServicioPuntuaciones servicioPuntuacion;
+    private RepositorioPuntuacion repositorioUsuario;
+    private ServicioPuntuacion servicioPuntuacion;
     private String mail = "maria@maria.com";
     private String pass = "12345";
     private Roomie roomie2 = new Roomie("Maria", "Gonzalez", 20, mail, pass, "", true);
@@ -25,7 +23,7 @@ public class ServicioTest {
 
     @Before
     public void init(){
-        repositorioUsuario = mock(IRepositorioPuntuaciones.class);
+        repositorioUsuario = mock(RepositorioPuntuacion.class);
         servicioPuntuacion = new ServicioPuntuacion(repositorioUsuario);
     }
 
@@ -34,12 +32,13 @@ public class ServicioTest {
         dadoQueExisteElRoomie(roomie2);
 
         cuandoQuieroPuntuarlo(puntuacion);
+        cuandoQuieroPuntuarlo(puntuacion);
 
         entoncesPuedoVerElPuntajeTotal();
     }
 
     @Test (expected = UsuarioExistente.class)
-    public void queNoSePuedaPuntuarAUnRoomieExistenteyVerPuntuacion(){
+    public void queNoSePuedaPuntuarAUnRoomieNoExistenteyVerPuntuacion(){
         dadoQueNoExisteElRoomie();
 
         cuandoQuieroPuntuarlo(puntuacion);
@@ -51,13 +50,42 @@ public class ServicioTest {
     public void queNoPuedaTenerPuntajeNegativo(){
         dadoQueExisteElRoomie(roomie2);
 
-        cuandoQuieroPuntuarlo(false);
+        cuandoQuieroPuntuarNegativo(false);
+        cuandoQuieroPuntuarNegativo(false);
+        cuandoQuieroPuntuarNegativo(false);
+        cuandoQuieroPuntuarNegativo(false);
+        cuandoQuieroPuntuarNegativo(false);
+
 
         entoncesELPuntajeTieneQueQuedarEnCero();
 
     }
 
+    @Test
+    public void queAlPuntuarPositivoYNegativoSoloCuenteLosPositivos(){
+        dadoQueExisteElRoomie(roomie2);
+
+        cuandoQuieroPuntuarlo(true);
+        cuandoQuieroPuntuarNegativo(false);
+        cuandoQuieroPuntuarlo(true);
+        cuandoQuieroPuntuarlo(true);
+        cuandoQuieroPuntuarNegativo(false);
+
+
+        entoncesELPuntajeTieneQueQuedarEnTres();
+
+    }
+
+    private void entoncesELPuntajeTieneQueQuedarEnTres() {
+        assertThat(roomie2.getPuntaje()).isEqualTo(3.0);
+    }
+
+    private void cuandoQuieroPuntuarNegativo(boolean b) {
+        servicioPuntuacion.puntuacionRoomie(roomie2, false);
+    }
+
     private void entoncesELPuntajeTieneQueQuedarEnCero() {
+        //when(servicioPuntuacion.puntuacionRoomie(roomie2, false)).thenReturn(0.0);
         assertThat(roomie2.getPuntaje()).isEqualTo(0.0);
     }
 
@@ -66,12 +94,12 @@ public class ServicioTest {
     }
 
     private void cuandoQuieroPuntuarlo(Boolean puntuacion) {
-        servicioPuntuacion.puntuacionRoomie(roomie2, puntuacion);
+        servicioPuntuacion.puntuacionRoomie(roomie2, true);
     }
 
     private void entoncesPuedoVerElPuntajeTotal() {
         //when(servicioPuntuacion.puntuacionRoomie(roomie2, true)).thenReturn(1.0);
-        assertThat(roomie2.getPuntaje()).isEqualTo(1.0);
+        assertThat(roomie2.getPuntaje()).isEqualTo(2.0);
     }
     private void entoncesNoPuedoVerElPuntajeTotal() {
         verify(servicioPuntuacion, times(0)).verPuntuacion(roomie2);
