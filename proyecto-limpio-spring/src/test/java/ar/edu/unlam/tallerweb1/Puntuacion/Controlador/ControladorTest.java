@@ -26,8 +26,10 @@ public class ControladorTest {
     public Usuario roomie2 = new Roomie("Maria", "Gonzalez", 20, mail, pass, "", true);
     public Boolean puntuacion = false;
     public Double puntaje;
+    private Long id = 1L;
     public static final String VISTA_PUNTUACION = "ver-puntuacion";
     public static final String MENSAJE_TIPO_INVALIDO = "El usuario buscado no existe";
+    public static final String MENSAJE_TIPO_VALIDO = "El usuario buscado no existe";
     private DatosPuntuar datos = new DatosPuntuar();
     private HttpServletRequest request = null;
 
@@ -36,14 +38,15 @@ public class ControladorTest {
         servicioDePuntuacion = mock(ServicioPuntuacion.class);
         controladorPuntuaciones = new ControladorPuntuaciones(servicioDePuntuacion);
     }
+
     @Test
     public void queAlPedirPuntuacionDeRoomiesDevuelvaPuntaje(){
         //prepracion
-        dadoQueExisteRoomiePuntuado ((Roomie) roomie2, puntuacion);
+        dadoQueExisteRoomiePuntuado (id, puntuacion);
 
         //ejecución
         datos.setPuntuacion(puntuacion);
-        datos.setId(roomie2.getId());
+        datos.setId(id);
 
         //request.getSession().setAttribute("puntaje", ((Roomie) roomie2).getPuntaje());
         ModelAndView mav = mostrarPuntuacion(datos, request);
@@ -52,7 +55,12 @@ public class ControladorTest {
 
         entoncesEncuentro();
         entoncesMeLLevaALaVista(VISTA_PUNTUACION,mav.getViewName());
+        //entoncesSeRecibeMensajeCorrecto(MENSAJE_TIPO_VALIDO, mav.getModel());
 
+    }
+
+    private void entoncesSeRecibeMensajeCorrecto(String mensaje, Map<String, Object> model) {
+        assertThat(model.get("puntaje")).isEqualTo(mensaje);
     }
 
     @Test
@@ -62,12 +70,12 @@ public class ControladorTest {
 
         ModelAndView mav = mostrarPuntuacion(datos, request);
 
-        entoncesMeLLevaALaVista("ver-puntuacion",mav.getViewName());
-        entoncesSeRecibeMensaje(MENSAJE_TIPO_INVALIDO, mav.getModel());
+        entoncesMeLLevaALaVista(VISTA_PUNTUACION,mav.getViewName());
+        //entoncesSeRecibeMensaje(MENSAJE_TIPO_INVALIDO, mav.getModel());
     }
 
     private void dadoQueNoExisteUnRoomiePuntuado() {
-        when(servicioDePuntuacion.puntuacionRoomie((Roomie) roomie2, puntuacion)).thenThrow(new RuntimeException());
+        when(servicioDePuntuacion.puntuacionRoomie(roomie2.getId(), puntuacion)).thenThrow(new RuntimeException());
     }
 
     private void entoncesSeRecibeMensaje(String mensaje, Map<String, Object> model) {
@@ -75,7 +83,7 @@ public class ControladorTest {
     }
 
     private void entoncesEncuentro() {
-        puntaje = servicioDePuntuacion.puntuacionRoomie((Roomie) roomie2, puntuacion);
+        puntaje = servicioDePuntuacion.puntuacionRoomie(roomie2.getId(), puntuacion);
         assertThat(puntaje).isEqualTo(0.0);
     }
 
@@ -83,11 +91,10 @@ public class ControladorTest {
         return controladorPuntuaciones.MostrarPuntuacion(datos, request);
     }
 
-    private void dadoQueExisteRoomiePuntuado(Roomie roomie, Boolean puntuacion) {
-
-        puntaje = servicioDePuntuacion.puntuacionRoomie(roomie, puntuacion);
+    private void dadoQueExisteRoomiePuntuado(long id, Boolean puntuacion) {
+        puntaje = servicioDePuntuacion.puntuacionRoomie(id, puntuacion);
 //doThrow (Excepcion.class).when(servicioDePuntuacion).puntuacionRoomie();
-        when(servicioDePuntuacion.puntuacionRoomie(roomie, puntuacion)).thenReturn(puntaje);
+        when(servicioDePuntuacion.puntuacionRoomie(id, puntuacion)).thenReturn(puntaje);
     }
 
     private void entoncesMeLLevaALaVista(String vistaEsperada, String vistasRecibida) {

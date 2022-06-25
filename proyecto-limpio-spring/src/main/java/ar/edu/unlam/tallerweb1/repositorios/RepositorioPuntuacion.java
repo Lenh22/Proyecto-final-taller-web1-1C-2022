@@ -9,13 +9,12 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-//@ComponentScan( "com.javabydeveloper.spring.autowire" )
 @Repository("repositorioPuntuacion")
 public class RepositorioPuntuacion implements IRepositorioPuntuaciones{
 
     private SessionFactory sessionFactory;
 
-    @Autowired//(required = false)
+    @Autowired
     public RepositorioPuntuacion(SessionFactory sessionFactory)
     {
         this.sessionFactory= sessionFactory;
@@ -46,12 +45,6 @@ public class RepositorioPuntuacion implements IRepositorioPuntuaciones{
 
     @Override
     public Roomie buscarRoomie(Long id, Boolean puntuacion) {
-    /*    Roomie roomie = new Roomie();
-        AgregarRoomiePuntuado(roomie);
-        roomie.setPuntuacion(false);
-        roomie.setId(2L);
-        id = roomie.getId();
-        puntuacion = roomie.getPuntuacion();*/
         final Session session = sessionFactory.getCurrentSession();
         return (Roomie) session.createCriteria(Roomie.class)
                 .add(Restrictions.eq("id", id))

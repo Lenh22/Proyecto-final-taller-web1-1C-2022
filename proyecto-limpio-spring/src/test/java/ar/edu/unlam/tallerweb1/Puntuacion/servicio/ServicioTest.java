@@ -29,7 +29,7 @@ public class ServicioTest {
 
     @Test
     public void queSePuedaPuntuarAUnRoomieExistenteyVerPuntuacion(){
-        dadoQueExisteElRoomie(roomie2);
+        dadoQueExisteElRoomie(roomie2.getId());
 
         cuandoQuieroPuntuarlo(puntuacion);
         cuandoQuieroPuntuarlo(puntuacion);
@@ -48,7 +48,7 @@ public class ServicioTest {
 
     @Test
     public void queNoPuedaTenerPuntajeNegativo(){
-        dadoQueExisteElRoomie(roomie2);
+        dadoQueExisteElRoomie(roomie2.getId());
 
         cuandoQuieroPuntuarNegativo(false);
         cuandoQuieroPuntuarNegativo(false);
@@ -63,7 +63,7 @@ public class ServicioTest {
 
     @Test
     public void queAlPuntuarPositivoYNegativoSoloCuenteLosPositivos(){
-        dadoQueExisteElRoomie(roomie2);
+        dadoQueExisteElRoomie(roomie2.getId());
 
         cuandoQuieroPuntuarlo(true);
         cuandoQuieroPuntuarNegativo(false);
@@ -81,7 +81,7 @@ public class ServicioTest {
     }
 
     private void cuandoQuieroPuntuarNegativo(boolean b) {
-        servicioPuntuacion.puntuacionRoomie(roomie2, false);
+        servicioPuntuacion.puntuacionRoomie(roomie2.getId(), false);
     }
 
     private void entoncesELPuntajeTieneQueQuedarEnCero() {
@@ -89,12 +89,13 @@ public class ServicioTest {
         assertThat(roomie2.getPuntaje()).isEqualTo(0.0);
     }
 
-    private void dadoQueExisteElRoomie(Usuario roomie2) {
-        when(repositorioUsuario.buscarUsuario(mail, pass)).thenReturn((Roomie) roomie2);
+    private void dadoQueExisteElRoomie(Long id) {
+        when(repositorioUsuario.ObtenerUnRoomie(id)).thenReturn(roomie2);
+
     }
 
     private void cuandoQuieroPuntuarlo(Boolean puntuacion) {
-        servicioPuntuacion.puntuacionRoomie(roomie2, true);
+        servicioPuntuacion.puntuacionRoomie(roomie2.getId(), puntuacion);
     }
 
     private void entoncesPuedoVerElPuntajeTotal() {
@@ -102,7 +103,7 @@ public class ServicioTest {
         assertThat(roomie2.getPuntaje()).isEqualTo(2.0);
     }
     private void entoncesNoPuedoVerElPuntajeTotal() {
-        verify(servicioPuntuacion, times(0)).verPuntuacion(roomie2);
+        verify(servicioPuntuacion, times(0)).puntuacionRoomie(roomie2.getId(), roomie2.getPuntuacion());
     }
 
     private void dadoQueNoExisteElRoomie() {
