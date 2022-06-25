@@ -3,14 +3,11 @@ package ar.edu.unlam.tallerweb1.modelo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.Vivienda;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "propietario")
+@PrimaryKeyJoinColumn(name="usuario_id")
 public class Propietario extends Usuario {
 
     @OneToMany

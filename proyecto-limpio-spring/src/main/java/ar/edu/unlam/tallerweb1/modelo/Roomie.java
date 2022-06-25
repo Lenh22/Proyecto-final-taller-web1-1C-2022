@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
-@Table(name = "Roomie")
+@PrimaryKeyJoinColumn(name="usuario_id")
 public class Roomie extends Usuario {
 
     private Boolean recibirDonacion;

@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
 import ar.edu.unlam.tallerweb1.modelo.Roomie;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,13 @@ public class RepositorioRoomie implements IRepositorioRoomie{
     @Override
     public List<Roomie> obtenerRoomies() {
         final Session session = sessionFactory.getCurrentSession();
-        return session.createCriteria(Roomie.class).list();
+        //return session.createCriteria(Roomie.class).list();
+
+        List l1= session.createQuery("from Roomie where recibirDonacion=:recibirDonacion").setParameter("recibirDonacion", true).list();
+
+
+        return l1;
+
     }
 
     @Override

@@ -42,12 +42,9 @@ public class ControladorDonaciones {
     }
 //Debo modificar los casos de prueba de servicios y acomodar mejor este metodo para que se vea el aumento en la billetera
     @RequestMapping(path = "/ver-billetera")
-    public ModelAndView mostrarBilletera(String roomieDonatario) {
-      //public ModelAndView mostrarBilletera(@PathVariable("email") DatosDonacion datos) {
+   public ModelAndView mostrarBilletera(String roomieDonatario) {
         ModelMap model = new ModelMap();
-        //Roomie roomie = servicioDeDonacion.buscarDonatario(datos.getEmail())
-        double billetera = servicioDeDonacion.billeteraDelRoomie(roomieDonatario);
-        //double billetera = servicioDeDonacion.incrementaBilletera(datos.getEmail(),datos.getBilleteraDeDonaciones());
+       double billetera = servicioDeDonacion.billeteraDelRoomie(roomieDonatario);
         model.put("billetera", billetera); //muestro un atributo
         //Podemos agregar otro model por ejemplo model.put("nombre", roomieDoanatari.getnombr..)
         return new ModelAndView("ver-billetera", model);
@@ -67,12 +64,12 @@ public class ControladorDonaciones {
 
         if(pudoDonar) {
             model.put("email",datos.getEmail());
-            model.put("billetera",datos.getBilleteraDeDonaciones());
             model.put("error","Se dono correctamente al roomie");
+            model.put("billetera",datos.getBilleteraDeDonaciones());
             return new ModelAndView("ver-billetera", model);
 
         }else{
-            model.put("error","No existe el roomie, por favor revise el listado de donatarios");
+            model.put("error","El roomie o el monto a donar son incorrecto.");
         }
         return new ModelAndView("darDonacion",model);
     }

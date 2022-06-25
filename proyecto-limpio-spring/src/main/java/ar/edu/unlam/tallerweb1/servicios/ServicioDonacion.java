@@ -24,12 +24,14 @@ public class ServicioDonacion implements IServicioDonaciones{
 
         //Primero traemlos la lista de roomies de repositorio //HayQueHacerElMetodo
         List<Roomie> roomiesADonar = repositorioRoomies.obtenerRoomies();
-
+        /*
         //metodo para devolver usuarios que quieran recibir donacion
         for (Roomie roomieDonatarios: roomiesADonar) {
             if(roomieDonatarios.getRecibirDonacion()==true)
                 roomiesADonar.add(roomieDonatarios);
         }
+        */
+
         return roomiesADonar;
     }
     @Override
@@ -55,8 +57,8 @@ public class ServicioDonacion implements IServicioDonaciones{
     public Roomie buscarDonatario(Roomie roomieDonatario) {
         List<Roomie> roomiesADonar = repositorioRoomies.obtenerRoomies();
         Roomie econtrado = null;
-        for (Roomie roomieDonatarios : roomiesADonar)
-            if (roomieDonatarios.getEmail() == roomieDonatario.getEmail()){
+        for (Roomie roomieDonatarios2 : roomiesADonar)
+            if (roomieDonatarios2.getEmail() == roomieDonatario.getEmail()){
                 econtrado = roomieDonatario;
             }
         return econtrado;

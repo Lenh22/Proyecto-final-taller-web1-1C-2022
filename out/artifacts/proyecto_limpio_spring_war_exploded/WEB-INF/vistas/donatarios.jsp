@@ -14,7 +14,7 @@
 
 <div>
     <c:forEach items="${donatarios}" var="each" >
-        ${each.email}
+        ${each.nombre} ${each.apellido} ${each.email} ${each.billeteraDeDonaciones}
     </c:forEach>
 </div>
 <!-- Placed at the end of the document so the pages load faster -->
