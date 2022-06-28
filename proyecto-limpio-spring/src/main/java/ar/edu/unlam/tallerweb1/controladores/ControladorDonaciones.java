@@ -1,7 +1,10 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
 import ar.edu.unlam.tallerweb1.modelo.Roomie;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.IServicioDonaciones;
+import ar.edu.unlam.tallerweb1.servicios.ServicioDonacion;
+import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,11 +24,13 @@ import java.util.List;
 public class ControladorDonaciones {
 
     private IServicioDonaciones servicioDeDonacion;
+    private ServicioLogin servicioLogin;
     private Boolean pudoDonar = false;
 
     @Autowired
-    public ControladorDonaciones(IServicioDonaciones servicioDeDonacion ) {
+    public ControladorDonaciones(IServicioDonaciones servicioDeDonacion, ServicioLogin servicioLogin ) {
         this.servicioDeDonacion=servicioDeDonacion;
+        this.servicioLogin=servicioLogin;
     }
 
     @RequestMapping(path = "/donatarios")
@@ -44,8 +49,8 @@ public class ControladorDonaciones {
     @RequestMapping(path = "/ver-billetera")
    public ModelAndView mostrarBilletera(String roomieDonatario) {
         ModelMap model = new ModelMap();
-       double billetera = servicioDeDonacion.billeteraDelRoomie(roomieDonatario);
-        model.put("billetera", billetera); //muestro un atributo
+       //double billetera = servicioDeDonacion.billeteraDelRoomie(roomieDonatario);
+       // model.put("billetera", billetera); //muestro un atributo
         //Podemos agregar otro model por ejemplo model.put("nombre", roomieDoanatari.getnombr..)
         return new ModelAndView("ver-billetera", model);
     }
@@ -60,12 +65,14 @@ public class ControladorDonaciones {
     public ModelAndView MensajeDeExito(@ModelAttribute ("DatosDonacion") DatosDonacion datos)
     {
         ModelMap model= new ModelMap();
-        pudoDonar = servicioDeDonacion.darDonacion(datos.getEmail(), datos.getBilleteraDeDonaciones());
+        Roomie roomie = new Roomie();
+        roomie.setEmail(datos.getEmail());
+        double suma = servicioDeDonacion.incrementaBilletera(roomie, datos.getBilleteraDeDonaciones());
 
-        if(pudoDonar) {
+        if(servicioDeDonacion.darDonacion(datos.getEmail(), datos.getBilleteraDeDonaciones())) {
             model.put("email",datos.getEmail());
             model.put("error","Se dono correctamente al roomie");
-            model.put("billetera",datos.getBilleteraDeDonaciones());
+            model.put("billetera",suma);
             return new ModelAndView("ver-billetera", model);
 
         }else{
@@ -73,24 +80,25 @@ public class ControladorDonaciones {
         }
         return new ModelAndView("darDonacion",model);
     }
-
-    /*@RequestMapping(path = "/darDonacionValidacion", method = RequestMethod.POST)
-    //public ModelAndView MensajeDeExito(@ModelAttribute ("DatosDonacion") DatosDonacion datos)
-      public ModelAndView MensajeDeExito(@ModelAttribute("DatonDonacion") String roomie, Double monto)
-    {
-        ModelMap model= new ModelMap();
-        pudoDonar = servicioDeDonacion.darDonacion(roomie,monto);
-
-        if(pudoDonar) {
-            //model.put(String.valueOf(model),monto);
-            return new ModelAndView("redirect:/home");
-            //model.put("msg-error","se ha realizado donacion con exito");
-        }else{
-            model.put("msg-error","no se ha realizado donacion");
-        }
-        return new ModelAndView("darDonacion",model);
+    @RequestMapping("/activarDonacion")
+    public ModelAndView irAactivarDonacion() {
+        ModelMap modelo = new ModelMap();
+        modelo.put("datosLogin", new DatosLogin());
+        return new ModelAndView("activarDonacion", modelo);
     }
-   */
+    @RequestMapping(path = "/activarDonacionValidacion", method = RequestMethod.POST)
+    public ModelAndView activarDonacion(@ModelAttribute("datosLogin") DatosLogin datosLogin, HttpServletRequest request) {
+        ModelMap model = new ModelMap();
+        Boolean activoDonacion = servicioDeDonacion.activarDonacion(datosLogin.getEmail(), datosLogin.getAceptodonacion());
+        if (activoDonacion){
+            model.put("email", datosLogin.getEmail());
+            model.put("error", "se aplicaron los cambios");
+            return new ModelAndView("activarDonacion", model);
+        } else {
+            model.put("error", "No se aplicaron los cambios");
+        }
+        return new ModelAndView("activarDonacion", model);
 
+    }
 }
 

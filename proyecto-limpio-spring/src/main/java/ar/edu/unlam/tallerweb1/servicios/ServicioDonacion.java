@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 
@@ -24,14 +25,6 @@ public class ServicioDonacion implements IServicioDonaciones{
 
         //Primero traemlos la lista de roomies de repositorio //HayQueHacerElMetodo
         List<Roomie> roomiesADonar = repositorioRoomies.obtenerRoomies();
-        /*
-        //metodo para devolver usuarios que quieran recibir donacion
-        for (Roomie roomieDonatarios: roomiesADonar) {
-            if(roomieDonatarios.getRecibirDonacion()==true)
-                roomiesADonar.add(roomieDonatarios);
-        }
-        */
-
         return roomiesADonar;
     }
     @Override
@@ -39,7 +32,7 @@ public class ServicioDonacion implements IServicioDonaciones{
 
         Roomie Donatario = repositorioRoomies.ObtenerUnRoomie(roomieDonatario);
 
-        if (Donatario!=null && donacion>0.0 && Donatario.getRecibirDonacion()){
+        if (Donatario!=null && Donatario.getRecibirDonacion()!=null && donacion>0.0 && Donatario.getRecibirDonacion()==true){
             incrementaBilletera(Donatario,donacion);
             return true;
         }
@@ -48,10 +41,16 @@ public class ServicioDonacion implements IServicioDonaciones{
     @Override
     public Double incrementaBilletera(Roomie roomie, Double donacion) {
 
-        Double  billeteraActual = roomie.getBilleteraDeDonaciones();
-        Double  suma = billeteraActual + donacion;
-        roomie.setBilleteraDeDonaciones(suma);
-        return suma;
+        try {
+            Roomie roomie2 = repositorioRoomies.ObtenerUnRoomie(roomie.getEmail());
+            Double  billeteraActual = roomie2.getBilleteraDeDonaciones();
+            Double  suma = billeteraActual + donacion;
+            roomie.setBilleteraDeDonaciones(suma);
+            return suma;
+        } catch (NullPointerException npe) {
+            npe.printStackTrace();
+        }
+        return 0.0;
     }
     @Override
     public Roomie buscarDonatario(Roomie roomieDonatario) {
@@ -72,4 +71,19 @@ public class ServicioDonacion implements IServicioDonaciones{
     }
 
 
-}
+    @Override
+    public Boolean activarDonacion(String email, Boolean activar){
+        try {
+            Roomie roomie = repositorioRoomies.ObtenerUnRoomie(email);
+            roomie.setRecibirDonacion(activar);
+            return true;
+        } catch (NullPointerException npe) {
+            npe.printStackTrace();
+        }
+        return false;
+    }
+
+    }
+
+
+

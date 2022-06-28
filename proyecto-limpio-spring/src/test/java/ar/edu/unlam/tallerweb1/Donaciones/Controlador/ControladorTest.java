@@ -4,6 +4,7 @@ import ar.edu.unlam.tallerweb1.controladores.ControladorDonaciones;
 import ar.edu.unlam.tallerweb1.controladores.DatosDonacion;
 import ar.edu.unlam.tallerweb1.modelo.Roomie;
 import ar.edu.unlam.tallerweb1.servicios.IServicioDonaciones;
+import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,6 +23,8 @@ public class ControladorTest {
     private ControladorDonaciones controladorDonaciones;
     private IServicioDonaciones servicioDeDonacion;
 
+    private ServicioLogin servicioLogin;
+
     private DatosDonacion  datos = new DatosDonacion("mail", 100.0);
     public Double billeteraDeDonaciones = 5.0;
     public Roomie roomieDonatario2 = new Roomie("Maria", "Gonzalez", 20, "mail", "pass", true, 50000.0,0.0, 0.0,billeteraDeDonaciones);
@@ -39,7 +42,7 @@ public class ControladorTest {
         //mokito es una libreria para hacer test double
         //los mock no tienen estados, es una caja vacia que expone los mismo metodos
         //que definimos en servicios
-        controladorDonaciones = new ControladorDonaciones(servicioDeDonacion);
+        controladorDonaciones = new ControladorDonaciones(servicioDeDonacion, servicioLogin);
     }
     @Test
 

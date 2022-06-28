@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.servicios;
 
 import ar.edu.unlam.tallerweb1.modelo.Roomie;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 public interface IServicioDonaciones {
@@ -15,4 +16,6 @@ public interface IServicioDonaciones {
     Roomie buscarDonatario(Roomie roomieDonatario);
 
     Double billeteraDelRoomie(String roomieDonatario);
+
+    Boolean activarDonacion(String email, Boolean activar);
 }
