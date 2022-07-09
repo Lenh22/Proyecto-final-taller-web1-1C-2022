@@ -23,25 +23,12 @@
             <h4><span>${error}</span></h4>
             <br>
         </c:if>
-        <form:form action="validar-registro-roomie" method="POST" modelAttribute="datosRegistro">
             <h3 class="form-signin-heading">Bienvenido ${datosRegistro.nombre}</h3>
             <h4 class="form-signin-heading">Complete por favor los siguientes datos para terminar el registro</h4>
-            <hr class="colorgraph"><br>
-
-            <label>Ingresos</label>
-            <form:input path="nombre" type="number" id="ingreso" class="form-control" />
-            <label>Atributos</label>
-            <form:checkbox path="atributos" id="atributos" value="FUMADOR"/>FUMADOR
-            <form:checkbox path="atributos" id="atributos" value="DIURNO"/>DIURNO
-            <form:checkbox path="atributos" id="atributos" value="NOCTURNO"/>NOCTURNO
-            <form:checkbox path="atributos" id="atributos" value="PETFRIENDLY"/>PETFRIENDLY
-            <form:checkbox path="atributos" id="atributos" value="VEGGIE"/>VEGGIE
-            <form:checkbox path="atributos" id="atributos" value="OMNIVORO"/>OMNIVORO
-            <form:checkbox path="atributos" id="atributos" value="INCLUSIVO"/>INCLUSIVO
-            <form:checkbox path="atributos" id="atributos" value="GAMER"/>GAMER
-            <form:checkbox path="atributos" id="atributos" value="SEXWORK"/>SEXWORK
-            <form:checkbox path="atributos" id="atributos" value="WEEDFRIENDLY"/>WEEDFRIENDLY
-
+            <hr class="colorgraph">
+            <br>
+        <form:form action="validar-registro-roomie" method="POST" commandName="datosRegistro" modelAttribute="datosRegistro">
+            <br><form:checkboxes items="${atributos}" path="atributos"/>
             <button id="btn-registrarme" class="btn btn-lg btn-primary btn-block" Type="Submit"/>Registrarme</button>
         </form:form>
     </div>

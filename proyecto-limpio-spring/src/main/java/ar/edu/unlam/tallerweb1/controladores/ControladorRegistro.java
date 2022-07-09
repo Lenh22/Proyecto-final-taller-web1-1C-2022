@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import ar.edu.unlam.tallerweb1.modelo.Atributo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.Interfaces.IServicioRegistro;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Arrays;
+import java.util.EnumSet;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -39,7 +43,8 @@ public class ControladorRegistro {
         }
         else {
             if(datosRegistro.getRol().equals("roomie")){
-                model.put("datosRegistro", datosRegistro);
+                request.getSession().setAttribute("DATOSREGISTRO", datosRegistro);
+                model.put("atributos",(Atributo.values()));
                 return new ModelAndView("registro-roomie", model);
             }
             else{
@@ -53,14 +58,17 @@ public class ControladorRegistro {
     @RequestMapping(path = "/validar-registro-roomie", method = RequestMethod.POST)
     public ModelAndView validarRegistroRoomie(@ModelAttribute("datosRegistro") DatosRegistro datosRegistro, HttpServletRequest request){
         ModelMap model = new ModelMap();
+        DatosRegistro datosRegistro1 = new DatosRegistro();
         try{
             if(datosRegistro.getAtributos().isEmpty()){
                 model.put("error","Debe seleccionar al menos un atributo");
                 return new ModelAndView("redirect:/registro-roomie/");
             }
             else{
-                model.put("datosLogin",datosRegistro);
-                servicioRegistro.registrarNuevoUsuario(datosRegistro);
+                datosRegistro1 = (DatosRegistro) request.getSession().getAttribute("DATOSREGISTRO");
+                datosRegistro1.setAtributos(datosRegistro.getAtributos());
+                model.put("datosLogin",datosRegistro1);
+                servicioRegistro.registrarNuevoUsuario(datosRegistro1);
             }
         }catch (Exception ex){
             model.put("error","Ha surgido un error inesperado");

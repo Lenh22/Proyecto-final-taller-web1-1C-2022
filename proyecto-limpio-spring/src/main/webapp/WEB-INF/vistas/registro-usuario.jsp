@@ -32,7 +32,8 @@
             <form:radiobutton path="rol" value="roomie"/>
             <label>Propietario</label>
             <form:radiobutton path="rol" value="propietario"/>
-            <button id="btn-registrarme" class="btn btn-lg btn-primary btn-block" Type="Submit"/>Seguir con el Registrarme</button>
+            <br>
+            <button id="btn-registrarme" class="btn btn-primary" Type="Submit"/>Registrarme</button>
         </form:form>
 
         <c:if test="${not empty error}">

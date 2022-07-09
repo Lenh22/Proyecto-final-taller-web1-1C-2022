@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.repositorios.Interfaces;
 
+import ar.edu.unlam.tallerweb1.modelo.Atributo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
 import java.util.List;

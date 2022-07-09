@@ -58,7 +58,7 @@ public class ServicioTest {
         atributos.add(Atributo.NOCTURNO);
         r2.setNombre("Leandro");
         r2.setId(2L);
-        r2.setAtributos(atributos);
+        //r2.setAtributos(atributos);
         roomieList.add(r2);
 
         LinkedList<Atributo> atributos2 = new LinkedList<>();
@@ -84,7 +84,7 @@ public class ServicioTest {
         atributos.add(Atributo.SEXWORK);
         r1.setNombre("Ariel");
         r1.setId(1L);
-        r1.setAtributos(atributos);
+       // r1.setAtributos(atributos);
 
         when(repositorioEmparejamiento.obtenerRoomiePorId(r1.getId())).thenReturn(r1);
     }

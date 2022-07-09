@@ -1,11 +1,14 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
+import ar.edu.unlam.tallerweb1.modelo.Atributo;
 import ar.edu.unlam.tallerweb1.modelo.Roomie;
+import ar.edu.unlam.tallerweb1.modelo.RoomieAtributos;
 import ar.edu.unlam.tallerweb1.repositorios.Interfaces.IRepositorioEmparejamiento;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -29,14 +32,35 @@ public class RepositorioEmparejamiento implements IRepositorioEmparejamiento {
 
     @Override
     public Roomie obtenerRoomiePorId(Long idAEncontrar) {
-
-        return (Roomie) sessionFactory.getCurrentSession()
-                .createQuery("from Roomie where id =:id").setParameter("id", idAEncontrar).uniqueResult(); //uniqueResult retorna solo un valor
+        final Session session = sessionFactory.getCurrentSession();
+        Roomie roomie = (Roomie) session
+                .createQuery("from Roomie where id =:idAEncontrar").setParameter("idAEncontrar", idAEncontrar).uniqueResult();
+        return roomie; //uniqueResult retorna solo un valor
     }
 
     @Override
     public void agregarRoomie(Roomie roomie) {
         sessionFactory.getCurrentSession().save(roomie);
+    }
+
+    @Override
+    public void guardarAtributosRoomie(RoomieAtributos roomieAtributos) {
+        sessionFactory.getCurrentSession().save(roomieAtributos);
+    }
+
+    @Override
+    public List<Roomie> obtenerIdRoomies() {
+        final Session session = sessionFactory.getCurrentSession();
+        return session
+                .createQuery("from Roomie").list();
+    }
+
+    @Override
+    public List<RoomieAtributos> obtenerAtributosPorId(Long idRoomie) {
+        final Session session = sessionFactory.getCurrentSession();
+        return session
+                .createQuery("from RoomieAtributos where idRoomie =:idRoomie")
+                .setParameter("idRoomie",idRoomie).list();
     }
 
 }

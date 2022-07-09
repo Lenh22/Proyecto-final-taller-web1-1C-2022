@@ -23,9 +23,10 @@
 					<form:input path="email" id="email" type="email" class="form-control" />
 					<label>Password</label>
 					<form:input path="password" type="password" id="password" class="form-control"/>
-					
-					<button class="btn btn-lg btn-primary btn-block" Type="Submit"/>Login</button>
+					<br>
+					<button class="btn btn-primary" Type="Submit"/>Login</button>
 				</form:form>
+					<br>
 				<a href="registro-usuario"	>Registrarme</a>
 				<%--Bloque que es visible si el elemento error no esta vacio	--%>
 				<c:if test="${not empty error}">

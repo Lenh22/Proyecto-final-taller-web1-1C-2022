@@ -14,8 +14,8 @@ public class DatosRegistro {
     private Boolean activo = false;
     private String Apellido;
     private Boolean recibirDonaciones;
-    private List<Atributo> atributos;
     private double ingreso;
+    private List<Atributo> atributos;
 
     public String getNombre() {
         return nombre;
@@ -73,19 +73,19 @@ public class DatosRegistro {
         this.recibirDonaciones = recibirDonaciones;
     }
 
-    public List<Atributo> getAtributos() {
-        return atributos;
-    }
-
-    public void setAtributos(List<Atributo> atributos) {
-        this.atributos = atributos;
-    }
-
     public double getIngreso() {
         return ingreso;
     }
 
     public void setIngreso(double ingreso) {
         this.ingreso = ingreso;
+    }
+
+    public List<Atributo> getAtributos() {
+        return atributos;
+    }
+
+    public void setAtributos(List<Atributo> atributos) {
+        this.atributos = atributos;
     }
 }
