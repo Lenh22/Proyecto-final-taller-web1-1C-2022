@@ -1,39 +1,41 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
 import ar.edu.unlam.tallerweb1.modelo.Vivienda;
+import ar.edu.unlam.tallerweb1.repositorios.Interfaces.IRepositorioVivienda;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository("repositorioVivienda")
-public class RepositorioVivienda {
+@Repository
+public class RepositorioVivienda implements IRepositorioVivienda {
 
-    private SessionFactory _sessionFactory;
+    private SessionFactory sessionFactory;
 
     @Autowired
     public RepositorioVivienda(SessionFactory sessionFactoryNuevo){
-        this._sessionFactory=sessionFactoryNuevo;
+        this.sessionFactory =sessionFactoryNuevo;
     }
-
+    @Override
     public Vivienda getViviendaID(Long id_vivienda){
-        return (Vivienda) _sessionFactory.getCurrentSession()
+        return (Vivienda) sessionFactory.getCurrentSession()
                 .createQuery("FROM Vivienda  WHERE id=:id")
                 .setParameter("id",id_vivienda);
     }
-
+@Override
     public List<Vivienda> getViviendas(){
-        List<Vivienda> viviendasTotales;
-        viviendasTotales = (List<Vivienda>) _sessionFactory.getCurrentSession()
-                .createQuery("FROM Vivienda");//Fijarse el casteo
-        return  viviendasTotales;
+         final Session session = sessionFactory.getCurrentSession();
+        List<Vivienda> todasViviendas = session.createQuery("From Vivienda").list();
+        return todasViviendas;
+
     }
 
-
+@Override
     public List<Vivienda> getViviendasDisponibles() {
-        List<Vivienda> viviendasDisponibles = null;
-        List<Vivienda> viviendasTotales = (List<Vivienda>) _sessionFactory.getCurrentSession()
+    List<Vivienda> viviendasDisponibles = null;
+    List<Vivienda> viviendasTotales = (List<Vivienda>) sessionFactory.getCurrentSession()
                 .createQuery("FROM Vivienda");//Fijarse el casteo
         for (Vivienda vivienda:viviendasTotales) {
             //Como saber cuanta gente hay en la vivienda???? Hacer un atributo nuevo a vivienda?
@@ -44,5 +46,22 @@ public class RepositorioVivienda {
         }
 
         return  viviendasDisponibles;
+    }
+@Override
+    public Vivienda buscarViviendaId(int id){
+        Vivienda viviendaEncontrada= (Vivienda) sessionFactory.getCurrentSession()
+                .createQuery("From Vivienda where vivienda=:id")
+                .setParameter("id",id);
+        return viviendaEncontrada;
+    }
+@Override
+    public void crearVivienda(Vivienda datoVivienda) {
+
+        sessionFactory.getCurrentSession().save(datoVivienda);
+    }
+
+    public void eliminarVivienda(Vivienda datoVivineda)
+    {
+        sessionFactory.getCurrentSession().delete(datoVivineda);
     }
 }

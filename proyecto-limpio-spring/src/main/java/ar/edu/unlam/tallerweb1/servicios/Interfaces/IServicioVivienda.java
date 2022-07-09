@@ -8,5 +8,8 @@ public interface IServicioVivienda {
 
     List<Vivienda> getViviendas();
     List<Vivienda> getViviendasDisponibles();
-    Boolean reservarVivienda(Long id_vivienda);
+    Vivienda buscarViviendaPorId(int id_vivienda);
+    void crearVivienda(Vivienda datoVivienda);
+
+    void borrarVivienda(Vivienda datoVivienda);
 }
