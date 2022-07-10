@@ -7,16 +7,16 @@
 *.jar
 *.war
 *.ear
-*.xml
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 /target/
 /classes/
 /out/
-/resources/
+
 .idea/*
 *.iml
 *.DS_Store
 /.java-version
+src/main/resources/
 
