@@ -62,6 +62,21 @@ public class RepositorioRoomie implements IRepositorioRoomie{
         sessionFactory.getCurrentSession().update(roomie1);
     }
 
+    @Override
+    public Boolean obtenerEstadoDelUsuario(String email) {
+        return null;
+    }
+
+    //Agregue esto
+    @Override
+    public Integer obtenerpuntajeGamification(String mail) {
+        final Session session = sessionFactory.getCurrentSession();
+
+        int n= (int) session.createQuery("select puntajeGamification from Roomie where email =:email").setParameter("email", mail).uniqueResult();
+
+        return n;
+    }
+
 
 }
 

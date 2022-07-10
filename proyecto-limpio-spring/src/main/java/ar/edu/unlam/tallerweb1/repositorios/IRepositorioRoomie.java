@@ -17,4 +17,8 @@ public interface IRepositorioRoomie {
     List<Roomie> ObtenerUnRoomiDonatario(Boolean recibe);
 
     void actualizar(Roomie roomie1);
+
+    Boolean obtenerEstadoDelUsuario(String email);
+
+    Integer obtenerpuntajeGamification(String mail);
 }

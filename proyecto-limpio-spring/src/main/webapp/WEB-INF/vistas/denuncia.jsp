@@ -8,26 +8,39 @@
     <!-- Bootstrap theme -->
     <link href="css/bootstrap-theme.min.css" rel="stylesheet">
 </head>
+
+<script type="text/javascript">
+
+    function ConfirmDenuncia(){
+        var respuesta = confirm("Estas seguro de denunciar al roomie?");
+
+        if(respuesta== true)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+</script>
 <body>
 <div class = "container">
     <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
         <%--Definicion de un form asociado a la accion /validar-login por POST. Se indica ademas que el model attribute se--%>
         <%--debe referenciar con el nombre usuario, spring mapea los elementos de la vista con los atributos de dicho objeto--%>
         <%--para eso debe coincidir el valor del elemento path de cada input con el nombre de un atributo del objeto --%>
-        <form:form action="activarDonacionValidacion" method="post" modelAttribute="datosLogin"  >
-            <h3 class="form-signin-heading">Activar recibir donaciones </h3>
+        <form:form action="denunciaValidacion" method="post" modelAttribute="datosDenuncia"  >
+            <h3 class="form-signin-heading">Denuncie</h3>
             <hr class="colorgraph">
             <%--Elementos de entrada de datos, el elemento path debe indicar en que atributo del objeto usuario se guardan los datos ingresados--%>
-            <p>tu email es:</p>
-            <form:input  path="email" id="email" type="email" class="form-control" readonly="true" onmousedown="false" value="${email}"/>
-            <p>Quiere recibir donacione?</p>
-            <div>
-            <p>Si <form:radiobutton path="aceptodonacion" name="serDonatario" value="true"/> </p>
-            <p>No <form:radiobutton path="aceptodonacion" name="serDonatario" value="false"/> </p>
-            </div>
+            <p>Ingrese email del roomie que desea denunciar</p>
+            <form:input  path="email" id="email" type="email" class="form-control"/>
+            <p>Confirme que desea denunciarlo</p>
             <br>
-            <button class="btn btn-lg btn-primary btn-block" Type="Submit"/>Donar</button>
+            <button class="btn btn-lg btn-primary btn-block" Type="Submit" onclick="return ConfirmDenuncia()"/>denunciar</button>
         </form:form>
+
         <c:if test="${not empty error}" >
             <br>
             <br>

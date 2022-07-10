@@ -1,10 +1,13 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class DatosLogin {
     private String email;
     private String password;
 
     private Boolean aceptodonacion;
+
 
     public Boolean getAceptodonacion() {
         return aceptodonacion;

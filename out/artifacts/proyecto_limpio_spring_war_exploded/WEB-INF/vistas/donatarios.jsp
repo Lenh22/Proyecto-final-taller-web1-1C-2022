@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -10,12 +11,24 @@
 <body>
 <div class = "container">
     <h1>Lista de donatarios</h1>
-</div>
+    <table>
+        <tr>
+            <th> Nombre </th>
+            <th> Apellido </th>
+            <th> Email </th>
+            <th> Billetera </th>
+        </tr>
 
-<div>
-    <c:forEach items="${donatarios}" var="each" >
-        ${each.nombre} ${each.apellido} ${each.email} ${each.billeteraDeDonaciones}
-    </c:forEach>
+        <c:forEach items="${donatarios}" var="each" >
+
+        <tr>
+            <td> ${each.nombre} </td>
+            <td> ${each.apellido} </td>
+            <td> ${each.email} </td>
+            <td> ${each.billeteraDeDonaciones} </td>
+         </tr>
+        </c:forEach>
+
 </div>
 <div>
     <a href="darDonacion">donar a un donatario</a>

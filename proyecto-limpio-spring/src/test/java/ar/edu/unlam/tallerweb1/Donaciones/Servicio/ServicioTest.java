@@ -17,9 +17,9 @@ public class ServicioTest {
 
     private IRepositorioRoomie repositorioRoomies;
     private IServicioDonaciones servicioDeDonacion;
-    private String mail = "maria@maria.com";
-    private String pass = "12345";
-    private Roomie roomie2 = new Roomie("Maria", "Gonzalez", 20, mail, pass, true, 50000.0,0.0, 0.0, 5.0);
+    private String mail = "pepe@mail.com";
+    private String pass = "123";
+    private Roomie roomie2 = new Roomie("Maria", "Gonzalez", 20, mail, pass,"rol",true,true,1.0,1.0,1.0,1.0);
 
     private Double donacion = 1.00;
 
@@ -29,13 +29,13 @@ public class ServicioTest {
         servicioDeDonacion = new ServicioDonacion(repositorioRoomies);
     }
     @Test
-    public void IncrementarBilletera(){
+    public void IncrementarBilletera() {
         DadoQueExisteDonatario(mail) ;
         CuandoHagoLaDonacion(mail,donacion);
         EntoncesAumentaBilletera(roomie2,donacion);
     }
     private void EntoncesAumentaBilletera(Roomie roomie, Double donacion) {
-        assertThat(servicioDeDonacion.incrementaBilletera(roomie,donacion)).isEqualTo(2.00);
+        assertThat(servicioDeDonacion.incrementaBilletera(roomie,donacion)).isEqualTo(3.00);
     }
     private void CuandoHagoLaDonacion(String rommie, Double donacion) {
         servicioDeDonacion.darDonacion(rommie,donacion);
@@ -43,7 +43,7 @@ public class ServicioTest {
     }
     private Roomie DadoQueExisteDonatario(String mail) {
         roomie2.setRecibirDonacion(true);
-        when(repositorioRoomies.ObtenerUnRoomie(mail)).thenReturn(roomie2);
+       when(repositorioRoomies.ObtenerUnRoomie(mail)).thenReturn(roomie2);
         return repositorioRoomies.ObtenerUnRoomie(mail);
 
     }

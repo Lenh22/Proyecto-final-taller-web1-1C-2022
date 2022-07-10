@@ -14,6 +14,11 @@ public class Roomie extends Usuario {
     private double puntaje;
     private double cantidadTotalPuntuada;
     private double billeteraDeDonaciones;
+
+    private Integer cantidadDeDenuncias;
+
+    public Integer puntajeGamification;
+
     @ElementCollection
     private List<Atributo> atributos;
     @ManyToOne(optional = true)
@@ -55,6 +60,18 @@ public class Roomie extends Usuario {
     public Roomie(String maria, String gonzalez, int i, String mail, String pass, boolean b, double v, double v1, double v2, double v3) {
     }
 
+    public Roomie(String nombre, String apellido, int edad, String email, String password, boolean recibirDonacion, double ingreso, double puntaje, double cantidadTotalPuntuada, double billeteraDeDonaciones, int puntajeGamification) {
+        super();
+        this.recibirDonacion = recibirDonacion;
+        this.ingreso = ingreso;
+        this.puntaje = puntaje;
+        this.cantidadTotalPuntuada = cantidadTotalPuntuada;
+        this.billeteraDeDonaciones = billeteraDeDonaciones;
+        this.puntajeGamification= puntajeGamification;
+
+    }
+
+
     public void setRecibirDonacion(Boolean recibirDonacion) {
         this.recibirDonacion = recibirDonacion;
     }
@@ -78,6 +95,7 @@ public class Roomie extends Usuario {
     public double getCantidadTotalPuntuada() {
         return cantidadTotalPuntuada;
     }
+
 
     public void setCantidadTotalPuntuada(double cantidadTotalPuntuada) {
         this.cantidadTotalPuntuada = cantidadTotalPuntuada;
@@ -111,6 +129,21 @@ public class Roomie extends Usuario {
         atributos.remove(atributo);
     }
 
+    public Integer getCantidadDeDenuncias() {
+        return cantidadDeDenuncias;
+    }
+
+    public void setCantidadDeDenuncias(Integer cantidadDeDenuncias) {
+        this.cantidadDeDenuncias = cantidadDeDenuncias;
+    }
+
+    public Integer getPuntajeGamification() {
+        return puntajeGamification;
+    }
+
+    public void setPuntajeGamification(Integer puntajeGamification) {
+        this.puntajeGamification = puntajeGamification;
+    }
 }
 
 

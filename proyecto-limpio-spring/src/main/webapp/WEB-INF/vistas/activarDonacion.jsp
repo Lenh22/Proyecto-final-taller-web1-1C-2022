@@ -21,8 +21,10 @@
             <p>tu email es:</p>
             <form:input  path="email" id="email" type="email" class="form-control" readonly="true" onmousedown="false" value="${email}"/>
             <p>Quiere recibir donacione?</p>
-            <p>Si</p> <form:radiobutton path="aceptodonacion" name="serDonatario" value="true"/>
-            <p>No</p> <form:radiobutton path="aceptodonacion" name="serDonatario" value="false"/>
+            <div>
+            <p>Si <form:radiobutton path="aceptodonacion" name="serDonatario" value="true"/> </p>
+            <p>No <form:radiobutton path="aceptodonacion" name="serDonatario" value="false"/> </p>
+            </div>
             <br>
             <button class="btn btn-lg btn-primary btn-block" Type="Submit"/>Donar</button>
         </form:form>

@@ -17,6 +17,7 @@ public class ServicioDonacion implements IServicioDonaciones{
 
     @Autowired
     public ServicioDonacion(IRepositorioRoomie repositorioRoomies) {
+
         this.repositorioRoomies = repositorioRoomies;
     }
 
@@ -75,8 +76,12 @@ public class ServicioDonacion implements IServicioDonaciones{
     public Boolean activarDonacion(String email, Boolean activar){
         try {
             Roomie roomie = repositorioRoomies.ObtenerUnRoomie(email);
+            if (roomie.getActivo() == true && roomie.getBilleteraDeDonaciones()<10.0) {
             roomie.setRecibirDonacion(activar);
             return true;
+        }else{
+            return false;
+        }
         } catch (NullPointerException npe) {
             npe.printStackTrace();
         }

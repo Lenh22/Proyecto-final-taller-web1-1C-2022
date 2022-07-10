@@ -37,7 +37,7 @@ public class ControladorTest {
 
     @Before
     public void init(){
-        //agregamos esto para inicializar servicio de alimentos
+        //agregamos esto para inicializar servicio de donaciones
         servicioDeDonacion = mock(IServicioDonaciones.class);
         //mokito es una libreria para hacer test double
         //los mock no tienen estados, es una caja vacia que expone los mismo metodos
@@ -72,7 +72,9 @@ public class ControladorTest {
         entoncesReciboElMensaje(MENSAJE_SIN_DONATARIO,mav.getModel());
     }
 
-
+//entregar una funcionalidad propia del producto la cual lo distingue de otros producto
+    //si te doy varios parametros
+    //algo más del servicio y probar los caminos del servicio
     @Test
     public void QueAlPedirBilleteraDeUnUsuarioSeMuestre (){
         dadoQueExisteUndonatario (roomieDonatario2);
@@ -80,7 +82,6 @@ public class ControladorTest {
         ModelAndView mav = controladorDonaciones.mostrarBilletera(roomieDonatario2.getEmail());
         //verificacion
         entoncesMeLLevaALaVista("ver-billetera",mav.getViewName());
-
     }
 
 
@@ -118,15 +119,10 @@ public class ControladorTest {
 
     }
 
-
-
     private void dadoQueExisteUndonatario(Roomie roomieDonatario) {
-
         servicioDeDonacion.buscarDonatario(roomieDonatario);
-
         when(servicioDeDonacion.buscarDonatario(roomieDonatario)).thenReturn(roomieDonatario2);
     }
-
 
     private void dadoQueExisteUnaListaDeDonatarios(int catidadExistente, Boolean recibirDonacion) throws Exception {
         List<Roomie> lista = new LinkedList<>();
@@ -137,7 +133,6 @@ public class ControladorTest {
         }
         when(servicioDeDonacion.buscarDonatarios(recibirDonacion)).thenReturn(lista);
     }
-
 
     private void entoncesEncuentro(List<Roomie> lista, int catidadEsperada) {
         assertThat(lista).hasSize(catidadEsperada);
