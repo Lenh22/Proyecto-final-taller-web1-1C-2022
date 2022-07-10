@@ -15,6 +15,7 @@ public class Roomie extends Usuario {
     private double cantidadTotalPuntuada;
     private double billeteraDeDonaciones;
     private Boolean puntuacion;
+    private Boolean estudiante;
     @ElementCollection
     private List<Atributo> atributos;
     @ManyToOne(optional = true)
@@ -50,13 +51,14 @@ public class Roomie extends Usuario {
     //Constructor para un Roomie con la list de atributos vacias
     public Roomie(String nombre, String apellido, Integer edad, String email, String password, String rol
             , Boolean activo, Boolean recibirDonacion, double ingreso, double puntaje, double cantidadTotalPuntuada
-            , double billeteraDeDonaciones) {
+            , double billeteraDeDonaciones, Boolean estudiante) {
         super(nombre, apellido, edad, email, password, rol, activo);
         this.recibirDonacion = recibirDonacion;
         this.ingreso = ingreso;
         this.puntaje = puntaje;
         this.cantidadTotalPuntuada = cantidadTotalPuntuada;
         this.billeteraDeDonaciones = billeteraDeDonaciones;
+        this.estudiante = estudiante;
         //this.atributos = new List<Atributo>();
     }
 
@@ -94,6 +96,14 @@ public class Roomie extends Usuario {
 
     public void setCantidadTotalPuntuada(double cantidadTotalPuntuada) {
         this.cantidadTotalPuntuada = cantidadTotalPuntuada;
+    }
+
+    public Boolean getEstudiante() {
+        return estudiante;
+    }
+
+    public void setEstudiante(Boolean estudiante) {
+        this.estudiante = estudiante;
     }
 
     public void setBilleteraDeDonaciones(double billeteraDeDonaciones) {

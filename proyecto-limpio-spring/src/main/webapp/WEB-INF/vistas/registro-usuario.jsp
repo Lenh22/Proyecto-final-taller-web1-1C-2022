@@ -1,6 +1,13 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Arami
+  Date: 27/06/2022
+  Time: 21:06
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <!-- Bootstrap core CSS -->
@@ -11,23 +18,7 @@
 <body>
 <div class = "container">
     <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-        <form:form action="registrarme" method="POST" modelAttribute="usuario">
-            <h3 class="form-signin-heading">Nuevo Usuario</h3>
-            <hr class="colorgraph"><br>
 
-            <form:input path="nombre" type="text" id="nombre" class="form-control" />
-            <form:input path="apellido" type="text" id="apellido" class="form-control" />
-            <form:input path="edad" type="numbre" id="edad" class="form-control" />
-            <form:input path="email" type="email" id="email" class="form-control" />
-            <form:input path="password" type="password" id="password" class="form-control"/>
-
-            <button id="btn-registrarme" class="btn btn-lg btn-primary btn-block" Type="Submit"/>Registrarme</button>
-        </form:form>
-
-        <c:if test="${not empty error}">
-            <h4><span>${error}</span></h4>
-            <br>
-        </c:if>
     </div>
 </div>
 

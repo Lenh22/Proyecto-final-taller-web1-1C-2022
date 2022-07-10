@@ -1,14 +1,9 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
 public class DatosPuntuar {
-    private Roomie roomie;
     private Boolean puntuacion;
     private Long id;
 
-    public DatosPuntuar(Long id, Boolean puntuacion) {
-        this.id = id;
-        this.puntuacion = puntuacion;
-    }
 
     public DatosPuntuar() {
     }

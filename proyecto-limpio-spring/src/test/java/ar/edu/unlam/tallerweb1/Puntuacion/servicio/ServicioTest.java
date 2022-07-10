@@ -2,7 +2,6 @@ package ar.edu.unlam.tallerweb1.Puntuacion.servicio;
 
 import ar.edu.unlam.tallerweb1.modelo.Excepciones.UsuarioExistente;
 import ar.edu.unlam.tallerweb1.modelo.Roomie;
-import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioPuntuacion;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPuntuacion;
 import org.junit.Before;
@@ -103,7 +102,7 @@ public class ServicioTest {
         assertThat(roomie2.getPuntaje()).isEqualTo(2.0);
     }
     private void entoncesNoPuedoVerElPuntajeTotal() {
-        verify(servicioPuntuacion, times(0)).puntuacionRoomie(roomie2.getId(), roomie2.getPuntuacion());
+        verify(servicioPuntuacion, never()).puntuacionRoomie(roomie2.getId(), roomie2.getPuntuacion());
     }
 
     private void dadoQueNoExisteElRoomie() {

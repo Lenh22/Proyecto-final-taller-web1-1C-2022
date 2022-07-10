@@ -1,10 +1,10 @@
 package ar.edu.unlam.tallerweb1.Puntuacion.Controlador;
 
 import ar.edu.unlam.tallerweb1.controladores.ControladorPuntuaciones;
+import ar.edu.unlam.tallerweb1.modelo.Excepciones.UsuarioExistente;
 import ar.edu.unlam.tallerweb1.modelo.Roomie;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.DatosPuntuar;
-import ar.edu.unlam.tallerweb1.servicios.IServicioPuntuaciones;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPuntuacion;
 import org.junit.Before;
 import org.junit.Test;
@@ -48,22 +48,15 @@ public class ControladorTest {
         datos.setPuntuacion(puntuacion);
         datos.setId(id);
 
-        //request.getSession().setAttribute("puntaje", ((Roomie) roomie2).getPuntaje());
         ModelAndView mav = mostrarPuntuacion(datos, request);
 
         //verificacion
-
         entoncesEncuentro();
         entoncesMeLLevaALaVista(VISTA_PUNTUACION,mav.getViewName());
-        //entoncesSeRecibeMensajeCorrecto(MENSAJE_TIPO_VALIDO, mav.getModel());
 
     }
 
-    private void entoncesSeRecibeMensajeCorrecto(String mensaje, Map<String, Object> model) {
-        assertThat(model.get("puntaje")).isEqualTo(mensaje);
-    }
-
-    @Test
+    @Test (expected = UsuarioExistente.class)
     public void alPedirPuntuacionInvalidaLleveAPantallaDeError(){
 
         dadoQueNoExisteUnRoomiePuntuado();
@@ -75,7 +68,7 @@ public class ControladorTest {
     }
 
     private void dadoQueNoExisteUnRoomiePuntuado() {
-        when(servicioDePuntuacion.puntuacionRoomie(roomie2.getId(), puntuacion)).thenThrow(new RuntimeException());
+        when(servicioDePuntuacion.puntuacionRoomie(roomie2.getId(), puntuacion)).thenReturn(null);
     }
 
     private void entoncesSeRecibeMensaje(String mensaje, Map<String, Object> model) {

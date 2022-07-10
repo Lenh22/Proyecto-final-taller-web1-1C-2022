@@ -25,5 +25,4 @@ public class Alquiler {
     @Cascade(value = ALL)
     private List<Roomie> roomie = new LinkedList<>();
 
-
 }

@@ -9,6 +9,9 @@
 <html>
 <head>
     <title>Puntaje de usuario</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" >
+    <!-- Bootstrap theme -->
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
 </head>
 <body>
 <p> La puntuacion total actual del usuario es: ${puntaje}</p>

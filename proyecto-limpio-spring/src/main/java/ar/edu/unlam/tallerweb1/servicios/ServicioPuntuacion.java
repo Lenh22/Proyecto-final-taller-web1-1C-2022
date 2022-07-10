@@ -27,8 +27,12 @@ public class ServicioPuntuacion implements IServicioPuntuaciones{
         if (buscado != null && puntuacion == true) {
             subirPuntaje(buscado);
         }
-        if(buscado != null && puntuacion == false && verPuntaje(buscado)>0.0){
+        if(buscado != null && puntuacion == false && verPuntaje(buscado)>=0.0){
             bajarPuntaje(buscado);
+        }
+        if(buscado != null && puntuacion == false && buscado.getPuntaje()==0.0){
+            Double cantidadPuntuaciones = buscado.getCantidadTotalPuntuada();
+            buscado.setCantidadTotalPuntuada(++cantidadPuntuaciones);
         }
         return verPuntaje(buscado);
     }
