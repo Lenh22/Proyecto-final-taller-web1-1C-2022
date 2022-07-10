@@ -20,6 +20,7 @@ public class Vivienda {
     private Alquiler alquiler;
     private Integer cantidadMaximaRoomies;
 
+    public Vivienda() {}
     public Integer getVivienda() {
         return vivienda;
     }

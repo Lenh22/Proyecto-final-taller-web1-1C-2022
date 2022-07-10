@@ -77,14 +77,14 @@ public class ControladorVivienda {
             obtenerVivienda = servicioVivienda.buscarViviendaPorId(id);
         } catch (Exception e) {
             modelMap.put("Mensaje", e.getMessage());
-            return viviendas(); //ver si es en viviendas
+            return new ModelAndView("redirect:/viviendas"); //ver si es en viviendas
         }
         if (obtenerVivienda!=null){
             servicioVivienda.borrarVivienda(obtenerVivienda);
             modelMap.put("Mensaje","Borrado exitoso");
 
         }
-        return viviendas();
+        return new ModelAndView("redirect:/viviendas");
     }
 
 
