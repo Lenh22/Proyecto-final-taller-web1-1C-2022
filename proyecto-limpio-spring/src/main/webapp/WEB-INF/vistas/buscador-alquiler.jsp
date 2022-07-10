@@ -16,15 +16,14 @@
     <link href="css/bootstrap-theme.min.css" rel="stylesheet">
 </head>
 <body>
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <form:form action="validar-buscador-alquiler" method="POST" modelAttribute="datos">
-        <form:input path="id" id="id" type="text" class="form-control" placeholder="Ingrese el id del roomie a puntuar"/>
-        <button class="btn btn-lg btn-primary btn-block" Type="Submit"/>Buscar</button>
-    </form:form>
-</nav>
-
-<div class = "container">
+    <div class = "container">
     <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+
+        <form:form action="validar-buscador-alquiler" method="POST" modelAttribute="datos">
+            <form:input path="id" id="id" type="text" class="form-control" placeholder="Ingrese el id"/>
+            <button class="btn btn-lg btn-primary btn-block" Type="Submit"/>Buscar</button>
+        </form:form>
+
 
             <h2 class="text-center">Todas las Viviendas disponibles</h2>
 

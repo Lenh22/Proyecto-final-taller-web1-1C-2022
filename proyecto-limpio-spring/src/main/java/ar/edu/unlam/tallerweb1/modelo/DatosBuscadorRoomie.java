@@ -3,7 +3,7 @@ package ar.edu.unlam.tallerweb1.modelo;
 public class DatosBuscadorRoomie {
 
     private String nombre;
-    private Integer id;
+    private Long id;
 
     public DatosBuscadorRoomie() {
     }
@@ -16,11 +16,11 @@ public class DatosBuscadorRoomie {
         this.nombre = nombre;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 }

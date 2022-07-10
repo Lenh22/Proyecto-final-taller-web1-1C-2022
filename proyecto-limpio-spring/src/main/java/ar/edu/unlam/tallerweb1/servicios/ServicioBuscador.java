@@ -36,12 +36,10 @@ public class ServicioBuscador implements IServicioBuscador{
         return roomies;
     }
     @Override
-    public List<Usuario> ListarRoomiesPorFiltro(Integer id) {
+    public List<Usuario> ListarRoomiesPorFiltro(Long id) {
         List<Usuario> roomies = repositorioBuscador.ObtenerRoomiesPorFiltro(id);
         return roomies;
     }
-
-
 
 
 
@@ -49,28 +47,7 @@ public class ServicioBuscador implements IServicioBuscador{
     public void saveAlquiler(Vivienda vivienda) {
         repositorioBuscador.AgregarAlquiler(vivienda);
     }
-/*
-    @Override
-    public Vivienda consultarAlquiler(String direccion) {
-        return repositorioBuscador.ObtenerUnAlquiler(direccion);
-    }
-*/
-    /*
-    @Override
-    public List<Vivienda> buscarAlquileres(String direccion) {
-        List<Vivienda> viviendas = repositorioBuscador.ObtenerAlquileres();
-        if (viviendas == null){
-            throw new ViviendaExistente();
-        }
-        List<Vivienda> alquileres = repositorioBuscador.ObtenerAlquileres();
 
-        for (Vivienda alquilerABuscar: alquileres) {
-            if(alquilerABuscar.getDireccion() == direccion);
-                alquileres.add(alquilerABuscar);
-        }
-        return alquileres;
-    }
-*/
     @Override
     public Vivienda buscarAlquilerPorDireccion(String direccion){
         Vivienda buscada = repositorioBuscador.buscarAlquiler(direccion);

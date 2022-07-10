@@ -27,11 +27,12 @@ public class ControladorBuscador {
         ModelMap modelo = new ModelMap();
         List<Usuario> lista = servicioDeBuscador.ListarRoomies();
         modelo.put("datosBuscadorRoomie", lista);
+        modelo.put("datos", new DatosBuscadorRoomie());
         return new ModelAndView("buscador-roomie", modelo);
     }
 
     @RequestMapping(path = "validar-buscador-roomie", method = RequestMethod.POST)
-    public ModelAndView MostrarListaRoomies(@ModelAttribute("datosBuscadorRoomie") DatosBuscadorRoomie datos) {
+    public ModelAndView MostrarListaRoomies(@ModelAttribute("datos") DatosBuscadorRoomie datos) {
         ModelMap model = new ModelMap();
 /*
         Roomie roomieBuscado = new Roomie();

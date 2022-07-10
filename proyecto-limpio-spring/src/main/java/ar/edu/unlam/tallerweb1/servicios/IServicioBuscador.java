@@ -9,7 +9,7 @@ import java.util.List;
 public interface IServicioBuscador {
     void  saveRoomie(Roomie roomie);
     List<Usuario> ListarRoomies();
-    List<Usuario> ListarRoomiesPorFiltro(Integer id);
+    List<Usuario> ListarRoomiesPorFiltro(Long id);
 
     void saveAlquiler(Vivienda vivienda);
     //Vivienda consultarAlquiler(String direccion);

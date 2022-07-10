@@ -47,13 +47,17 @@ public class RepositorioBuscador implements  IRepositorioBuscador{
                 .uniqueResult();
     }
     @Override
-    public List<Usuario> ObtenerRoomiesPorFiltro(Integer id) {
-        final Session session = sessionFactory.getCurrentSession();
+    public List<Usuario> ObtenerRoomiesPorFiltro(Long id) {
+       /* final Session session = sessionFactory.getCurrentSession();
         //return session.createCriteria(Vivienda.class).list();
         List<Usuario> roomies = session.createQuery("From Usuario where id= :id")
                 .setParameter("id",id)
                 .list();
-        return roomies;
+        return roomies;*/
+        final Session session = sessionFactory.getCurrentSession();
+        return (List<Usuario>) session.createCriteria(Roomie.class)
+                .add(Restrictions.eq("id", id))
+                .list();
     }
 
 
