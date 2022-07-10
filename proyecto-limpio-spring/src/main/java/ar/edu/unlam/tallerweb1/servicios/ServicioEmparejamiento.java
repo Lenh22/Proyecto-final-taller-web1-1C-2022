@@ -25,14 +25,12 @@ public class ServicioEmparejamiento implements IServicioEmparejamiento {
 
     @Override
     public List<Roomie> obtenerRoomiesCompatibles(Long id) {
-        //Primero traemlos la lista de roomies de repositorio
         Roomie roomie = repositorioEmparejamiento.obtenerRoomiePorId(id);
-        List<Roomie> roomiesAComparar = repositorioEmparejamiento.obtenerIdRoomies();
+        List<Long> roomiesAComparar = repositorioEmparejamiento.obtenerIdRoomiesParaComparar(1L);
 
-        //Agregar un metodo para realizar la comparacion
-        for (Roomie roomieCompatible: roomiesAComparar) {
-            if(calcularCompatibilidad(id,roomieCompatible.getId()) >= 60)
-                roomiesCompatibles.add(roomieCompatible);
+        for (Long roomieCompatible: roomiesAComparar) {
+            //if(calcularCompatibilidad(id,roomieCompatible))
+              //  roomiesCompatibles.add(roomieCompatible);
         }
         return roomiesCompatibles;
     }

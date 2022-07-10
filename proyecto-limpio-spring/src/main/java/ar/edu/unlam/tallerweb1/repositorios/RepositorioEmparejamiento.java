@@ -63,4 +63,11 @@ public class RepositorioEmparejamiento implements IRepositorioEmparejamiento {
                 .setParameter("idRoomie",idRoomie).list();
     }
 
+    @Override
+    public List<Long> obtenerIdRoomiesParaComparar(long id) {
+        final Session session = sessionFactory.getCurrentSession();
+        return session
+                .createQuery("from Roomie").list();
+    }
+
 }

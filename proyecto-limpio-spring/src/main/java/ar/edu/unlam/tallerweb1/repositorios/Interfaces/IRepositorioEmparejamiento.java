@@ -19,4 +19,6 @@ public interface IRepositorioEmparejamiento {
     List<Roomie> obtenerIdRoomies();
 
     List<RoomieAtributos> obtenerAtributosPorId(Long idRoomie);
+
+    List<Long> obtenerIdRoomiesParaComparar(long l);
 }

@@ -111,7 +111,7 @@ public class TestGeneralDelSistemaDeEmparejamiento extends SpringTest {
     /*____________________________________Ejecucion____________________________*/
 
     private ModelAndView entoncesObtengoRoomieCompatibles() {
-        return controller.irAResultadoRoomieCompatibles(1L);
+        return controller.irAResultadoRoomieCompatibles(1L,null);
     }
 
     /*____________________________________Resultado____________________________*/

@@ -29,18 +29,20 @@ public class ControladorEmparejamiento {
 
     //Pasamos primeramente el id que guardaremos en la vista para despues consultarlo en la base de datos y devolverlo
     @RequestMapping(path="/ir-a-resultado-roomie-compatibles/{id}")
-    public ModelAndView irAResultadoRoomieCompatibles(@PathVariable("id") long id) {
+    public ModelAndView irAResultadoRoomieCompatibles(@PathVariable("id") long id ,HttpServletRequest request) {
         ModelMap map = new ModelMap();
+        if(id == 0)
+            id = (long)request.getSession().getAttribute("id");
         try{
             if(roomiesCompatibles != null)
                 roomiesCompatibles.clear();
             roomiesCompatibles = servicioEmparejamiento.obtenerRoomiesCompatibles(id);
         }catch (Exception exception){
-            map.put("msg-error", "NOT FOUND 404");
+            map.put("msg-error", "Error no controlado");
             return new ModelAndView("resultado-roomies-compatibles",map);
         }
         if(roomiesCompatibles.isEmpty())
-            map.put("sinemparejamiento","No se encontro un roomie compatible para usted, lo sentimos!");
+            map.put("sinEmparejamiento","No se encontro un roomie compatible para usted, lo sentimos!");
         else
             map.put("RoomieEncontrado",roomiesCompatibles);
 

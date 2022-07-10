@@ -53,6 +53,7 @@ public class ControladorLogin {
 		if (usuarioBuscado != null) {
 			request.getSession().setAttribute("ROL", usuarioBuscado.getRol());
 			request.getSession().setAttribute("Activo",true);
+			request.getSession().setAttribute("id",usuarioBuscado.getId());
 			model.put("usuario",usuarioBuscado);
 			return new ModelAndView("home", model);
 		} else {
