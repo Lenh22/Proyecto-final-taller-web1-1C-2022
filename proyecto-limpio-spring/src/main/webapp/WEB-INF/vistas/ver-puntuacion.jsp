@@ -8,12 +8,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Puntaje de usuario</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" >
+    <!-- Bootstrap theme -->
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
 </head>
 <body>
-${
-puntuacion
-}
+<p> La puntuacion total actual del usuario es: ${puntaje}</p>
+
 
 </body>
 </html>

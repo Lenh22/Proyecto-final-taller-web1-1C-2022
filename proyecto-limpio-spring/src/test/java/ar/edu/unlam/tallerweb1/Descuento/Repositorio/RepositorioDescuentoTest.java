@@ -1,9 +1,9 @@
-package ar.edu.unlam.tallerweb1.Puntuacion.Persistencia;
+package ar.edu.unlam.tallerweb1.Descuento.Repositorio;
 
 import ar.edu.unlam.tallerweb1.SpringTest;
 import ar.edu.unlam.tallerweb1.modelo.Roomie;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
-import ar.edu.unlam.tallerweb1.repositorios.RepositorioPuntuacion;
+import ar.edu.unlam.tallerweb1.repositorios.RepositorioDescuento;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
@@ -14,42 +14,32 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+public class RepositorioDescuentoTest extends SpringTest {
 
-public class RepositorioTest extends SpringTest{
+    @Autowired
+    RepositorioDescuento repositorioDescuento;
+    Roomie roomie1 = new Roomie();
 
 
-    @Autowired//(required = false)
-    RepositorioPuntuacion repositorioPuntuacion;
-
-
-    @Test
-    @Transactional
-    @Rollback
-    public void queSePuedaEncontrarPuntuacionDeUnRoomie()
-    {
-        Roomie roomie1 = new Roomie();
-        roomie1.setPuntuacion(true);
+    @Test @Rollback @Transactional
+    public void queSePuedaEncontrarUnRoomiePorEmailYPassword(){
+        roomie1.setEmail("arami@arami.com");
+        roomie1.setPassword("1234");
         session().save(roomie1);
-        Usuario encontrado = repositorioPuntuacion.buscarRoomie(roomie1.getId(), true);
-        assertThat(encontrado).isEqualTo(roomie1);
-    }
 
-    @Test
-    @Transactional
-    @Rollback
-    public void queSePuedaEncontrarUnRoomiePorId()
-    {
-        Roomie roomie1 = new Roomie();
-        session().save(roomie1);
-        Usuario encontrado = repositorioPuntuacion.ObtenerUnRoomie(roomie1.getId());
+        String mail = roomie1.getEmail();
+        String pass = roomie1.getPassword();
+
+        Usuario encontrado = repositorioDescuento.buscarRoomiePorMailyPass(mail, pass);
+
         assertThat(encontrado).isEqualTo(roomie1);
     }
 
     @Test @Transactional
     @Rollback
-    public  void queDevuelvaUnaListaDeRoomiesPuntuados(){
+    public  void queDevuelvaUnaListaDeRoomiesConDescuentos(){
 
-        dadoQueExisteUnaListaDeRoomiesPuntuados();
+        dadoQueExisteUnaListaDeRoomiesQueAplicaronAlDescuento();
 
         List<Roomie> encontrados= entoncesQueMeRetorneLaLista();
 
@@ -61,10 +51,10 @@ public class RepositorioTest extends SpringTest{
     }
 
     private List<Roomie> entoncesQueMeRetorneLaLista() {
-        return repositorioPuntuacion.ObtenerRoomies();
+        return repositorioDescuento.ObtenerRoomiesConDescuento();
     }
 
-    private void dadoQueExisteUnaListaDeRoomiesPuntuados() {
+    private void dadoQueExisteUnaListaDeRoomiesQueAplicaronAlDescuento() {
         Roomie roomie1 = new Roomie();
         Roomie roomie2 = new Roomie();
         Roomie roomie3 = new Roomie();
@@ -81,7 +71,8 @@ public class RepositorioTest extends SpringTest{
         lista.add(roomie6);
 
         for (Roomie romie:lista) {
-            repositorioPuntuacion.AgregarRoomiePuntuado(romie);
+            repositorioDescuento.AgregarRoomieConDescuento(romie);
         }
+
     }
 }
