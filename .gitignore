@@ -14,8 +14,9 @@ hs_err_pid*
 /target/
 /classes/
 /out/
+/resources/
 .idea/*
 *.iml
 *.DS_Store
 /.java-version
-/resources/
+
