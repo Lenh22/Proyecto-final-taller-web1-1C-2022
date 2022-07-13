@@ -15,6 +15,7 @@
     <!-- Bootstrap theme -->
     <link href="css/bootstrap-theme.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
     <div class = "container">
@@ -29,6 +30,7 @@
                     <th scope="col">ID</th>
                     <th scope="col">Direccion</th>
                     <th scope="col">Cantidad maxima</th>
+                    <th scope="col">Aqluiler</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -39,11 +41,22 @@
                         <td> ${unaVivienda.vivienda} </td>
                         <td> ${unaVivienda.direccion} </td>
                         <td> ${unaVivienda.cantidadMaximaRoomies} </td>
+                        <td><a href="#" class="btn btn-info btn-lg">
+                            <span class="glyphicon glyphicon-usd"></span>
+                        </a></td>
                     </tr>
                 </c:forEach>
 
                 </tbody>
             </table>
+
+            <c:if test="${not empty error}" >
+                <br>
+                <br>
+                <h4><span class="alert alert-danger" role="alert" >${error}</span></h4>
+                <br>
+            </c:if>
+            ${msg}
 
             </table>
             <a href="buscador-alquiler"	>Volver</a>

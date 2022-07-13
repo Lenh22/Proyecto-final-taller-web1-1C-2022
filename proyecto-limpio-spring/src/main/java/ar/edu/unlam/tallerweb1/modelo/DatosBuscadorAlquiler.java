@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.modelo;
 
 public class DatosBuscadorAlquiler {
     private Integer id;
+    private String direccion;
 
     public DatosBuscadorAlquiler() {
     }
@@ -12,5 +13,13 @@ public class DatosBuscadorAlquiler {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 }

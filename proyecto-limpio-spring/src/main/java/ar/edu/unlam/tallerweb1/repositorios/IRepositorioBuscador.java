@@ -9,13 +9,17 @@ import java.util.List;
 public interface IRepositorioBuscador {
 
     void AgregarRoomie(Roomie roomie);
-    Roomie ObtenerUnRoomie(String nombre);
+    Roomie ObtenerUnRoomie(Long id);
     List<Usuario> ObtenerRoomies();
     Roomie buscarRoomie(String nombre);
     List<Usuario> ObtenerRoomiesPorFiltro(Long id);
 
+    List<Usuario> ObtenerRoomiesPorFiltro2(String nombre);
+
     void AgregarAlquiler(Vivienda vivienda);
     List<Vivienda> ObtenerAlquileres();
-    Vivienda buscarAlquiler(String direccion);
+    Vivienda buscarAlquiler(Integer id);
     List<Vivienda> ObtenerAlquileresPorFiltro(Integer id);
+
+    List<Vivienda> ObtenerAlquileresPorFiltro2(String direccion);
 }

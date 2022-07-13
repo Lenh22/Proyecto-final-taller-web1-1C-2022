@@ -30,8 +30,10 @@
         </form:form>
         <a href="home">Home</a>
         <%--Bloque que es visible si el elemento error no esta vacio	--%>
-        <c:if test="${not empty error}">
-            <h4><span>${msg-error}</span></h4>
+        <c:if test="${not empty error}" >
+            <br>
+            <br>
+            <h4><span class="alert alert-danger" role="alert" >${error}</span></h4>
             <br>
         </c:if>
         ${msg}

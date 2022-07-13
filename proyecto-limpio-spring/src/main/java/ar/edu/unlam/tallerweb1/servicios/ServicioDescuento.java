@@ -25,21 +25,24 @@ public class ServicioDescuento implements IServicioDescuento{
             throw new RoomieSinDescuento();
         }
         if(buscado != null){
-            if(aplicaDescuento(buscado)){
-                return true;
-            }
+            aplicaDescuento(buscado);
         }
         return false;
     }
 
     @Override
-    public Boolean aplicaDescuento(Roomie roomie){
-        if(roomie.getEstudiante() == true){
-            if(roomie.getEdad() >= 18 && roomie.getEdad()<= 25){
+    public Boolean aplicaDescuento(Roomie roomie) throws RoomieSinDescuento{
+        Boolean estudiante = roomie.getEstudiante();
+        Integer edad = roomie.getEdad();
+        if(estudiante == true){
+            if(edad >= 18 && edad<= 25){
                 return true;
+            }else{
+                throw new RoomieSinDescuento();
             }
+        }else{
+            throw  new RoomieSinDescuento();
         }
-        return false;
     }
 
     @Override

@@ -37,14 +37,16 @@ public class ControladorDescuentos {
         Roomie roomieBuscado = new Roomie();
         roomieBuscado.setEmail(datos.getEmail());
         roomieBuscado.setPassword(datos.getPassword());
-        //servicioDeDescuento.saveRoomie(roomieBuscado);
         servicioDeDescuento.consultarRoomie(datos.getEmail(), datos.getPassword());
 
-        if (roomieBuscado != null) {
+        try{
             Boolean descuento = servicioDeDescuento.verificarAplicacionADescuento(roomieBuscado);
+            String setURL = "http://localhost:8080/img/descuento.jpeg";
             model.put("descuento", descuento);
-        } else {
-            model.put("msg-error", "El usuario buscado no existe");
+        }catch (Exception e){
+            if(descuento==false){
+                model.put("error", "Disculpe, usted no aplica al descuento, ver términos y condiciones.");
+            }
         }
         return new ModelAndView("validar-descuento", model);
     }

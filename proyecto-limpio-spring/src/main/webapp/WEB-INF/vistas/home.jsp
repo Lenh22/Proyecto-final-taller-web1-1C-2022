@@ -8,7 +8,7 @@
 	</head>
 	<body>
 		<div class = "container">
-			<h1>Bienvenidos a Taller Web 1</h1>
+			<h1>Bienvenidos a Taller Web 1 ${email}</h1>
 			<a href="buscador-roomie">Ingrese aquí si estas en busca de un compañero de cuarto</a> <br> <br>
 			<a href="buscador-alquiler">Ingrese aquí si estas en busca de una habitacion</a>
 		</div>

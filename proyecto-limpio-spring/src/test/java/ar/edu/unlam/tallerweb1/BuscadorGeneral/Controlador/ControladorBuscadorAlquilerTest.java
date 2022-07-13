@@ -9,134 +9,120 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.ModelAndView;
-import java.util.List;
-import java.util.Map;
+import java.util.LinkedList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 public class ControladorBuscadorAlquilerTest {
-/*
+
     private ControladorBuscador controladorBuscador;
     private ServicioBuscador servicioBuscador;
-    private static final String VISTA_LISTA_ALQUILERES = "validar-buscador-alquiler";
+    private static final String VISTA_LISTA_ALQUILERES = "buscador-alquiler";
+    private static final String VISTA_LISTA_ALQUILERES_FILTRADOS = "validar-buscador-alquiler";
     private static final String NOMBRE_INVALIDO = "invalido";
     private static final String MENSAJE_TIPO_INVALIDO = "La vivienda buscada no existe";
     private static final String MENSAJE_TIPO_VALIDO = "listaAlquileres";
-    Vivienda vivienda;
-    Vivienda vivienda2;
-    Vivienda vivienda3;
-    Vivienda vivienda4;
-    private String direccion1;
-    private String direccion2;
-    private String direccion3;
-    private String direccion4;
+    LinkedList<Vivienda> viviendas = new LinkedList<>();
+    private Vivienda vivienda;
+    private Vivienda vivienda2;
+    private Vivienda vivienda3;
+    private Vivienda vivienda4;
+    private Integer direccion1;
+    private Integer direccion2;
+    private Integer direccion3;
+    private Integer direccion4;
+    private DatosBuscadorAlquiler datos;
 
 
     @Before
     public void init(){
         servicioBuscador = mock(ServicioBuscador.class);
         controladorBuscador = new ControladorBuscador(servicioBuscador);
-        direccion1 = "calle 1";
-        direccion2 = "calle 2";
-        direccion3 = "calle 3";
-        direccion4 = "calle 4";
+        direccion1 = 1;
+        direccion2 = 2;
+        direccion3 = 3;
+        direccion4 = 4;
         vivienda = new Vivienda();
         vivienda2 =new Vivienda();
         vivienda3 =new Vivienda();
         vivienda4 =new Vivienda();
+        datos = new DatosBuscadorAlquiler();
     }
 
     @Test
-    public void queAlPedirAlquilerDevuelvaUnaLista(){
-        //prepracion
-        vivienda.setDireccion(direccion1);
-        dadoQueExisteVivienda(direccion1, vivienda);
-        vivienda2.setDireccion(direccion2);
-        dadoQueExisteVivienda(direccion2, vivienda2);
-        vivienda3.setDireccion(direccion3);
-        dadoQueExisteVivienda(direccion3, vivienda3);
-        vivienda4.setDireccion(direccion4);
-        dadoQueExisteVivienda(direccion4, vivienda4);
+    public void queAlIrABuscadorDeAlquileresMeDevuelvaUnaLista(){
 
-        //ejecución
-        controladorBuscador.MostrarListaAlquileres(direccion1);
-        controladorBuscador.MostrarListaAlquileres(direccion2);
-        controladorBuscador.MostrarListaAlquileres(direccion3);
-        ModelAndView mav = controladorBuscador.MostrarListaAlquileres(direccion4);
+        vivienda.setVivienda(direccion1);
+        dadoQueExistenViviendas(direccion1);
 
-        //verificacion
-        entoncesEncuentro((List<Vivienda>) mav.getModel().get("listaAlquileres"));
+        ModelAndView mav = mostrarAlquileresDisponibles();
+
         entoncesMeLLevaALaVista(VISTA_LISTA_ALQUILERES,mav.getViewName());
+
     }
+
+    @Test
+    public void queAlFiltrarBuscadorDeAlquileresDevuelvaLosAlquileresDisponiblesFiltrados(){
+
+        //PREPARACION
+        vivienda.setVivienda(direccion1);
+        datos.setId(vivienda.getVivienda());
+        dadoQueExisteLaVivienda(direccion1, vivienda);
+
+        ModelAndView mav = mostrarAlquileresFiltrados(datos);
+
+       // entoncesMeDevuelve(direccion1);
+
+        entoncesMeLLevaALaVista(VISTA_LISTA_ALQUILERES_FILTRADOS,mav.getViewName());
+    }
+
+    //agg boton que vaya a alquiler
+    //agg boton denuncia
+    //agg boton dar donacion
 
     @Test(expected = ViviendaExistente.class)
-    public void alPedirListaInvalidaLleveAPantallaDeError(){
+    public void alPedirListaFiltradaInvalidaLleveAPantallaDeError(){
 
-        vivienda.setDireccion(direccion1);
-        dadoQueNoExisteVivienda(direccion1);
+        vivienda.setVivienda(direccion1);
+        datos.setId(vivienda.getVivienda());
+        dadoQueNoExistenViviendas();
 
-        ModelAndView mav = EntoncesMeDevuelveUnaVistaConError(direccion1);
+        ModelAndView mav = EntoncesMeDevuelveUnaVistaConError(datos);
 
         entoncesMeLLevaALaVista(VISTA_LISTA_ALQUILERES,mav.getViewName());
-       EntoncesObtengoElMensajeDeErrorDeLaVista(mav.getViewName(), mav.getModelMap());
+        EntoncesObtengoElMensajeDeErrorDeLaVista(mav.getViewName(), mav.getModelMap());
     }
 
-    private void entoncesNoEncuentro(List<Vivienda> lista) {
-        assertThat(servicioBuscador.ListarAlquileres()).isEqualTo(lista);
+    private ModelAndView mostrarAlquileresFiltrados(DatosBuscadorAlquiler datos) {
+        return controladorBuscador.MostrarListaAlquileres(datos);
     }
 
-    private void dadoQueExisteVivienda(String direccion, Vivienda vivienda) {
-        when(servicioBuscador.buscarAlquilerPorDireccion(direccion)).thenReturn(vivienda);
+    private void dadoQueExisteLaVivienda(Integer direccion1, Vivienda vivienda) {
+        when(servicioBuscador.buscarAlquilerPorDireccion(direccion1)).thenReturn(vivienda);
     }
 
-    private void dadoQueNoExisteVivienda(String direccion){
-        when(servicioBuscador.buscarAlquilerPorDireccion(direccion)).thenReturn(null);
+    private ModelAndView EntoncesMeDevuelveUnaVistaConError(DatosBuscadorAlquiler datos) throws ViviendaExistente{
+        controladorBuscador.MostrarListaAlquileres(datos);
+        throw new ViviendaExistente();
     }
 
-    private void entoncesEncuentro(List<Vivienda> lista) {
-        assertThat(servicioBuscador.ListarAlquileres()).isEqualTo(lista);
+    private ModelAndView mostrarAlquileresDisponibles() {
+        return controladorBuscador.irABuscadorAlquiler();
+    }
+
+    private void dadoQueExistenViviendas(Integer id) {
+        when(servicioBuscador.buscarAlquilerPorDireccion(id)).thenReturn(vivienda);
+    }
+
+    private void dadoQueNoExistenViviendas(){
+        when(servicioBuscador.ListarAlquileres()).thenReturn(null);
     }
 
     private void entoncesMeLLevaALaVista(String vistaEsperada, String vistasRecibida) {
         assertThat(vistaEsperada).isEqualTo(vistasRecibida);
     }
     private void EntoncesObtengoElMensajeDeErrorDeLaVista(String viewName, ModelMap modelMap) throws ViviendaExistente{
-        assertThat(viewName).isEqualTo(VISTA_LISTA_ALQUILERES);
-        assertThat(modelMap.get("msg-error")).isEqualTo("La vivienda buscada no existe");
+        assertThat(modelMap.get("error")).isEqualTo("La vivienda buscada no existe");
     }
-
-    private ModelAndView EntoncesMeDevuelveUnaVistaConError(String direccion) {
-        return controladorBuscador.MostrarListaAlquileres(direccion);
-    }
-
-    private void entoncesSeRecibeMensaje(String mensaje, Map<String, Object> model) {
-        assertThat(model.get(mensaje)).isEqualTo("msg-error");
-    }
-/*
-    @Test
-    public void alPedirListaInvalidaLleveAPantallaDeError(){
-//        String datos = "Maria";
-//
-//        dadoQueExistaUnaListaDeRoomies (10, datos);
-//
-//        ModelAndView mav = controladorBuscador.MostrarListaRoomies(NOMBRE_INVALIDO);
-        when(servicioBuscador.buscarRoomies(NOMBRE_INVALIDO)).thenThrow(new RuntimeException());
-
-        ModelAndView mav = controladorBuscador.MostrarListaRoomies(NOMBRE_INVALIDO);
-                //controladorEmparejamiento.irAResultadoRoomieCompatibles(id);
-
-        //entoncesMeLLevaALaVista(VISTA_LISTA_ROOMIES,mav.getViewName());
-        //NO MUESTRA PORQUE TOMA COMO VALIDO A NOMBRE_INVALIDO
-        entoncesSeRecibeMensaje(MENSAJE_TIPO_INVALIDO, mav.getModel());
-    }
-
-    private void entoncesSeRecibeMensaje(String mensaje, Map<String, Object> model) {
-        assertThat(model.get(mensaje)).isEqualTo("msg-error");
-    }
-*/
-
-
-
-
 }
 

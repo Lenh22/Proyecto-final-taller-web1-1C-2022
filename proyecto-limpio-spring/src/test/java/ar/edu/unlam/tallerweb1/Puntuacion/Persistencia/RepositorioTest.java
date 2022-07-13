@@ -18,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class RepositorioTest extends SpringTest{
 
 
-    @Autowired//(required = false)
+    @Autowired
     RepositorioPuntuacion repositorioPuntuacion;
 
 

@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -34,18 +32,21 @@ public class ControladorBuscador {
     @RequestMapping(path = "validar-buscador-roomie", method = RequestMethod.POST)
     public ModelAndView MostrarListaRoomies(@ModelAttribute("datos") DatosBuscadorRoomie datos) {
         ModelMap model = new ModelMap();
+
+        //LA CONSULTA DE EN EL REPO HAY QUE REHACER
 /*
         Roomie roomieBuscado = new Roomie();
-        servicioDeBuscador.saveRoomie(roomieBuscado);
-        roomieBuscado.setNombre(datos.getNombre());
-       // servicioDeBuscador.consultarRoomie(datos.getNombre());
+        roomieBuscado.setId(datos.getId());
+        servicioDeBuscador.buscarRoomiePorId(datos.getId());*/
 
-        if (roomieBuscado != null) {*/
-            List<Usuario> lista =  servicioDeBuscador.ListarRoomiesPorFiltro(datos.getId());
+        try {
+            List<Usuario> lista =  servicioDeBuscador.ListarRoomiesPorFiltro2(datos.getNombre());
+            model.put("id", datos.getId());
             model.put("lista", lista);
-       /* } else {
-            model.put("msg-error", "El usuario buscado no existe");
-        }*/
+        }catch (Exception e){
+            model.put("error", "El usuario buscado no existe");
+        }
+
         return new ModelAndView("validar-buscador-roomie", model);
     }
 
@@ -63,18 +64,17 @@ public class ControladorBuscador {
     public ModelAndView MostrarListaAlquileres(@ModelAttribute("datos") DatosBuscadorAlquiler datos) {
 
         ModelMap model = new ModelMap();
+        Vivienda viviendaBuscada = servicioDeBuscador.buscarAlquilerPorDireccion(datos.getId());
 
-
-       // Vivienda viviendaBuscada = servicioDeBuscador.buscarAlquilerPorDireccion(direccion.getDireccion());
-
-       // if (viviendaBuscada != null) {
-            //ACA SE DEBERIA LISTAR LOS ALQUILERES FILTRADOS
-            List<Vivienda> lista = servicioDeBuscador.ListarAlquileresPorFiltro(datos.getId());
+        try {
+            //List<Vivienda> lista = servicioDeBuscador.ListarAlquileresPorFiltro(datos.getId());
+            List<Vivienda> lista = servicioDeBuscador.ListarAlquileresPorFiltro2(datos.getDireccion());
+            model.put("id", datos.getId());
             model.put("lista", lista);
-       // }
-       /* if(viviendaBuscada == null){
-            model.put("msg-error", "La vivienda buscada no existe");
-        }*/
+        }catch (Exception e){
+            model.put("error", "La vivienda buscada no existe");
+        }
+
         return new ModelAndView("validar-buscador-alquiler", model);
     }
 }

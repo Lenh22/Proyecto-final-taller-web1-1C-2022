@@ -14,7 +14,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class RepositorioBuscadorRoomieTest extends SpringTest {
-
+/*
     @Autowired
     RepositorioBuscador repositorioBuscador;
 
@@ -70,7 +70,7 @@ public class RepositorioBuscadorRoomieTest extends SpringTest {
 
     private void entoncesVerificoLaLista(List<Usuario> encontrados) {
         assertThat(encontrados.size()).isEqualTo(6);
-    }
+    }*/
 }
 
 

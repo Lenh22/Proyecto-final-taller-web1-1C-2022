@@ -38,23 +38,25 @@ public class ServicioDescuentoTest{
         String pass = roomie2.getPassword();
         dadoQueElRoomieQueAplicaADescuentoPuedaSerEncontrado(mail, pass);
 
-        cuandoQuieroVerificarSiAplicaADescuento();
+        roomie2.setEstudiante(true);
+        roomie2.setEdad(22);
+        cuandoQuieroVerificarSiAplicaADescuento(roomie2);
 
         entoncesTieneQueDevolverTrue();
     }
 
-    @Test
+    @Test(expected = RoomieSinDescuento.class)
     public void queNoSePuedaAplicarDescuentoAunRoomieExistenteQueNoSeaEstudiante(){
         String mail = roomie.getEmail();
         String pass = roomie.getPassword();
         dadoQueElRoomieQueAplicaADescuentoPuedaSerEncontrado2(mail, pass);
 
-        cuandoQuieroVerificarSiNoAplicaADescuento();
+        cuandoQuieroVerificarSiNoAplicaADescuento(roomie2);
 
-        entoncesTieneQueDevolverFalse();
+        //entoncesTieneQueDevolverFalse2();
     }
 
-    @Test
+    @Test(expected = RoomieSinDescuento.class)
     public void queNoSePuedaAplicarDescuentoAunRoomieExistenteQueNoCumplaConRangoDeEdad(){
         String mail = roomie3.getEmail();
         String pass = roomie3.getPassword();
@@ -65,7 +67,7 @@ public class ServicioDescuentoTest{
         entoncesTieneQueDevolverFalse2();
     }
 
-    @Test
+    @Test(expected = RoomieSinDescuento.class)
     public void queNoSePuedaAplicarDescuentoAunRoomieExistenteQueNoCumplaConRangoDeEdadNiEsEstudiante(){
         String mail = roomie4.getEmail();
         String pass = roomie4.getPassword();
@@ -73,7 +75,7 @@ public class ServicioDescuentoTest{
 
         cuandoQuieroVerificarSiNoAplicaADescuento4();
 
-        entoncesTieneQueDevolverFalse3();
+        entoncesTieneQueDevolverFalse();
     }
 
     @Test(expected = RoomieSinDescuento.class)
@@ -122,10 +124,11 @@ public class ServicioDescuentoTest{
         when(repositorioDescuento.buscarRoomiePorMailyPass(mail, pass)).thenReturn(roomie3);
     }
 
-    private void cuandoQuieroVerificarSiNoAplicaADescuento3() {
+    private void cuandoQuieroVerificarSiNoAplicaADescuento3() throws RoomieSinDescuento{
         roomie3.setEstudiante(true);
         roomie3.setEdad(26);
         servicioDescuento.verificarAplicacionADescuento(roomie3);
+        throw new RoomieSinDescuento();
     }
 
     private void dadoQueElRoomieQueAplicaADescuentoPuedaSerEncontrado2(String mail, String pass) {
@@ -136,20 +139,19 @@ public class ServicioDescuentoTest{
         assertThat(servicioDescuento.verificarAplicacionADescuento(roomie)).isEqualTo(false);
     }
 
-    private void cuandoQuieroVerificarSiNoAplicaADescuento() {
+    private void cuandoQuieroVerificarSiNoAplicaADescuento(Roomie roomie) throws RoomieSinDescuento{
         roomie.setEstudiante(false);
         roomie.setEdad(22);
-        servicioDescuento.verificarAplicacionADescuento(roomie);
+        servicioDescuento.aplicaDescuento(roomie);
+        throw new RoomieSinDescuento();
     }
 
     private void entoncesTieneQueDevolverTrue() {
-        assertThat(servicioDescuento.verificarAplicacionADescuento(roomie2)).isEqualTo(true);
+        assertThat(servicioDescuento.aplicaDescuento(roomie2)).isEqualTo(true);
     }
 
-    private void cuandoQuieroVerificarSiAplicaADescuento() {
-        roomie2.setEstudiante(true);
-        roomie2.setEdad(22);
-        servicioDescuento.verificarAplicacionADescuento(roomie2);
+    private void cuandoQuieroVerificarSiAplicaADescuento(Roomie roomie) {
+        servicioDescuento.verificarAplicacionADescuento(roomie);
     }
 
     private void dadoQueElRoomieQueAplicaADescuentoPuedaSerEncontrado(String mail, String pass) {

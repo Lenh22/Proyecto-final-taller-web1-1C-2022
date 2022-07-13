@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.BuscadorGeneral.Servicios;
 
 import ar.edu.unlam.tallerweb1.modelo.Excepciones.UsuarioExistente;
 import ar.edu.unlam.tallerweb1.modelo.Roomie;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioBuscador;
 import ar.edu.unlam.tallerweb1.servicios.ServicioBuscador;
 import org.junit.Before;
@@ -12,7 +13,7 @@ import static org.assertj.core.api.Java6Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 public class ServicioBuscadorRoomieTest {
-/*
+
     private RepositorioBuscador repositorioBuscador;
     private ServicioBuscador servicioBuscador;
     private Roomie roomie1;
@@ -23,9 +24,9 @@ public class ServicioBuscadorRoomieTest {
     private String nombre2 = "Leandro";
     private String nombre3 = "Leandro";
     private String nombre4 = "Emanuel";
-    private List<Roomie> roomies;
+    private List<Usuario> roomies;
 
-
+/*
 
     @Before
     public void init(){
@@ -77,12 +78,12 @@ public class ServicioBuscadorRoomieTest {
         when(repositorioBuscador.ObtenerUnRoomie(nombre2)).thenReturn(roomie4);
     }
 
-    private List<Roomie> cuandoQuieroListarlo(String nombre) {
-        return servicioBuscador.listarRoomies(nombre);
+    private List<Usuario> cuandoQuieroListarlo(String nombre) {
+        return servicioBuscador.ListarRoomies();
     }
 
     private void entoncesPuedoVerLaListaDeRoomies() {
-        assertThat(servicioBuscador.obtenerRoomies()).isEqualTo(roomies);
+        assertThat(servicioBuscador.getTotalRoomies()).isEqualTo(4);
     }
 
     private void entoncesElRoomieEstaVacio() {

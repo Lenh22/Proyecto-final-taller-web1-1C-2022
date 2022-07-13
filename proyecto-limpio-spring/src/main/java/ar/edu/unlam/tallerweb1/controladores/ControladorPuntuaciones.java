@@ -30,23 +30,19 @@ public class ControladorPuntuaciones {
 
 
     @RequestMapping(path = "ver-puntuacion", method = RequestMethod.POST)
-    public ModelAndView MostrarPuntuacion(@ModelAttribute("puntuacion") DatosPuntuar datos, HttpServletRequest request) {
+    public ModelAndView MostrarPuntuacion(@ModelAttribute("puntuacion") DatosPuntuar datos) {
         ModelMap model = new ModelMap();
         Double puntaje = 0.0;
 
         Roomie roomieBuscado = new Roomie();
         roomieBuscado.setPuntuacion(datos.getPuntuacion());
-        servicioDePuntuacion.saveRoomie(roomieBuscado);
         servicioDePuntuacion.consultarRoomie(datos.getId());
-
-        if (roomieBuscado != null) {
-
+        try{
             puntaje = servicioDePuntuacion.puntuacionRoomie(datos.getId(), datos.getPuntuacion());
-
+            model.put("id", datos.getId());
             model.put("puntaje", puntaje);
-
-        } else {
-            model.put("msg-error", "El usuario buscado no existe");
+        }catch (Exception e){
+            model.put("error", "El usuario buscado no existe");
         }
         return new ModelAndView("ver-puntuacion", model);
     }

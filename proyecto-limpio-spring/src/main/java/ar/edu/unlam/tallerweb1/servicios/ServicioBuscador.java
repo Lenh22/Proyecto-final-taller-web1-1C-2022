@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import ar.edu.unlam.tallerweb1.modelo.Excepciones.UsuarioExistente;
+import ar.edu.unlam.tallerweb1.modelo.Excepciones.ViviendaExistente;
 import ar.edu.unlam.tallerweb1.modelo.Roomie;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.Vivienda;
@@ -36,10 +38,31 @@ public class ServicioBuscador implements IServicioBuscador{
         return roomies;
     }
     @Override
-    public List<Usuario> ListarRoomiesPorFiltro(Long id) {
+    public List<Usuario> ListarRoomiesPorFiltro(Long id) throws UsuarioExistente{
         List<Usuario> roomies = repositorioBuscador.ObtenerRoomiesPorFiltro(id);
+            if(roomies == null){
+                throw new UsuarioExistente();
+            }
         return roomies;
     }
+    @Override
+    public List<Usuario> ListarRoomiesPorFiltro2(String nombre) throws UsuarioExistente{
+        List<Usuario> roomies = repositorioBuscador.ObtenerRoomiesPorFiltro2(nombre);
+        if(roomies == null){
+            throw new UsuarioExistente();
+        }
+        return roomies;
+    }
+
+    @Override
+    public Integer getTotalRoomies(){
+        return repositorioBuscador.ObtenerRoomies().size();
+    }
+    @Override
+    public Roomie buscarRoomiePorId(Long id){
+        return (Roomie) repositorioBuscador.ObtenerUnRoomie(id);
+    }
+
 
 
 
@@ -49,8 +72,8 @@ public class ServicioBuscador implements IServicioBuscador{
     }
 
     @Override
-    public Vivienda buscarAlquilerPorDireccion(String direccion){
-        Vivienda buscada = repositorioBuscador.buscarAlquiler(direccion);
+    public Vivienda buscarAlquilerPorDireccion(Integer id){
+        Vivienda buscada = repositorioBuscador.buscarAlquiler(id);
 
         if (buscada != null) {
             return buscada;
@@ -65,8 +88,23 @@ public class ServicioBuscador implements IServicioBuscador{
     }
 
     @Override
-    public List<Vivienda> ListarAlquileresPorFiltro(Integer id) {
+    public List<Vivienda> ListarAlquileresPorFiltro(Integer id) throws ViviendaExistente {
         List<Vivienda> viviendas = repositorioBuscador.ObtenerAlquileresPorFiltro(id);
+                if(viviendas == null){
+                    throw new ViviendaExistente();
+                }
         return viviendas;
+    }
+    @Override
+    public List<Vivienda> ListarAlquileresPorFiltro2(String direccion) throws ViviendaExistente {
+        List<Vivienda> viviendas = repositorioBuscador.ObtenerAlquileresPorFiltro2(direccion);
+        if(viviendas == null){
+            throw new ViviendaExistente();
+        }
+        return viviendas;
+    }
+    @Override
+    public Integer getTotalViviendas(){
+        return repositorioBuscador.ObtenerAlquileres().size();
     }
 }

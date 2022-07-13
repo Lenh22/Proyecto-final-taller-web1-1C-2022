@@ -44,7 +44,6 @@ public class ControladorDescuentoTest{
         //ejecución
         roomie2.setEdad(edad);
         roomie2.setEstudiante(estudiante);
-
         datos.setEmail(mail);
         datos.setPassword(pass);
 
@@ -52,7 +51,7 @@ public class ControladorDescuentoTest{
 
         //verificacion
 
-        entoncesSeAplicaDescuento(roomie2);
+        entoncesSeAplicaDescuento();
         entoncesMeLLevaALaVista(VISTA_DESCUENTO,mav.getViewName());
 
     }
@@ -62,16 +61,14 @@ public class ControladorDescuentoTest{
 
         dadoQueNoExisteUnRoomieQueApliqueAlDescuento();
 
-        ModelAndView mav = mostrarDescuento(datos);
+        ModelAndView mav = NoMostrarDescuento(datos);
 
         entoncesNoSeAplicaDescuento(roomie2);
         entoncesMeLLevaALaVista(VISTA_DESCUENTO,mav.getViewName());
-        //entoncesSeRecibeMensaje(MENSAJE_TIPO_INVALIDO, mav.getModel());
+        entoncesSeRecibeMensaje(MENSAJE_TIPO_INVALIDO, mav.getModel());
     }
 
     private void entoncesNoSeAplicaDescuento(Roomie roomie) {
-//        descuento = servicioDeDescuentos.verificarAplicacionADescuento(roomie);
-//        assertThat(descuento).isEqualTo(false);
         verify(servicioDeDescuentos, never()).verificarAplicacionADescuento(roomie);
     }
 
@@ -80,16 +77,20 @@ public class ControladorDescuentoTest{
     }
 
     private void entoncesSeRecibeMensaje(String mensaje, Map<String, Object> model) {
-        assertThat(model.get("msg-error")).isEqualTo(mensaje);
+        assertThat(model.get("error")).isEqualTo(mensaje);
     }
 
-    private void entoncesSeAplicaDescuento(Roomie roomie) {
-        descuento = servicioDeDescuentos.verificarAplicacionADescuento(roomie);
-        assertThat(descuento).isEqualTo(true);
+    private void entoncesSeAplicaDescuento() {
+        controladorDescuentos.MostrarDescuentoDisponible(datos);
     }
 
     private ModelAndView mostrarDescuento(DatosDescuento datos) {
         return controladorDescuentos.MostrarDescuentoDisponible(datos);
+    }
+
+    private ModelAndView NoMostrarDescuento(DatosDescuento datos) throws RoomieSinDescuento{
+        controladorDescuentos.MostrarDescuentoDisponible(datos);
+        throw new RoomieSinDescuento();
     }
 
     private void dadoQueExisteRoomieConDescuento(String mail, String pass) {
