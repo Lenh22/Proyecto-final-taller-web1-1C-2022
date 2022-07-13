@@ -56,10 +56,10 @@ public class RepositorioEmparejamiento implements IRepositorioEmparejamiento {
     }
 
     @Override
-    public List<RoomieAtributos> obtenerAtributosPorId(Long idRoomie) {
+    public List<Atributo> obtenerAtributosPorId(Long idRoomie) {
         final Session session = sessionFactory.getCurrentSession();
         return session
-                .createQuery("from RoomieAtributos where idRoomie =:idRoomie")
+                .createQuery("select atributo from RoomieAtributos where idRoomie =:idRoomie")
                 .setParameter("idRoomie",idRoomie).list();
     }
 
@@ -67,7 +67,8 @@ public class RepositorioEmparejamiento implements IRepositorioEmparejamiento {
     public List<Long> obtenerIdRoomiesParaComparar(long id) {
         final Session session = sessionFactory.getCurrentSession();
         return session
-                .createQuery("from Roomie").list();
+                .createQuery("select id from Roomie where id <>: idAEncontrar")
+                .setParameter("idAEncontrar", id).list();
     }
 
 }

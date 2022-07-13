@@ -63,11 +63,11 @@ public class ControladorTest {
 
     private ModelAndView cuandoBuscoPorUnIdMeDevuelveLaVistaDeRoomies() {
         when(servicioEmparejamiento.obtenerRoomiesCompatibles(1L)).thenReturn(roomieList);
-        return controladorEmparejamiento.irAResultadoRoomieCompatibles(1L,null);
+        return controladorEmparejamiento.irAResultadoRoomieCompatibles(/*1L,*/null);
     }
 
     private ModelAndView cuandoBuscoPorUnIdMeDevuelveLaVistaDeRoomiesVacias() {
-        return  controladorEmparejamiento.irAResultadoRoomieCompatibles(1L,null);
+        return  controladorEmparejamiento.irAResultadoRoomieCompatibles(/*1L,*/null);
     }
 
     /*____________________________________ENTONCES____________________________*/
@@ -93,7 +93,7 @@ public class ControladorTest {
     }
 
     private ModelAndView EntoncesMeDevuelveUnaVistaConError(Long id) {
-        return controladorEmparejamiento.irAResultadoRoomieCompatibles(1L,null);
+        return controladorEmparejamiento.irAResultadoRoomieCompatibles(/*1L,*/null);
     }
 
 }

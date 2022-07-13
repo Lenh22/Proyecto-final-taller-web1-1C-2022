@@ -28,48 +28,41 @@ public class ServicioEmparejamiento implements IServicioEmparejamiento {
         Roomie roomie = repositorioEmparejamiento.obtenerRoomiePorId(id);
         List<Long> roomiesAComparar = repositorioEmparejamiento.obtenerIdRoomiesParaComparar(1L);
 
-        for (Long roomieCompatible: roomiesAComparar) {
-            //if(calcularCompatibilidad(id,roomieCompatible))
-              //  roomiesCompatibles.add(roomieCompatible);
-        }
+        roomiesCompatibles = calcularCompatibilidad(id, roomiesAComparar);
+
         return roomiesCompatibles;
     }
 
     @Override
-    public Integer calcularCompatibilidad(long idRoomie, long idAComparar) {
+    public List<Roomie> calcularCompatibilidad(long idRoomie, List<Long> idsAComparar) {
         int coincidencia = 0;
 
-        if(idRoomie == idAComparar){
-            return 0;
-        }
-
-        List<RoomieAtributos> atributosRoomielista = repositorioEmparejamiento.obtenerAtributosPorId(idRoomie);
-        List<RoomieAtributos> atributosRoomieACompararlist = repositorioEmparejamiento.obtenerAtributosPorId(idAComparar);
-
-        List<Atributo> atributosRoomie = new LinkedList<>();
+        List<Atributo> atributosRoomieLogueado = repositorioEmparejamiento.obtenerAtributosPorId(idRoomie);
         List<Atributo> atributosRoomieAComparar = new LinkedList<>();
-        for (RoomieAtributos roomie: atributosRoomielista) {
-            atributosRoomie.add(roomie.getAtributo());
-        }
 
-        for (RoomieAtributos roomie: atributosRoomieACompararlist) {
-            atributosRoomieAComparar.add(roomie.getAtributo());
-        }
+        for (Long id: idsAComparar) {
+            atributosRoomieAComparar = repositorioEmparejamiento.obtenerAtributosPorId(id);
 
-        if(atributosRoomie.size() >= atributosRoomieAComparar.size()){
-            for (Atributo atributo: atributosRoomie) {
-                if(atributosRoomieAComparar.contains(atributo))
-                    coincidencia++;
+            if(atributosRoomieLogueado.size() >= atributosRoomieAComparar.size()){
+                for (Atributo atributo: atributosRoomieLogueado) {
+                    if(atributosRoomieAComparar.contains(atributo))
+                        coincidencia++;
+                }
+                 if(coincidencia * 100/atributosRoomieLogueado.size() >= 70)
+                     roomiesCompatibles.add(repositorioEmparejamiento.obtenerRoomiePorId(id));
+                 coincidencia = 0;
             }
-            return coincidencia * 100/atributosRoomie.size();
-        }
-        else{
-            for (Atributo atributo: atributosRoomieAComparar) {
-                if(atributosRoomie.contains(atributo))
-                    coincidencia++;
+            else{
+                for (Atributo atributo: atributosRoomieAComparar) {
+                    if(atributosRoomieLogueado.contains(atributo))
+                        coincidencia++;
+                }
+                if(coincidencia * 100/atributosRoomieAComparar.size() >= 70)
+                    roomiesCompatibles.add(repositorioEmparejamiento.obtenerRoomiePorId(id));
+                coincidencia = 0;
             }
-            return coincidencia * 100/atributosRoomieAComparar.size();
         }
+         return roomiesCompatibles;
     }
 
 

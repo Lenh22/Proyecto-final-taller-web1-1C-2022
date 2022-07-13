@@ -28,9 +28,10 @@ public class ControladorEmparejamiento {
     }
 
     //Pasamos primeramente el id que guardaremos en la vista para despues consultarlo en la base de datos y devolverlo
-    @RequestMapping(path="/ir-a-resultado-roomie-compatibles/{id}")
-    public ModelAndView irAResultadoRoomieCompatibles(@PathVariable("id") long id ,HttpServletRequest request) {
+    @RequestMapping(path="/ir-a-resultado-roomie-compatibles")
+    public ModelAndView irAResultadoRoomieCompatibles(HttpServletRequest request) {
         ModelMap map = new ModelMap();
+        long id = 0;
         if(id == 0)
             id = (long)request.getSession().getAttribute("id");
         try{

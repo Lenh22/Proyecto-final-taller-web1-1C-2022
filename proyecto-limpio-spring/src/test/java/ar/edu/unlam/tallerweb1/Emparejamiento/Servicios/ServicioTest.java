@@ -45,7 +45,7 @@ public class ServicioTest {
     private void dadoQueExisteUnUsuarioLogueado() {
         r1 = new Roomie("Ariel","Gomez",22,"ariel@ariel.com","12345","roomie",false);
         r1.setId(1L);
-        List<RoomieAtributos> atributosRoomieUno = new LinkedList<>();
+        /*List<RoomieAtributos> atributosRoomieUno = new LinkedList<>();
         RoomieAtributos ra = new RoomieAtributos(1L,Atributo.FUMADOR);
         ra.setId(2L);
         RoomieAtributos ra1 = new RoomieAtributos(1L,Atributo.DIURNO);
@@ -58,13 +58,21 @@ public class ServicioTest {
         ra.setId(6L);
         RoomieAtributos ra5 = new RoomieAtributos(1L,Atributo.SEXWORK);
         ra.setId(7L);
-
         atributosRoomieUno.add(ra);
         atributosRoomieUno.add(ra1);
         atributosRoomieUno.add(ra2);
         atributosRoomieUno.add(ra3);
         atributosRoomieUno.add(ra4);
-        atributosRoomieUno.add(ra5);
+        atributosRoomieUno.add(ra5);*/
+
+        List<Atributo> atributosRoomieUno = new LinkedList<>();
+        atributosRoomieUno.add(Atributo.FUMADOR);
+        atributosRoomieUno.add(Atributo.DIURNO);
+        atributosRoomieUno.add(Atributo.GAMER);
+        atributosRoomieUno.add(Atributo.INCLUSIVO);
+        atributosRoomieUno.add(Atributo.VEGGIE);
+        atributosRoomieUno.add(Atributo.SEXWORK);
+
         when(repositorioEmparejamiento.obtenerRoomiePorId(1L)).thenReturn(r1);
         when(repositorioEmparejamiento.obtenerAtributosPorId(1L)).thenReturn(atributosRoomieUno);
     }
@@ -73,7 +81,7 @@ public class ServicioTest {
         List<Long> roomiesIds = new LinkedList<>();
         r2 = new Roomie("Leandro","Gomez",22,"leandro@leandro.com","12345","roomie",false);
         r2.setId(2L);
-        List<RoomieAtributos> atributosRoomieDos = new LinkedList<>();
+        /*List<RoomieAtributos> atributosRoomieDos = new LinkedList<>();
         RoomieAtributos ra = new RoomieAtributos(1L,Atributo.FUMADOR);
         ra.setId(8L);
         RoomieAtributos ra1 = new RoomieAtributos(1L,Atributo.DIURNO);
@@ -89,7 +97,14 @@ public class ServicioTest {
         atributosRoomieDos.add(ra1);
         atributosRoomieDos.add(ra2);
         atributosRoomieDos.add(ra3);
-        atributosRoomieDos.add(ra4);
+        atributosRoomieDos.add(ra4);*/
+
+        List<Atributo> atributosRoomieDos = new LinkedList<>();
+        atributosRoomieDos.add(Atributo.FUMADOR);
+        atributosRoomieDos.add(Atributo.DIURNO);
+        atributosRoomieDos.add(Atributo.GAMER);
+        atributosRoomieDos.add(Atributo.INCLUSIVO);
+        atributosRoomieDos.add(Atributo.VEGGIE);
 
         when(repositorioEmparejamiento.obtenerRoomiePorId(2L)).thenReturn(r2);
         when(repositorioEmparejamiento.obtenerAtributosPorId(2L)).thenReturn(atributosRoomieDos);
@@ -97,6 +112,7 @@ public class ServicioTest {
 
         r3 = new Roomie("Emanuel","Gomez",24,"emanuel@emanuel.com","12345","roomie",false);
         r3.setId(3L);
+        /*
         List<RoomieAtributos> atributosRoomieTres = new LinkedList<>();
         RoomieAtributos ra5 = new RoomieAtributos(1L,Atributo.FUMADOR);
         ra.setId(8L);
@@ -110,7 +126,13 @@ public class ServicioTest {
         atributosRoomieTres.add(ra5);
         atributosRoomieTres.add(ra6);
         atributosRoomieTres.add(ra7);
-        atributosRoomieTres.add(ra8);
+        atributosRoomieTres.add(ra8);*/
+
+        List<Atributo> atributosRoomieTres = new LinkedList<>();
+        atributosRoomieTres.add(Atributo.FUMADOR);
+        atributosRoomieTres.add(Atributo.DIURNO);
+        atributosRoomieTres.add(Atributo.GAMER);
+        atributosRoomieTres.add(Atributo.VEGGIE);
 
         roomiesIds.add(r2.getId());
         roomiesIds.add(r3.getId());

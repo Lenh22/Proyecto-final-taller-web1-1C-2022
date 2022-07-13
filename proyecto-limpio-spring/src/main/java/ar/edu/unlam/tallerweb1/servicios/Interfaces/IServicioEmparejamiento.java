@@ -11,5 +11,5 @@ public interface IServicioEmparejamiento {
 
     List<Roomie> obtenerRoomiesCompatibles(Long id);
 
-    Integer calcularCompatibilidad(long atributos, long atributos1);
+    List<Roomie> calcularCompatibilidad(long idRoomie, List<Long> idsAComparar);
 }
