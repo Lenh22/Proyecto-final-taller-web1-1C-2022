@@ -68,13 +68,13 @@ public class RepositorioRoomie implements IRepositorioRoomie{
     }
 
     //Agregue esto
+    //puedo castear a salida
     @Override
     public Integer obtenerpuntajeGamification(String mail) {
         final Session session = sessionFactory.getCurrentSession();
-
-        int n= (int) session.createQuery("select puntajeGamification from Roomie where email =:email").setParameter("email", mail).uniqueResult();
-
-        return n;
+        return (int) session.createQuery("select puntajeGamification from Roomie where email = :email")
+                .setParameter("email", mail)
+                .uniqueResult();
     }
 
 

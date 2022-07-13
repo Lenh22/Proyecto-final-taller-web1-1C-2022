@@ -10,40 +10,44 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class ServicioDeGamification implements IServicioDeGamification {
 
-    private IRepositorioRoomie repositorioRoomie;
+    private IRepositorioRoomie repositorioRoomies;
+    private Integer cantidad = 1;
+    private String nivel = "";
 
     @Autowired
-    public ServicioDeGamification(IRepositorioRoomie repositorioRoomie) {
-
-        this.repositorioRoomie = repositorioRoomie;
+    public ServicioDeGamification(IRepositorioRoomie repositorioRoomies) {
+        this.repositorioRoomies = repositorioRoomies;
     }
 
     @Override
-    public Integer generarPuntajeGamification(String mail){
-        Integer cantida = repositorioRoomie.obtenerpuntajeGamification(mail);
-       Roomie roomie = repositorioRoomie.ObtenerUnRoomie(mail);
+    //ActualizarPuntaje nombre mas claros
+    public Integer generarPuntajeGamification(String email) {
+        Roomie roomie = repositorioRoomies.ObtenerUnRoomie(email);
 
-        while (roomie.getActivo().equals(true) && roomie !=null) {
-            if(roomie.getBilleteraDeDonaciones()>1){
-                cantida++;
-            }if(roomie.getCantidadDeDenuncias()>5){
-                cantida--;
-            }if(roomie.getCantidadTotalPuntuada()>2){
-                cantida++;
-            }
+        if (roomie.getBilleteraDeDonaciones() >= 1.0) {
+            roomie.setPuntajeGamification(roomie.getPuntajeGamification() + 1);
         }
-            roomie.setPuntajeGamification(cantida);
-            return  cantida;
+        if (roomie.getCantidadDeDenuncias() >= 1) {
+            roomie.setPuntajeGamification(roomie.getPuntajeGamification() - 1);
+        }
+        if (roomie.getPuntaje() >= 1) {
+            roomie.setPuntajeGamification(roomie.getPuntajeGamification() + 1);
+        }
+        repositorioRoomies.actualizar(roomie);
+        return roomie.getPuntajeGamification();
     }
+
     @Override
     public String obtenerNivel(String mail) {
-        String resultado = "RoomieBasico";
-        return resultado;
+
+        if (generarPuntajeGamification(mail) >= 1 && generarPuntajeGamification(mail) < 3) {
+            nivel = "RoomieBasico";
         }
-
-
-    @Override
-    public void recalculoDePuntaje(){
-
+        if (generarPuntajeGamification(mail) >= 4 && generarPuntajeGamification(mail) < 5) {
+            nivel = "RoomieMedio";
+        } else {
+            nivel = "RoomieFantastico";
+        }
+        return nivel;
     }
 }

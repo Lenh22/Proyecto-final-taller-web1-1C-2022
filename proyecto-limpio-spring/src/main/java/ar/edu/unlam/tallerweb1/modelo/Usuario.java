@@ -32,10 +32,12 @@ public abstract class Usuario {
 		this.rol = rol;
 		this.activo = activo;
 	}
-
+/*
 	public Usuario() {
 
 	}
+
+ */
 
 	public String getNombre() {
 		return nombre;

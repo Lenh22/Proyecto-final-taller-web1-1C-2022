@@ -1,8 +1,7 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
 public interface IServicioDeGamification {
-    Integer generarPuntajeGamification(String mail);
+    Integer generarPuntajeGamification(String email);
 
     String obtenerNivel(String mail);
-    void recalculoDePuntaje();
 }

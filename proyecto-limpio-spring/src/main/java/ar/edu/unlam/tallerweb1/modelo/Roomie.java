@@ -23,9 +23,9 @@ public class Roomie extends Usuario {
     private List<Atributo> atributos;
     @ManyToOne(optional = true)
     private  Alquiler alquiler;
-
+/*
     public Roomie() { }
-
+*/
     //Constructor para un roomie con la lista de atributos ya armadas
     public Roomie(String nombre, String apellido, Integer edad, String email, String password, String rol
             , Boolean activo, Boolean recibirDonacion, double ingreso, double puntaje, double cantidadTotalPuntuada
@@ -56,19 +56,24 @@ public class Roomie extends Usuario {
     public Roomie(String nombre, String apellido, Integer edad, String email, String password, String rol, Boolean activo) {
         super(nombre, apellido, edad, email, password, rol, activo);
     }
-
+/*
     public Roomie(String maria, String gonzalez, int i, String mail, String pass, boolean b, double v, double v1, double v2, double v3) {
     }
-
-    public Roomie(String nombre, String apellido, int edad, String email, String password, boolean recibirDonacion, double ingreso, double puntaje, double cantidadTotalPuntuada, double billeteraDeDonaciones, int puntajeGamification) {
-        super();
+*/
+    public Roomie(String nombre, String apellido, int edad, String email, String password,String rol,boolean activo, boolean recibirDonacion, double ingreso, double puntaje, double cantidadTotalPuntuada, double billeteraDeDonaciones, int cantidadDeDenuncias ,int puntajeGamification) {
+        super(nombre,apellido,edad,email,password,rol,activo);
         this.recibirDonacion = recibirDonacion;
         this.ingreso = ingreso;
         this.puntaje = puntaje;
         this.cantidadTotalPuntuada = cantidadTotalPuntuada;
         this.billeteraDeDonaciones = billeteraDeDonaciones;
+        this.cantidadDeDenuncias=cantidadDeDenuncias;
         this.puntajeGamification= puntajeGamification;
 
+    }
+
+    public Roomie() {
+        super("","",0,"","","",true);
     }
 
 

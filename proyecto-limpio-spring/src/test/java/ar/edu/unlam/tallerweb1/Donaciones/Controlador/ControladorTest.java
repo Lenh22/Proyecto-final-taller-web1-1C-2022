@@ -27,7 +27,7 @@ public class ControladorTest {
 
     private DatosDonacion  datos = new DatosDonacion("mail", 100.0);
     public Double billeteraDeDonaciones = 5.0;
-    public Roomie roomieDonatario2 = new Roomie("Maria", "Gonzalez", 20, "mail", "pass", true, 50000.0,0.0, 0.0,billeteraDeDonaciones);
+    public Roomie roomieDonatario2 = new Roomie("Maria", "Gonzalez", 20, "mail", "pass","rol",true, true, 50000.0,0.0, 0.0,billeteraDeDonaciones);
 
     public Boolean pudoDonar = true;
 
@@ -129,7 +129,7 @@ public class ControladorTest {
 
         for (int i =0; i<catidadExistente;i++){
 
-            lista.add(new Roomie("nombre"+i, "apellido"+i, i, "email@email"+i+".com", "password", recibirDonacion, i,i,i,i));
+            lista.add(new Roomie("nombre"+i, "apellido"+i, i, "email@email"+i+".com", "password", "rol",true, true, i,i,i,i));
         }
         when(servicioDeDonacion.buscarDonatarios(recibirDonacion)).thenReturn(lista);
     }

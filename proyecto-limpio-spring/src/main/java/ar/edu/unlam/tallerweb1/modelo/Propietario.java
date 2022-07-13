@@ -18,6 +18,7 @@ public class Propietario extends Usuario {
     }
 
     public Propietario() {
-
+        super("","",0,"","","",true);
     }
+
 }

@@ -10,6 +10,8 @@
 		<div class = "container">
 			<h1>Bienvenidos a Taller Web 1</h1>
 			${email}
+			${nivel}
+
 
 			<a href="activarDonacion">ir a activar Donaciones</a>
 			<a href="darDonacion">ir a realizar una donacion</a>

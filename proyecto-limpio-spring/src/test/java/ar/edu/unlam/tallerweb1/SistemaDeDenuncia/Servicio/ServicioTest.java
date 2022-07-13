@@ -39,17 +39,19 @@ public class ServicioTest {
         entoncesElestadoEsInactivo();
     }
 
-    private Roomie dadoQueExisteElUsuarioActivo() {
+    private void dadoQueExisteElUsuarioActivo() {
         roomie2.setRecibirDonacion(true);
         when(repositorioRoomies.ObtenerUnRoomie(mail)).thenReturn(roomie2);
-        return repositorioRoomies.ObtenerUnRoomie(mail);
+        //return repositorioRoomies.ObtenerUnRoomie(mail);
     }
 
     private void cuandoLoDenuncio() {
+
         servicioDenuncia.cambiarEstado(roomie2.getEmail(), roomie2.getActivo());
     }
 
     private void entoncesElestadoEsInactivo() {
+
         assertThat(roomie2.activo()).isEqualTo(false);
     }
 
