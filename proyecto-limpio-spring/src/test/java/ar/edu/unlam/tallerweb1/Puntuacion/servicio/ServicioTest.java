@@ -84,7 +84,6 @@ public class ServicioTest {
     }
 
     private void entoncesELPuntajeTieneQueQuedarEnCero() {
-        //when(servicioPuntuacion.puntuacionRoomie(roomie2, false)).thenReturn(0.0);
         assertThat(roomie2.getPuntaje()).isEqualTo(0.0);
     }
 
@@ -98,7 +97,6 @@ public class ServicioTest {
     }
 
     private void entoncesPuedoVerElPuntajeTotal() {
-        //when(servicioPuntuacion.puntuacionRoomie(roomie2, true)).thenReturn(1.0);
         assertThat(roomie2.getPuntaje()).isEqualTo(2.0);
     }
     private void entoncesNoPuedoVerElPuntajeTotal() {

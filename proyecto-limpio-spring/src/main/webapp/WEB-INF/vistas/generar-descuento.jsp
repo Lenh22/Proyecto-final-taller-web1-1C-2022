@@ -23,6 +23,8 @@
             <h3 class="form-signin-heading">Verifique si aplica al descuento</h3>
             <hr class="colorgraph"><br>
 
+            <h4 class=form-signin-heading">Validar usuario</h4>
+
             <form:input path="email" id="email" type="email" class="form-control" placeholder="Ingrese su email"/>
             <form:input path="password" type="password" id="password" class="form-control" placeholder="Ingrese su contraseña"/>
 

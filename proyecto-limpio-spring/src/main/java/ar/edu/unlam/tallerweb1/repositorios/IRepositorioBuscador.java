@@ -18,7 +18,7 @@ public interface IRepositorioBuscador {
 
     void AgregarAlquiler(Vivienda vivienda);
     List<Vivienda> ObtenerAlquileres();
-    Vivienda buscarAlquiler(Integer id);
+    Vivienda buscarAlquiler(String direccion);
     List<Vivienda> ObtenerAlquileresPorFiltro(Integer id);
 
     List<Vivienda> ObtenerAlquileresPorFiltro2(String direccion);

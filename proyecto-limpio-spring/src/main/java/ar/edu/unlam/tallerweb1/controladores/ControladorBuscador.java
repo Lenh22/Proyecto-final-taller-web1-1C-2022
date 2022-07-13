@@ -33,12 +33,6 @@ public class ControladorBuscador {
     public ModelAndView MostrarListaRoomies(@ModelAttribute("datos") DatosBuscadorRoomie datos) {
         ModelMap model = new ModelMap();
 
-        //LA CONSULTA DE EN EL REPO HAY QUE REHACER
-/*
-        Roomie roomieBuscado = new Roomie();
-        roomieBuscado.setId(datos.getId());
-        servicioDeBuscador.buscarRoomiePorId(datos.getId());*/
-
         try {
             List<Usuario> lista =  servicioDeBuscador.ListarRoomiesPorFiltro2(datos.getNombre());
             model.put("id", datos.getId());
@@ -64,12 +58,9 @@ public class ControladorBuscador {
     public ModelAndView MostrarListaAlquileres(@ModelAttribute("datos") DatosBuscadorAlquiler datos) {
 
         ModelMap model = new ModelMap();
-        Vivienda viviendaBuscada = servicioDeBuscador.buscarAlquilerPorDireccion(datos.getId());
 
         try {
-            //List<Vivienda> lista = servicioDeBuscador.ListarAlquileresPorFiltro(datos.getId());
             List<Vivienda> lista = servicioDeBuscador.ListarAlquileresPorFiltro2(datos.getDireccion());
-            model.put("id", datos.getId());
             model.put("lista", lista);
         }catch (Exception e){
             model.put("error", "La vivienda buscada no existe");

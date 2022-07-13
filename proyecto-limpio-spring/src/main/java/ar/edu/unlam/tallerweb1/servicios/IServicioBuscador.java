@@ -17,12 +17,12 @@ public interface IServicioBuscador {
 
     Integer getTotalRoomies();
 
-    Roomie buscarRoomiePorId(Long id);
+    Roomie buscarRoomiePorNombre(String nombre);
 
     void saveAlquiler(Vivienda vivienda);
     //Vivienda consultarAlquiler(String direccion);
    // List<Vivienda> buscarAlquileres(String nombre);
-    Vivienda buscarAlquilerPorDireccion(Integer id);
+    Vivienda buscarAlquilerPorDireccion(String direccion);
     List<Vivienda> ListarAlquileres();
     List<Vivienda> ListarAlquileresPorFiltro(Integer id);
 

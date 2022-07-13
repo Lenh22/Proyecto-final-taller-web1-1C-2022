@@ -55,10 +55,6 @@ public class RepositorioBuscador implements  IRepositorioBuscador{
 
     @Override
     public List<Usuario> ObtenerRoomiesPorFiltro2(String nombre){
-       /* final Session session = sessionFactory.getCurrentSession();
-        return (List<Usuario>) session.createCriteria(Roomie.class)
-                .add(Restrictions.eq("nombre", nombre))
-                .list();*/
         final Session session = sessionFactory.getCurrentSession();
         List<Usuario> roomies = session.createQuery("From Usuario where nombre=:nombre")
                 .setParameter("nombre",nombre)
@@ -75,26 +71,20 @@ public class RepositorioBuscador implements  IRepositorioBuscador{
     @Override
     public List<Vivienda> ObtenerAlquileres() {
         final Session session = sessionFactory.getCurrentSession();
-        //return session.createCriteria(Vivienda.class).list();
         List<Vivienda> viviendas = session.createQuery("From Vivienda").list();
         return viviendas;
     }
     @Override
-    public Vivienda buscarAlquiler(Integer id) {
-       /* final Session session = sessionFactory.getCurrentSession();
-        return (Vivienda) session.createCriteria(Vivienda.class)
-                .add(Restrictions.eq("direccion", direccion))
-                .uniqueResult();*/
+    public Vivienda buscarAlquiler(String direccion) {
         return (Vivienda) sessionFactory.getCurrentSession()
-                .createQuery("FROM Vivienda  WHERE vivienda=:id")
-                .setParameter("id",id)
+                .createQuery("FROM Vivienda  WHERE direccion=:direccion")
+                .setParameter("direccion",direccion)
                 .uniqueResult();
     }
 
     @Override
     public List<Vivienda> ObtenerAlquileresPorFiltro(Integer vivienda) {
         final Session session = sessionFactory.getCurrentSession();
-        //return session.createCriteria(Vivienda.class).list();
         List<Vivienda> viviendas = session.createQuery("From Vivienda where vivienda= :vivienda")
                 .setParameter("vivienda",vivienda)
                 .list();
@@ -103,10 +93,6 @@ public class RepositorioBuscador implements  IRepositorioBuscador{
 
     @Override
     public List<Vivienda> ObtenerAlquileresPorFiltro2(String direccion){
-       /* final Session session = sessionFactory.getCurrentSession();
-        return (List<Usuario>) session.createCriteria(Roomie.class)
-                .add(Restrictions.eq("nombre", nombre))
-                .list();*/
         final Session session = sessionFactory.getCurrentSession();
         List<Vivienda> viviendas = session.createQuery("From Vivienda where direccion=:direccion")
                 .setParameter("direccion",direccion)

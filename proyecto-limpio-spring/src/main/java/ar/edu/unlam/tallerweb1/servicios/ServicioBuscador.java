@@ -59,8 +59,8 @@ public class ServicioBuscador implements IServicioBuscador{
         return repositorioBuscador.ObtenerRoomies().size();
     }
     @Override
-    public Roomie buscarRoomiePorId(Long id){
-        return (Roomie) repositorioBuscador.ObtenerUnRoomie(id);
+    public Roomie buscarRoomiePorNombre(String nombre){
+        return repositorioBuscador.buscarRoomie(nombre);
     }
 
 
@@ -72,8 +72,8 @@ public class ServicioBuscador implements IServicioBuscador{
     }
 
     @Override
-    public Vivienda buscarAlquilerPorDireccion(Integer id){
-        Vivienda buscada = repositorioBuscador.buscarAlquiler(id);
+    public Vivienda buscarAlquilerPorDireccion(String direccion){
+        Vivienda buscada = repositorioBuscador.buscarAlquiler(direccion);
 
         if (buscada != null) {
             return buscada;
