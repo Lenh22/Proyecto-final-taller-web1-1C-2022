@@ -52,6 +52,7 @@
             <div>
                 <div class="w3-card w3-container" style="min-height:auto">
                     <div style="display: flex;justify-content: space-between;">
+                        <div>
                             <i class="fa fa-user w3-margin-bottom w3-text-theme" style="font-size:120px"></i>
                         </div>
                         <div style="size: 16px!important;">
@@ -74,9 +75,7 @@
 <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
 <script src="js/bootstrap.min.js" type="text/javascript"></script>
 </body>
-
-<footer style="position: fixed;
-  bottom: 0; width: 100%  " class="w3-container w3-padding-64 w3-center w3-opacity w3-black w3-xlarge">
+<footer class="w3-container w3-padding-64 w3-center w3-opacity w3-black w3-xlarge">
     <i class="fa fa-facebook-official w3-hover-opacity"></i>
     <i class="fa fa-instagram w3-hover-opacity"></i>
     <i class="fa fa-snapchat w3-hover-opacity"></i>

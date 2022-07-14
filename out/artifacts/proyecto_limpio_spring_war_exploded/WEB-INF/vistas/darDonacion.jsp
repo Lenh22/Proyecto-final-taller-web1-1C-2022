@@ -47,17 +47,16 @@
             <form:input class="w3-input w3-border" path="email" id="email" type="email" placeholder="Ingrese Email"  />
                 <br>
                 <br>
-             <form:input class="w3-input w3-border" path="billeteraDeDonaciones" type="number" id="billeteraDeDonaciones" placeholder="Ingrese la cantidad a donar" />
+             <form:input class="w3-input w3-border" path="billeteraDeDonaciones"  value="" type="number" step="any" id="billeteraDeDonaciones" placeholder="Ingrese la cantidad a donar"  />
             <br>
             <button class="w3-button w3-black w3-section w3-right" Type="Submit"/>Donar</button>
          </form:form>
         <c:if test="${not empty error}" >
             <br>
-            <br>
             <div class="w3-panel w3-red">
-                <h3>Error</h3>
+                <h2>Error</h2>
                 <span >${error}</span></div>
-
+                <br>
         </c:if>
         ${msg}
     </div>
