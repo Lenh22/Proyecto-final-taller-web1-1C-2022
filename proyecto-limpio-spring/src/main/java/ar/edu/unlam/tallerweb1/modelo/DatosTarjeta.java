@@ -3,7 +3,8 @@ package ar.edu.unlam.tallerweb1.modelo;
 public class DatosTarjeta {
 
     private int id;
-    private int numeroTarjeta;
+
+    private Long numeroTarjeta;
     private String titular;
     private int mes;
     private int anio;
@@ -18,11 +19,11 @@ public class DatosTarjeta {
         this.id = id;
     }
 
-    public int getNumeroTarjeta() {
+    public Long getNumeroTarjeta() {
         return numeroTarjeta;
     }
 
-    public void setNumeroTarjeta(int numeroTarjeta) {
+    public void setNumeroTarjeta(Long numeroTarjeta) {
         this.numeroTarjeta = numeroTarjeta;
     }
 

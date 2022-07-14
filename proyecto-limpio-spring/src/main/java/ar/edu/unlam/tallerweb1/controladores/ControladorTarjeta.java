@@ -18,13 +18,13 @@ import java.util.List;
 public class ControladorTarjeta {
     private IServicioTarjeta servicioTarjeta;
 
-   /* @Autowired
+    @Autowired
     public  ControladorTarjeta(IServicioTarjeta servicioTarjeta1){
         this.servicioTarjeta = servicioTarjeta1;
-    }*/
+    }
 
     @RequestMapping(path = "/tarjeta")
-    public ModelAndView viviendas(){
+    public ModelAndView tarjeta(){
         ModelMap modelMap = new ModelMap();
         modelMap.put("datosTarjeta", new DatosTarjeta());
         return  new ModelAndView("tarjeta",modelMap);
@@ -36,7 +36,7 @@ public class ControladorTarjeta {
         Tarjeta tarjetaBuscada = servicioTarjeta.consultarTarjeta(datosTarjeta.getNumeroTarjeta());
         if(tarjetaBuscada!=null){
             modelMap.put("Mensaje","Pagado exitoso");
-            return new ModelAndView("redirect:/tarjeta",modelMap);
+            return new ModelAndView("redirect:/home",modelMap);
         }else{
             modelMap.put("Mensaje","Tarjeta inexistente");
             return new ModelAndView("redirect:/tarjeta");

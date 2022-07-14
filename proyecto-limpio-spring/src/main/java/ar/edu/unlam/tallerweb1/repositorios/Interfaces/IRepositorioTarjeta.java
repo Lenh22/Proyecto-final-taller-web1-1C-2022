@@ -4,7 +4,7 @@ import ar.edu.unlam.tallerweb1.modelo.Tarjeta;
 
 public interface IRepositorioTarjeta {
 
-    Tarjeta buscarTarjeta(int numeroTarjeta);
+    Tarjeta buscarTarjeta(Long numeroTarjeta);
 
 
 }

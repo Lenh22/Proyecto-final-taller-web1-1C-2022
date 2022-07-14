@@ -18,7 +18,7 @@ public class ServicioTarjeta implements IServicioTarjeta {
         this.repositorioTarjeta=iRepositorioTarjeta;
     }
     @Override
-    public Tarjeta consultarTarjeta(int numeroTarjeta) {
+    public Tarjeta consultarTarjeta(Long numeroTarjeta) {
         Tarjeta tarjetaEncontrada = repositorioTarjeta.buscarTarjeta(numeroTarjeta);
         return  tarjetaEncontrada;
     }

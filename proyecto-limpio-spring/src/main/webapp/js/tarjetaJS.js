@@ -1,3 +1,4 @@
+/*
 $(document).ready(function () {
 
     Stripe.setPublishableKey('pk_test_9D43kM3d2vEHZYzPzwAblYXl');
@@ -50,7 +51,6 @@ $(document).ready(function () {
 
         // get each input value and use Stripe to determine whether they are valid
         var cardNumber = $('#card-number').val();
-        var isValidNo = Stripe.card.validateCardNumber(cardNumber);
         var expMonth = $('#card-month').val();
         var expYear = $('#card-year').val();
         var isValidExpiry = Stripe.card.validateExpiry(expMonth, expYear);
@@ -68,22 +68,10 @@ $(document).ready(function () {
             $('#card-error').text('Por favor, complete todas las filas');
             findEmpty();
         } else {
-
-            // alert the user if any fields are invalid
-            if (!isValidNo || !isValidExpiry || !isValidCVC) {
-                $('#form-errors').css('display', 'block');
-                if (!isValidNo) {
-                    $('#card-error').text('Numero de tarjeta invalido');
-                } else if (!isValidExpiry) {
-                    $('#card-error').text('Invalida fecha')
-                } else if (!isValidCVC) {
-                    $('#card-error').text('Invalido CVC')
-                }
-
-            } else {
                 $('#card-success').removeClass('hidden');
+                $('#card-btn').submit();
             }
-        }
     })
 
 });
+*/

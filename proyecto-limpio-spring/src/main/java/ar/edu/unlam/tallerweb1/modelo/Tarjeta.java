@@ -8,8 +8,9 @@ public class Tarjeta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private int numeroTarjeta;
+    private int id;
+
+    private Long numeroTarjeta;
     private String titular;
     private int mes;
     private int anio;
@@ -25,11 +26,11 @@ public class Tarjeta {
         this.id = id;
     }
 
-    public int getNumeroTarjeta() {
+    public Long getNumeroTarjeta() {
         return numeroTarjeta;
     }
 
-    public void setNumeroTarjeta(int numeroTarjeta) {
+    public void setNumeroTarjeta(Long numeroTarjeta) {
         this.numeroTarjeta = numeroTarjeta;
     }
 

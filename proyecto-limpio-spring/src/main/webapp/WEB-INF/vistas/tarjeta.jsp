@@ -39,12 +39,12 @@
             <form:input  path="titular" id="card-holder" type="text" class="form-control" placeholder="E.J. Pepe Argento" required="required"/>
         </div>
         <!--- end card holder container --->
-        <div id="exp-container">
-            <label for="card-exp">
+        <div id="exp-container" style="width: 36%">
+            <label>
                 Expiracion
             </label>
-            <form:input  path="mes" id="card-month" type="number" placeholder="MM"  required="required" style="max-width: 5em;"/>
-            <form:input  path="anio" id="card-year" type="number" placeholder="YY"  required="required" style="max-width: 5em;"/>
+            <form:input  path="mes" id="card-month" type="number" placeholder="MM"  required="required" style="max-width: 6em;"/>
+            <form:input  path="anio" id="card-year" type="number" placeholder="YY"  required="required" style="max-width: 6em;"/>
         </div>
         <div id="cvc-container">
             <label for="card-cvc"> CVC/CVV</label>
@@ -62,7 +62,8 @@
     </div>
     <!--- end card back --->
     <input type="text" id="card-token" />
-    <button type="button" id="card-btn">Pagar</button>
+
+    <button type="submit" id="card-btn">Pagar</button>
     </form:form>
 </div>
 <!--- end form container --->
