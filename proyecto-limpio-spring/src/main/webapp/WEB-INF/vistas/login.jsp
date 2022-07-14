@@ -4,27 +4,26 @@
 <html>
 	<head>
 	<!-- Bootstrap core CSS -->
-	    <link href="css/bootstrap.min.css" rel="stylesheet" >
-	    <!-- Bootstrap theme -->
-	    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	</head>
 	<body>
-		<div class = "container">
-			<div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+	<div class = "container">
+		<div id="loginbox" style="margin:7em;" class="mainbox col-md-1 col-md-offset-3 col-sm-8 col-sm-offset-2">
 				<%--Definicion de un form asociado a la accion /validar-login por POST. Se indica ademas que el model attribute se--%>
 				<%--debe referenciar con el nombre usuario, spring mapea los elementos de la vista con los atributos de dicho objeto--%>
 					<%--para eso debe coincidir el valor del elemento path de cada input con el nombre de un atributo del objeto --%>
 				<form:form action="validar-login" method="POST" modelAttribute="datosLogin">
-			    	<h3 class="form-signin-heading">Taller Web I</h3>
+			    	<h3 class="w3-opacity w3-center">Roomiest</h3>
 					<hr class="colorgraph"><br>
 
 					<%--Elementos de entrada de datos, el elemento path debe indicar en que atributo del objeto usuario se guardan los datos ingresados--%>
-					<label>Email</label>
-					<form:input path="email" id="email" type="email" class="form-control" />
-					<label>Password</label>
-					<form:input path="password" type="password" id="password" class="form-control"/>
+					<form:input class="w3-input w3-border" path="email" id="email" type="email" placeholder="Ingrese el email"/>
 					<br>
-					<button class="btn btn-primary" Type="Submit"/>Login</button>
+					<form:input class="w3-input w3-border" path="password" type="password" id="password" placeholder="Ingrese el password"/>
+					<br>
+					<button class="w3-button w3-black w3-section w3-right" Type="Submit"/>Login</button>
 				</form:form>
 					<br>
 				<a href="registro-usuario"	>Registrarme</a>

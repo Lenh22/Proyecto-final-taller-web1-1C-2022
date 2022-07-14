@@ -4,7 +4,9 @@ import ar.edu.unlam.tallerweb1.controladores.ControladorAlquiler;
 import ar.edu.unlam.tallerweb1.controladores.ControladorVivienda;
 import ar.edu.unlam.tallerweb1.modelo.Propietario;
 import ar.edu.unlam.tallerweb1.modelo.Vivienda;
+import ar.edu.unlam.tallerweb1.repositorios.RepositorioPropietario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioAlquiler;
+import ar.edu.unlam.tallerweb1.servicios.ServicioPropietario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioVivienda;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,13 +25,15 @@ public class ControladoresTest {
     private ControladorVivienda controladorVivienda;
     private ServicioVivienda servicioVivienda;
     private ServicioAlquiler servicioAlquiler;
+    private ServicioPropietario servicioPropietario;
 
     @Before
     public void init(){
+        servicioPropietario = mock(ServicioPropietario.class);
         servicioVivienda = mock(ServicioVivienda.class);
         servicioAlquiler = mock(ServicioAlquiler.class);
         controladorAlquiler = new ControladorAlquiler(servicioAlquiler);
-        controladorVivienda = new ControladorVivienda(servicioVivienda);
+        controladorVivienda = new ControladorVivienda(servicioVivienda,servicioPropietario);
     }
 
     /*____________________________________TEST____________________________*/
@@ -44,7 +48,7 @@ public class ControladoresTest {
     private void dadoQueTengoUnaViviendaEnAlquiler() {
         propietario = new Propietario("Leandro", "Gomez", 25, "leandro.ariel.gomez1@gmail.com", "123", "propietario");
         propietario.setId(1L);
-        vivienda = new Vivienda("Baragania 6451",2,propietario);
+        vivienda = new Vivienda("Baragania 6451",2,2,"Es un lugar muy comodo",true,propietario);
         vivienda.setId(1);
         when(servicioVivienda.obtenerViviendaPorId(1)).thenReturn(vivienda);
     }

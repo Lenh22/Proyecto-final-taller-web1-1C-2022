@@ -11,9 +11,9 @@
 <html>
 <head>
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" >
-    <!-- Bootstrap theme -->
-    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 <div class = "container">
@@ -23,13 +23,14 @@
             <h4><span>${error}</span></h4>
             <br>
         </c:if>
-            <h3 class="form-signin-heading">Bienvenido ${datosRegistro.nombre}</h3>
-            <h4 class="form-signin-heading">Complete por favor los siguientes datos para terminar el registro</h4>
+            <h3 class="w3-opacity w3-center">Bienvenido ${datosRegistro.nombre}</h3>
+            <h4 class="w3-opacity w3-center">Elija los atributos con los que se sienta identificado para terminar con el registro</h4>
             <hr class="colorgraph">
             <br>
-        <form:form action="validar-registro-roomie" method="POST" commandName="datosRegistro" modelAttribute="datosRegistro">
-            <br><form:checkboxes items="${atributos}" path="atributos"/>
-            <button id="btn-registrarme" class="btn btn-lg btn-primary btn-block" Type="Submit"/>Registrarme</button>
+        <form:form class="w3-input w3-border" action="validar-registro-roomie" method="POST" commandName="datosRegistro" modelAttribute="datosRegistro">
+            <form:checkboxes class="w3-check" items="${atributos}" path="atributos"/>
+            <br>
+            <button id="btn-registrarme" class="w3-button w3-black w3-section w3-right" Type="Submit"/>Registrarme</button>
         </form:form>
     </div>
 </div>
