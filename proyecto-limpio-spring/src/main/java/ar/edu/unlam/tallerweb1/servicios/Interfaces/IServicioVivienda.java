@@ -10,6 +10,6 @@ public interface IServicioVivienda {
     List<Vivienda> getViviendasDisponibles();
     Vivienda buscarViviendaPorId(int id_vivienda);
     void crearVivienda(Vivienda datoVivienda);
-
+    void editar(int id, String direccion, int cantidadMaxima);
     void borrarVivienda(Vivienda datoVivienda);
 }

@@ -7,9 +7,13 @@ import java.util.List;
 
 public interface IRepositorioVivienda {
 
-    Vivienda getViviendaID(Long id_vivienda);
+    Vivienda getViviendaID(int id_vivienda);
     List<Vivienda> getViviendas();
     List<Vivienda> getViviendasDisponibles();
     Vivienda buscarViviendaId(int id);
     void crearVivienda(Vivienda datoVivienda);
+
+    void editarVivienda(Vivienda aEditar);
+
+    void eliminarVivienda(Vivienda vivienda);
 }

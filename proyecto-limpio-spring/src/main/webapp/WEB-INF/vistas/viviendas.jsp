@@ -19,10 +19,10 @@
 
 
 <section class="container">
-    <h2 class="text-center">Todas las Viviendas</h2>
+    <h2 class="text-center">Todas tus Viviendas</h2>
     <div class="container d-grid gap-2 d-md-flex justify-content-md-end text-center">
         <p>${Mensaje}</p>
-        <a class="btn btn-success" href="crearVivienda" role="button">Crear Vivienda</a>
+        <a class="btn btn-success" href="crearVivienda" role="button">Crear habitacion</a>
     </div>
     <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
         <table class="table">

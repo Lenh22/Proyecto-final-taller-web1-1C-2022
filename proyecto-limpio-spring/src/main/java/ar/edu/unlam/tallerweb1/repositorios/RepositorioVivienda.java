@@ -19,7 +19,7 @@ public class RepositorioVivienda implements IRepositorioVivienda {
         this.sessionFactory =sessionFactoryNuevo;
     }
     @Override
-    public Vivienda getViviendaID(Long id_vivienda){
+    public Vivienda getViviendaID(int id_vivienda){
         return (Vivienda) sessionFactory.getCurrentSession()
                 .createQuery("FROM Vivienda  WHERE id=:id")
                 .setParameter("id",id_vivienda);
@@ -59,8 +59,13 @@ public class RepositorioVivienda implements IRepositorioVivienda {
 
         sessionFactory.getCurrentSession().save(datoVivienda);
     }
-
+    @Override
     public void eliminarVivienda(Vivienda datoVivineda)
+    {
+        sessionFactory.getCurrentSession().delete(datoVivineda);
+    }
+    @Override
+    public void editarVivienda(Vivienda datoVivineda)
     {
         sessionFactory.getCurrentSession().delete(datoVivineda);
     }

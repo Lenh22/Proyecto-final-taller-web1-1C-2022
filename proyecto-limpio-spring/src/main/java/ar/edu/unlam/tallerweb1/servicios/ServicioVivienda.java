@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
 import ar.edu.unlam.tallerweb1.modelo.Vivienda;
+import ar.edu.unlam.tallerweb1.repositorios.Interfaces.IRepositorioVivienda;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioVivienda;
 import ar.edu.unlam.tallerweb1.servicios.Interfaces.IServicioVivienda;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,56 +14,54 @@ import java.util.List;
 @Transactional
 public class ServicioVivienda implements IServicioVivienda {
 
-    private RepositorioVivienda _repositorioVivienda;
+    private IRepositorioVivienda repositorioVivienda;
 
     @Autowired
-    public  ServicioVivienda(RepositorioVivienda repositorioVivienda){
-        this._repositorioVivienda=repositorioVivienda;
+    public  ServicioVivienda(IRepositorioVivienda repositorioVivienda1){
+        this.repositorioVivienda =repositorioVivienda1;
 
     }
 
     @Override
     public List<Vivienda> getViviendas() {
-        List<Vivienda> viviendasTotales= _repositorioVivienda.getViviendas();
+        List<Vivienda> viviendasTotales= repositorioVivienda.getViviendas();
         return  viviendasTotales;
     }
 
     @Override
     public List<Vivienda> getViviendasDisponibles() {
-        List<Vivienda> viviendasDisponibles= _repositorioVivienda.getViviendasDisponibles();
+        List<Vivienda> viviendasDisponibles= repositorioVivienda.getViviendasDisponibles();
         return  viviendasDisponibles;
     }
 
+    @Override
     public  Vivienda buscarViviendaPorId(int id_vivienda){
-        Vivienda viviendaEncontrada = _repositorioVivienda.buscarViviendaId(id_vivienda);
+        Vivienda viviendaEncontrada = repositorioVivienda.buscarViviendaId(id_vivienda);
         if (viviendaEncontrada!=null){
             return viviendaEncontrada;
         }
         return null;
     }
 
-    public  Vivienda editar(int id, String direccion, int cantidadMax)
+    @Override
+    public void editar(int id, String direccion, int cantidadMaxima)
     {
         Vivienda aEditar = buscarViviendaPorId(id);
         if (aEditar!=null){
-            aEditar.setCantidadMaximaRoomies(cantidadMax);
+            aEditar.setCantidadMaximaRoomies(cantidadMaxima);
             aEditar.setDireccion(direccion);
+            repositorioVivienda.editarVivienda(aEditar);
         }
-        return aEditar;
     }
 
-    public void eliminar(int id)
-    {
-
-
-    }
-
+    @Override
     public void crearVivienda(Vivienda datoVivienda) {
-        _repositorioVivienda.crearVivienda(datoVivienda);
+        repositorioVivienda.crearVivienda(datoVivienda);
     }
 ///
+    @Override
     public  void borrarVivienda(Vivienda vivienda){
-        _repositorioVivienda.eliminarVivienda(vivienda);
+        repositorioVivienda.eliminarVivienda(vivienda);
     }
 
 }

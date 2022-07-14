@@ -37,6 +37,10 @@
                             <form:input  path="cantidadMaximaRoomies" id="direccion" type="number" class="form-control" required="required"/>
                             <label class="form-label">Cantidad Maxima</label>
                         </div>
+                            <div class="form-outline mb-4">
+                                <form:input  path="propietario" id="idPropietario" type="hidden" class="form-control"/>
+
+                            </div>
 
 
                         <button class="btn btn-primary btn-lg btn-block" type="submit">Crear</button>

@@ -45,27 +45,50 @@ public class ControladorVivienda {
 
         vivienda.setDireccion(datoVivienda.getDireccion());
         vivienda.setCantidadMaximaRoomies(datoVivienda.getCantidadMaximaRoomies());
+        vivienda.setPropietario(datoVivienda.getPropietario());
+        vivienda.setAlquiler(datoVivienda.getAlquiler());
 
         servicioVivienda.crearVivienda(vivienda);
         modelMap.put("viviendaCreada",datoVivienda);
 
-        return new ModelAndView("crearViviendaP", modelMap);
+        return new ModelAndView("redirect:/viviendas");
 
     }
     //Debe llevar a una vista con todos los parametros q tiene desde la bd
     @RequestMapping(path = "editar/{id}", method = RequestMethod.GET)
          public  ModelAndView editar(@PathVariable("id")int id ) {
         ModelMap modelMap = new ModelMap();
-        Vivienda obtenerVivienda;
         try {
-            obtenerVivienda = servicioVivienda.buscarViviendaPorId(id);
+            Vivienda obtenerVivienda = servicioVivienda.buscarViviendaPorId(id);
+            if (obtenerVivienda!=null)
+                modelMap.put("editarVivienda", obtenerVivienda);
         } catch (Exception e) {
             modelMap.put("Mensaje", "Error");
-            return new ModelAndView("viviendas", modelMap); //ver si es en viviendas
+            return new ModelAndView("redirect:/viviendas", modelMap); //ver si es en viviendas
         }
-        if (obtenerVivienda!=null)
-            modelMap.put("paraEditar", obtenerVivienda);
-        return  new ModelAndView("viviendas",modelMap);
+
+        return  new ModelAndView("editar",modelMap);
+    }
+
+    @RequestMapping(path = "editado", method = RequestMethod.POST)
+    public  ModelAndView editado(@ModelAttribute("datosVivienda") DatoVivienda datoVivienda ) {
+        ModelMap modelMap = new ModelMap();
+        Vivienda obtenerVivienda;
+        try {
+            obtenerVivienda = servicioVivienda.buscarViviendaPorId(datoVivienda.getVivienda());
+            if (obtenerVivienda!=null){
+                int id=datoVivienda.getVivienda();
+                String direc = datoVivienda.getDireccion();
+                int cant = datoVivienda.getCantidadMaximaRoomies();
+                servicioVivienda.editar(id,direc,cant);
+            }
+
+        } catch (Exception e) {
+            modelMap.put("Mensaje", "Error en la edicion");
+            return new ModelAndView("redirect:/editar/"+datoVivienda.getVivienda(), modelMap);
+        }
+
+        return new ModelAndView("redirect:/viviendas");
     }
     //Crear Editado q mande los datos por post a la vista
 
@@ -75,14 +98,13 @@ public class ControladorVivienda {
         Vivienda obtenerVivienda;
         try {
             obtenerVivienda = servicioVivienda.buscarViviendaPorId(id);
+            if (obtenerVivienda!=null){
+                servicioVivienda.borrarVivienda(obtenerVivienda);
+                modelMap.put("Mensaje","Borrado exitoso");
+            }
         } catch (Exception e) {
-            modelMap.put("Mensaje", e.getMessage());
+            modelMap.put("Mensaje", "Error en el borrado");
             return new ModelAndView("redirect:/viviendas"); //ver si es en viviendas
-        }
-        if (obtenerVivienda!=null){
-            servicioVivienda.borrarVivienda(obtenerVivienda);
-            modelMap.put("Mensaje","Borrado exitoso");
-
         }
         return new ModelAndView("redirect:/viviendas");
     }
