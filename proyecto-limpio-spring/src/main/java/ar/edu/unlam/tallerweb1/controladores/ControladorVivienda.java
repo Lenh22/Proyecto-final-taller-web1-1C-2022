@@ -51,7 +51,7 @@ public class ControladorVivienda {
         Propietario propietario = servicioPropietario.obtenerPorId(id);
         vivienda.setPropietario(propietario);
         servicioVivienda.guardarNuevaVivienda(vivienda);
-        List<Vivienda> viviendaList = servicioVivienda.obtenerListaViviendas();
+        List<Vivienda> viviendaList = servicioVivienda.obtenerListaViviendasPorIdPropietario(propietario);
         map.put("viviendas",viviendaList);
         return new ModelAndView("lista-alquileres-propietario",map);
     }

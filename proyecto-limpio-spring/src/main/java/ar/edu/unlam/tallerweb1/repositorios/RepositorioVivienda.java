@@ -61,4 +61,11 @@ public class RepositorioVivienda implements IRepositorioVivienda {
                 .setParameter("idVivienda", idVivienda).uniqueResult();
 
     }
+
+    @Override
+    public int obtenerIdPropietarioPorIdVivienda(long idVivienda) {
+        final Session session = sessionFactory.getCurrentSession();
+        return (int) session.createQuery("select propietario from Vivienda where id =:idVivienda")
+                .setParameter("idVivienda", idVivienda).uniqueResult();
+    }
 }

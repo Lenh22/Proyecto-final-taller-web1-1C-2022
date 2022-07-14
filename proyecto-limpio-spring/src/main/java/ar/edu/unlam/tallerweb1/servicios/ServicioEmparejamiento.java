@@ -41,6 +41,8 @@ public class ServicioEmparejamiento implements IServicioEmparejamiento {
         List<Atributo> atributosRoomieAComparar = new LinkedList<>();
 
         for (Long id: idsAComparar) {
+            if(idRoomie == id)
+                continue;
             atributosRoomieAComparar = repositorioEmparejamiento.obtenerAtributosPorId(id);
 
             if(atributosRoomieLogueado.size() >= atributosRoomieAComparar.size()){

@@ -55,4 +55,9 @@ public class ServicioVivienda implements IServicioVivienda {
     public int obtenerPrecioPorId(long idVivienda) {
         return repositorioVivienda.obtenerPrecioPorId(idVivienda);
     }
+
+    @Override
+    public int obtenerIdPropietarioPorIdVivienda(long idVivienda) {
+        return repositorioVivienda.obtenerIdPropietarioPorIdVivienda(idVivienda);
+    }
 }

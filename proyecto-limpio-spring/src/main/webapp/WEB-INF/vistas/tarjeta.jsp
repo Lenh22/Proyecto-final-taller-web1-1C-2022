@@ -21,7 +21,7 @@
     <div id="card-front">
         <div id="shadow"></div>
         <div id="image-container">
-            <span id="amount">Pago: <strong>$ ${precio}</strong></span>
+            <span id="amount">Pago: <strong>$ 10000</strong></span>
             <span id="card-image">
 
         </span>

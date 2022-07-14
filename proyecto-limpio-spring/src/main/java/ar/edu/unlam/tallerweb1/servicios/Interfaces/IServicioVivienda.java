@@ -19,4 +19,6 @@ public interface IServicioVivienda {
     void modificarVivienda(Vivienda idVivienda);
 
     int obtenerPrecioPorId(long idVivienda);
+
+    int obtenerIdPropietarioPorIdVivienda(long idVivienda);
 }

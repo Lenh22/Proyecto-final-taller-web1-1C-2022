@@ -19,4 +19,6 @@ public interface IRepositorioVivienda {
     void modificarVivienda(Vivienda vivienda);
 
     int obtenerPrecioPorId(long idVivienda);
+
+    int obtenerIdPropietarioPorIdVivienda(long idVivienda);
 }

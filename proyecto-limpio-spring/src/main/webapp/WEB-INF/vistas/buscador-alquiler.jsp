@@ -77,7 +77,7 @@
                             <p>Propietario: ${unaVivienda.propietario.nombre}</p>
                             <p>Contacto del propietario: ${unaVivienda.propietario.email}</p>
                         </div>
-                            <a href="tarejta/${unaVivienda.id}" class="w3-button w3-black w3-section w3-right" Type="Submit" style="max-height: 2.8em; align-self: flex-end;"/>Alquilar</a>
+                            <a href="#" class="w3-button w3-black w3-section w3-right" Type="Submit" style="max-height: 2.8em; align-self: flex-end;"/>Alquilar</a>
                     </div>
                 </div>
             </div>
