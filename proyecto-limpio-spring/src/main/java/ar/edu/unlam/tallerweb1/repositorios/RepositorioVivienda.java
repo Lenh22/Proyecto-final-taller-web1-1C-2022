@@ -1,6 +1,6 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
-import ar.edu.unlam.tallerweb1.modelo.Roomie;
+import ar.edu.unlam.tallerweb1.modelo.Propietario;
 import ar.edu.unlam.tallerweb1.modelo.Vivienda;
 import ar.edu.unlam.tallerweb1.repositorios.Interfaces.IRepositorioVivienda;
 import org.hibernate.Session;
@@ -38,9 +38,10 @@ public class RepositorioVivienda implements IRepositorioVivienda {
     }
 
     @Override
-    public List<Vivienda> obtenerListaViviendasPorIdPropietario(Long id) {
+    public List<Vivienda> obtenerListaViviendasPorIdPropietario(Propietario propietario) {
         final Session session = sessionFactory.getCurrentSession();
-        return session.createQuery("from Vivienda where propietario.id =:id").setParameter("id",id).list();
+        return session.createQuery("from Vivienda where propietario =:propietario")
+                .setParameter("propietario", propietario).list();
     }
 
     @Override
@@ -51,5 +52,13 @@ public class RepositorioVivienda implements IRepositorioVivienda {
     @Override
     public void modificarVivienda(Vivienda vivienda) {
         sessionFactory.getCurrentSession().update(vivienda);
+    }
+
+    @Override
+    public int obtenerPrecioPorId(long idVivienda) {
+        final Session session = sessionFactory.getCurrentSession();
+        return (int) session.createQuery("select precioAlquiler from Vivienda where id =:idVivienda")
+                .setParameter("idVivienda", idVivienda).uniqueResult();
+
     }
 }

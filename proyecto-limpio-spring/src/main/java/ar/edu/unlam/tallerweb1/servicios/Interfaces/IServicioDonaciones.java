@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IServicioDonaciones {
 
-    List<Roomie> buscarDonatarios(Boolean recibe) throws Exception ;
+    List<Roomie> buscarDonatarios() throws Exception ;
 
     Boolean darDonacion(String roomieDonatario, Double donacion);
 

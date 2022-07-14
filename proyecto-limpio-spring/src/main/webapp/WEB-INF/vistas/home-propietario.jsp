@@ -34,4 +34,18 @@
 <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
 <script src="js/bootstrap.min.js" type="text/javascript"></script>
 </body>
+<footer class="w3-container w3-padding-64 w3-center w3-opacity w3-black w3-xlarge" style="position: fixed;
+  bottom: 0; width: 100%  ">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+    <p class="w3-medium"><a href="https://github.com/Lenh22/Proyecto-final-taller-web1-1C-2022" target="_blank">Repositorio</a> </p>
+    <p class="w3-medium">Alonso Leandro</p>
+    <p class="w3-medium">Aquino Arami</p>
+    <p class="w3-medium">Gomez Emanuel</p>
+    <p class="w3-medium">Gomez Leandro</p>
+</footer>
 </html>

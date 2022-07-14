@@ -56,6 +56,6 @@ public class ServicioRegistro implements IServicioRegistro {
     }
 
     public Propietario pasarDatosRegistroAPropietario(DatosRegistro datosRegistro) {
-        return new Propietario(datosRegistro.getNombre(), datosRegistro.getApellido(), datosRegistro.getEdad(), datosRegistro.getEmail(), datosRegistro.getPassword(), datosRegistro.getRol());
+        return new Propietario(datosRegistro.getNombre(), datosRegistro.getApellido(), datosRegistro.getEdad(), datosRegistro.getEmail(), datosRegistro.getPassword(), datosRegistro.getRol(),datosRegistro.getActivo());
     }
 }

@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Arami
-  Date: 08/07/2022
-  Time: 19:43
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> <!--CON ESTA IMPORTACION PODEMOS VERTODO LO QUE ESTA DENTRO DE <FORM>-->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -43,26 +36,33 @@
         </div>
     </div>
 </div>
-<div class = "container">
-    <div id="loginbox" style="margin:7em;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-    <c:if test="${empty error}" >
-        <h2 class="w3-opacity w3-center" style="background-color: #999999">Felicidades !!! Obtuvo 10% de descuento</h2>
-        <div class="w3-panel w3-blue w3-center">
-            <h3 class="glyphicon glyphicon-education" > CÓDIGO: 1234</h3>
-        </div>
-    </c:if>
+<div class = "container" >
+    <div id="loginbox" style="margin:7em; height: 800px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+        <c:if test="${empty error}" >
+            <h2 class="w3-opacity w3-center">Felicidades !!! Obtuvo 10% de descuento</h2>
+            <div class="w3-panel w3-center">
+                <h3 class="glyphicon glyphicon-education" > CONTRASEÑA: 1234</h3>
+            </div>
+            <div style="width: 500px;
+    height: 500px;
+    background-size: cover">
+                <div class="fondo">
+                </div>
+            </div>
 
-    <c:if test="${not empty error}" >
-        <div class="w3-panel w3-red">
-            <h3>Error</h3>
-            <span >${error}</span>
-        </div>
-    </c:if>
-    ${msg}
+        </c:if>
+
+        <c:if test="${not empty error}" >
+            <div class="w3-panel w3-red">
+                <h3>Error</h3>
+                <span >${error}</span>
+            </div>
+        </c:if>
+        ${msg}
     </div>
-    </div>
+</div>
 </body>
-<footer class="w3-container w3-padding-64 w3-center w3-opacity w3-black w3-xlarge" style="position: fixed;bottom: 0; width: 100%">
+<footer class="w3-container w3-padding-64 w3-center w3-opacity w3-black w3-xlarge">
     <i class="fa fa-facebook-official w3-hover-opacity"></i>
     <i class="fa fa-instagram w3-hover-opacity"></i>
     <i class="fa fa-snapchat w3-hover-opacity"></i>
@@ -76,3 +76,11 @@
     <p class="w3-medium">Gomez Leandro</p>
 </footer>
 </html>
+<style>
+    .fondo{
+        width: 500px;
+        height: 650px;
+        background-size: cover;
+        background-image: url("https://trello.com/1/cards/62ce0acfe902804709023e6a/attachments/62d077e7c749952e0b4f2a97/download/Descuento10.jpeg");
+    }
+</style>

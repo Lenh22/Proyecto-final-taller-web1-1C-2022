@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.LinkedList;
 import java.util.List;
 
 @Controller
@@ -34,9 +35,9 @@ public class ControladorDonaciones {
     @RequestMapping(path = "/donatarios")
     public ModelAndView listar(Boolean recibe) {
         ModelMap model = new ModelMap();
-        List<Roomie> resultado = null;
+        List<Roomie> resultado = new LinkedList<>();
         try { //busco a los usuarioqe que tengan que reciben donación
-            resultado = servicioDeDonacion.buscarDonatarios(recibe);
+            resultado = servicioDeDonacion.buscarDonatarios();
         }catch (Exception e){
             model.put("msg-error", "No hay Roomies que acepten donaciones");
         }
@@ -90,7 +91,7 @@ public class ControladorDonaciones {
         Boolean activoDonacion = servicioDeDonacion.activarDonacion(datosLogin.getEmail(), datosLogin.getAceptodonacion());
         if (activoDonacion){
             model.put("email", datosLogin.getEmail());
-            model.put("error", "se aplicaron los cambios");
+            model.put("exitos", "se aplicaron los cambios");
             return new ModelAndView("activarDonacion", model);
         } else {
             model.put("error", "No se aplicaron los cambios");

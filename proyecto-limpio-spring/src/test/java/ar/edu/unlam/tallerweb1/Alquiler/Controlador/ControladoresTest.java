@@ -48,7 +48,7 @@ public class ControladoresTest {
     private void dadoQueTengoUnaViviendaEnAlquiler() {
         propietario = new Propietario("Leandro", "Gomez", 25, "leandro.ariel.gomez1@gmail.com", "123", "propietario");
         propietario.setId(1L);
-        vivienda = new Vivienda("Baragania 6451",2,2,"Es un lugar muy comodo",true,propietario);
+        vivienda = new Vivienda("Baragania 6451",2,2,"Es un lugar muy comodo",true,propietario, 10000);
         vivienda.setId(1);
         when(servicioVivienda.obtenerViviendaPorId(1)).thenReturn(vivienda);
     }

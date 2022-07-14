@@ -60,7 +60,8 @@ public class ControladorVivienda {
     public ModelAndView irALista(HttpServletRequest request){
         ModelMap map = new ModelMap();
         Long id = (long)request.getSession().getAttribute("id");
-        List<Vivienda> viviendaList = servicioVivienda.obtenerListaViviendasPorIdPropietario(id);
+        Propietario propietario = servicioPropietario.obtenerPorId(id);
+        List<Vivienda> viviendaList = servicioVivienda.obtenerListaViviendasPorIdPropietario(propietario);
         if(viviendaList.isEmpty()){
             map.put("msg","Usted no contiene ningun alquiler publicado");
             return new ModelAndView("lista-alquileres-propietario",map);
@@ -77,7 +78,8 @@ public class ControladorVivienda {
         servicioVivienda.eliminarVivienda(vivienda);
 
         Long id = (long)request.getSession().getAttribute("id");
-        List<Vivienda> viviendaList = servicioVivienda.obtenerListaViviendasPorIdPropietario(id);
+        Propietario propietario = servicioPropietario.obtenerPorId(id);
+        List<Vivienda> viviendaList = servicioVivienda.obtenerListaViviendasPorIdPropietario(propietario);
         if(viviendaList.isEmpty()){
             map.put("msg","Usted no contiene ningun alquiler publicado");
             return new ModelAndView("lista-alquileres-propietario",map);
@@ -109,7 +111,7 @@ public class ControladorVivienda {
         vivienda.setPropietario(propietario);
         servicioVivienda.modificarVivienda(vivienda);
 
-        List<Vivienda> viviendaList = servicioVivienda.obtenerListaViviendasPorIdPropietario(id);
+        List<Vivienda> viviendaList = servicioVivienda.obtenerListaViviendasPorIdPropietario(propietario);
         if(viviendaList.isEmpty()){
             map.put("msg","Usted no contiene ningun alquiler publicado");
             return new ModelAndView("lista-alquileres-propietario",map);

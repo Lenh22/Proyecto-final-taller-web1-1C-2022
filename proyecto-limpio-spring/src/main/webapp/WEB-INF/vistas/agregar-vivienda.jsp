@@ -41,6 +41,8 @@
             <br>
             <form:input class="w3-input w3-border" path="cantidadAmbientes" type="number" id="cantidadMaximaRoomies" placeholder="Ingrese la cantidad ambientes"/>
             <br>
+            <form:input class="w3-input w3-border" path="precioAlquiler" type="number" id="cantidadMaximaRoomies" placeholder="Ingrese el precio de alquiler"/>
+            <br>
             <form:checkbox path="amueblado" value="${datosVivienda.amueblado}"/> Es amueblado
             <button class="w3-button w3-black w3-section w3-right" Type="Submit"/>Agregar Vivienda</button>
         </form:form>

@@ -13,7 +13,7 @@ public interface IServicioBuscador {
     List<Usuario> ListarRoomies();
     List<Usuario> ListarRoomiesPorFiltro(Long id);
 
-    List<Usuario> ListarRoomiesPorFiltro2(String nombre) throws UsuarioExistente;
+    List<Roomie> ListarRoomiesPorFiltro2(String nombre) throws UsuarioExistente;
 
     Integer getTotalRoomies();
 

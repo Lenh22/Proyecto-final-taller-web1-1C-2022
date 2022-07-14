@@ -35,8 +35,9 @@ public class RepositorioBuscador implements  IRepositorioBuscador{
     @Override
     public List<Usuario> ObtenerRoomies() {
         final Session session = sessionFactory.getCurrentSession();
-        //return session.createCriteria(Vivienda.class).list();
-        List<Usuario> roomies = session.createQuery("From Usuario ").list();
+        String roomie = "roomie";
+        List<Usuario> roomies = session.createQuery("From Usuario where rol=:roomie")
+        .setParameter("roomie",roomie).list();
         return roomies;
 
     }
@@ -56,10 +57,12 @@ public class RepositorioBuscador implements  IRepositorioBuscador{
     }
 
     @Override
-    public List<Usuario> ObtenerRoomiesPorFiltro2(String nombre){
+    public List<Roomie> ObtenerRoomiesPorFiltro2(String nombre){
         final Session session = sessionFactory.getCurrentSession();
-        List<Usuario> roomies = session.createQuery("From Usuario where nombre=:nombre")
+        String roomie = "roomie";
+        List<Roomie> roomies = session.createQuery("from Usuario where nombre=:nombre and rol=:roomie")
                 .setParameter("nombre",nombre)
+                .setParameter("roomie",roomie)
                 .list();
         return roomies;
     }

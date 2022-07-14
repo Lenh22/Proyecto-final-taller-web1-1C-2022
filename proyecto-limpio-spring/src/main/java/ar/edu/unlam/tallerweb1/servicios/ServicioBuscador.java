@@ -48,8 +48,8 @@ public class ServicioBuscador implements IServicioBuscador{
         return roomies;
     }
     @Override
-    public List<Usuario> ListarRoomiesPorFiltro2(String nombre) throws UsuarioExistente{
-        List<Usuario> roomies = repositorioBuscador.ObtenerRoomiesPorFiltro2(nombre);
+    public List<Roomie> ListarRoomiesPorFiltro2(String nombre) throws UsuarioExistente{
+        List<Roomie> roomies = repositorioBuscador.ObtenerRoomiesPorFiltro2(nombre);
         if(roomies == null){
             throw new UsuarioExistente();
         }

@@ -19,18 +19,20 @@ public class Vivienda {
     private String descripcion;
     private Boolean amueblado = false;
     private Boolean alquilado;
+    private Integer precioAlquiler;
 
     @ManyToOne
     @JoinColumn(name = "propietario_id")
     private Propietario propietario;
 
-    public Vivienda(String direccion, Integer cantidadMaximaRoomies, Integer cantidadAmbientes, String descripcion, Boolean amueblado, Propietario propietario) {
+    public Vivienda(String direccion, Integer cantidadMaximaRoomies, Integer cantidadAmbientes, String descripcion, Boolean amueblado, Propietario propietario, Integer precioAlquiler) {
         this.direccion = direccion;
         this.cantidadMaximaRoomies = cantidadMaximaRoomies;
         this.cantidadAmbientes = cantidadAmbientes;
         this.descripcion = descripcion;
         this.amueblado = amueblado;
         this.propietario = propietario;
+        this.precioAlquiler = precioAlquiler;
     }
 
     public Vivienda() {
@@ -99,5 +101,13 @@ public class Vivienda {
 
     public void setAlquilado(Boolean alquilado) {
         this.alquilado = alquilado;
+    }
+
+    public Integer getPrecioAlquiler() {
+        return precioAlquiler;
+    }
+
+    public void setPrecioAlquiler(Integer precioAlquiler) {
+        this.precioAlquiler = precioAlquiler;
     }
 }

@@ -31,19 +31,28 @@
         <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
         <a href="home" class="w3-bar-item w3-button w3-padding-large">HOME</a>
         <a href="ir-a-resultado-roomie-compatibles" class="w3-bar-item w3-button w3-padding-large w3-hide-small">RECOMENDADOS</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding-large w3-hide-small">DONAR A ROOMIE</a>
         <a href="generar-descuento" class="w3-bar-item w3-button w3-padding-large w3-hide-small">DESCUENTO</a>
+        <a href="denuncia" class="w3-bar-item w3-button w3-padding-large w3-hide-small">DENUNCIAR</a>
         <a href="puntuar" class="w3-bar-item w3-button w3-padding-large w3-hide-small">PUNTUAR</a>
         <div class="w3-dropdown-hover w3-hide-small">
             <button class="w3-padding-large w3-button" title="More">BUSCADOR <i class="fa fa-caret-down"></i></button>
             <div class="w3-dropdown-content w3-bar-block w3-card-4">
-                <a href="#" class="w3-bar-item w3-button">VIVIENDAS</a>
+                <a href="buscador-alquiler" class="w3-bar-item w3-button">VIVIENDAS</a>
                 <a href="buscador-roomie" class="w3-bar-item w3-button">ROOMIES</a>
+            </div>
+        </div>
+        <div class="w3-dropdown-hover w3-hide-small">
+            <button class="w3-padding-large w3-button" title="More">DONACIONES<i class="fa fa-caret-down"></i></button>
+            <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                <a href="darDonacion" class="w3-bar-item w3-button w3-padding-large w3-hide-small">DONAR A ROOMIE</a>
+                <a href="donatarios" class="w3-bar-item w3-button">LISTA DE DONATARIOS</a>
+                <a href="activarDonacion" class="w3-bar-item w3-button">SOLICITAR APTO DONACION</a>
             </div>
         </div>
     </div>
 </div>
- <div class = "container">
+
+<div class = "container">
      <div id="loginbox" style="margin:7em;" class="mainbox col-md-1 col-md-offset-3 col-sm-8 col-sm-offset-2">
 
         <form:form action="validar-buscador-alquiler" method="POST" modelAttribute="datos">
@@ -64,10 +73,11 @@
                         <div style="size: 16px!important; align-items: start">
                             <p>Dirección: ${unaVivienda.direccion}</p>
                             <p>Cantidad máxima de roomies: ${unaVivienda.cantidadMaximaRoomies}</p>
+                            <p>Precio: ${unaVivienda.precioAlquiler}</p>
                             <p>Propietario: ${unaVivienda.propietario.nombre}</p>
                             <p>Contacto del propietario: ${unaVivienda.propietario.email}</p>
                         </div>
-                            <a href="#" class="w3-button w3-black w3-section w3-right" Type="Submit" style="max-height: 2.8em; align-self: flex-end;"/>Alquilar</a>
+                            <a href="tarejta/${unaVivienda.id}" class="w3-button w3-black w3-section w3-right" Type="Submit" style="max-height: 2.8em; align-self: flex-end;"/>Alquilar</a>
                     </div>
                 </div>
             </div>

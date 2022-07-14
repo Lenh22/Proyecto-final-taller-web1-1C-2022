@@ -26,7 +26,13 @@ public class RepositorioRoomie implements IRepositorioRoomie {
 
     @Override
     public List<Roomie> obtenerRoomies() {
-        return null;
+        final Session session = sessionFactory.getCurrentSession();
+
+        List l1= session.createQuery("from Roomie where recibirDonacion=:recibirDonacion").setParameter("recibirDonacion", true).list();
+
+
+        return l1;
+
     }
 
     @Override

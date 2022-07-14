@@ -13,7 +13,7 @@ public interface IRepositorioBuscador {
     Roomie buscarRoomie(String nombre);
     List<Usuario> ObtenerRoomiesPorFiltro(Long id);
 
-    List<Usuario> ObtenerRoomiesPorFiltro2(String nombre);
+    List<Roomie> ObtenerRoomiesPorFiltro2(String nombre);
 
     void AgregarAlquiler(Vivienda vivienda);
     List<Vivienda> ObtenerAlquileres();

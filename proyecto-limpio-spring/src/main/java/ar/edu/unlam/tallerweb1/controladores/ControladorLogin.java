@@ -62,9 +62,15 @@ public class ControladorLogin {
 			request.getSession().setAttribute("ROL", usuarioBuscado.getRol());
 			request.getSession().setAttribute("Activo",true);
 			request.getSession().setAttribute("id",usuarioBuscado.getId());
-			model.put("usuario",usuarioBuscado);
-			if(usuarioBuscado.getRol().equals("roomie"))
+			request.getSession().setAttribute("email",usuarioBuscado.getEmail());
+			if(usuarioBuscado.getRol().equals("roomie")){
+				Roomie roomie = (Roomie) servicioDeRoomie.consultarUsuario(usuarioBuscado.getEmail());
+				String nivel = servicioDeGamification.obtenerNivel(roomie.getEmail());
+				double billetera = (roomie.getBilleteraDeDonaciones() == null) ? 0.0 : roomie.getBilleteraDeDonaciones();
+				model.put("nivel",nivel);
+				model.put("billetera",billetera);
 				return new ModelAndView("home", model);
+			}
 			else
 				return new ModelAndView("home-propietario", model);
 		} else {

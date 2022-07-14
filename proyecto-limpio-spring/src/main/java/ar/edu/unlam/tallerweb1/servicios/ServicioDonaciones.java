@@ -21,7 +21,7 @@ public class ServicioDonaciones implements IServicioDonaciones {
     }
 
     @Override
-    public List<Roomie> buscarDonatarios(Boolean b) {
+    public List<Roomie> buscarDonatarios() {
 
         //Primero traemlos la lista de roomies de repositorio //HayQueHacerElMetodo
         List<Roomie> roomiesADonar = repositorioRoomies.obtenerRoomies();
@@ -75,7 +75,7 @@ public class ServicioDonaciones implements IServicioDonaciones {
     public Boolean activarDonacion(String email, Boolean activar){
         try {
             Roomie roomie = repositorioRoomies.ObtenerUnRoomie(email);
-            if (roomie.getActivo() == true && roomie.getBilleteraDeDonaciones()<10.0) {
+            if (roomie.getActivo() == true && roomie.getBilleteraDeDonaciones()<99999.99) {
                 roomie.setRecibirDonacion(activar);
                 return true;
             }else{

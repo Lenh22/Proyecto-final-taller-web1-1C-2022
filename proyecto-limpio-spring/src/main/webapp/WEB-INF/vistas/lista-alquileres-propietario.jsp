@@ -1,4 +1,3 @@
-
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -34,13 +33,6 @@
 
         <h2 class="w3-opacity w3-center">Lista de alquileres</h2>
 
-        <c:if test="${not empty msg}" >
-            <br>
-            <br>
-            <h4><p class="w3-panel w3-red" role="alert" >${msg}</p></h4>
-            <br>
-        </c:if>
-
         <c:forEach var="unaVivienda" items="${viviendas}" >
         <div class="w3-center w3-margin-top">
             <div>
@@ -52,24 +44,18 @@
                         <div style="size: 16px!important;">
                             <p>Dirección: ${unaVivienda.direccion}</p>
                             <p>Cantidad máxima de roomies: ${unaVivienda.cantidadMaximaRoomies}</p>
-                            <p>Cantidad de ambientes: ${unaVivienda.cantidadAmbientes}</p>
-                            <c:if test="${unaVivienda.alquilado}" >
+                            <p>Cantidad de ambientes :${unaVivienda.cantidadAmbientes}</p>
+                            <p>Precio de alquiler: ${unaVivienda.precioAlquiler}</p>
+                            <c:if test="${unaVivienda.alquilado}">
                             <p>Se encuentra alquilado</p>
                             </c:if>
                         </div>
-                        <a href="ir-a-editar-vivienda${unaVivienda.id}" class="w3-button w3-black w3-section w3-right" Type="Submit" style="max-height: 2.8em; align-self: flex-end;"/>Editar</a>
-                        <a href="ir-a-eliminar-vivienda${unaVivienda.id}" class="w3-button w3-black w3-section w3-right" Type="Submit" style="max-height: 2.8em; align-self: flex-end;"/>Eliminar</a>
+                        <a href="ir-a-editar-vivienda${unaVivienda.id}" class="w3-button w3-black w3-section w3-right" Type="Submit" style="max-height: 2.8em; align-self: flex-end;">Editar</a>
+                        <a href="ir-a-eliminar-vivienda${unaVivienda.id}" class="w3-button w3-black w3-section w3-right" Type="Submit" style="max-height: 2.8em; align-self: flex-end;">Eliminar</a>
                     </div>
                 </div>
             </div>
             </c:forEach>
-
-            <c:if test="${not empty error}" >
-                <br>
-                <br>
-                <h4><span class="w3-panel w3-red" role="alert" >${error}</span></h4>
-                <br>
-            </c:if>
         </div>
     </div>
 

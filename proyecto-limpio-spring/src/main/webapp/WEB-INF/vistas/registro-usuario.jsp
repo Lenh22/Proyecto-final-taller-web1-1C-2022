@@ -32,7 +32,6 @@
             <form:radiobutton path="rol" value="roomie"/>
             <label>Propietario</label>
             <form:radiobutton path="rol" value="propietario"/>
-            <br>
             <button id="btn-registrarme" class="w3-button w3-black w3-section w3-right" Type="Submit"/>Registrarme</button>
         </form:form>
 

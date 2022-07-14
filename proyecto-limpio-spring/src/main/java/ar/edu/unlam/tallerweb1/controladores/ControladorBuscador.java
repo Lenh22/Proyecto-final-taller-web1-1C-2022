@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.controladores;
 
 import ar.edu.unlam.tallerweb1.modelo.DatosRecibidosPorPost.DatosBuscadorAlquiler;
 import ar.edu.unlam.tallerweb1.modelo.DatosRecibidosPorPost.DatosBuscadorRoomie;
+import ar.edu.unlam.tallerweb1.modelo.Roomie;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.Vivienda;
 import ar.edu.unlam.tallerweb1.servicios.Interfaces.IServicioBuscador;
@@ -39,7 +40,7 @@ public class ControladorBuscador {
         ModelMap model = new ModelMap();
 
         try {
-            List<Usuario> lista =  servicioDeBuscador.ListarRoomiesPorFiltro2(datos.getNombre());
+            List<Roomie> lista =  servicioDeBuscador.ListarRoomiesPorFiltro2(datos.getNombre());
             model.put("datosBuscadorRoomie", lista);
         }catch (Exception e){
             model.put("error", "El usuario buscado no existe");

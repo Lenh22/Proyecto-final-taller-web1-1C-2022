@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import ar.edu.unlam.tallerweb1.modelo.Propietario;
 import ar.edu.unlam.tallerweb1.modelo.Vivienda;
 import ar.edu.unlam.tallerweb1.repositorios.Interfaces.IRepositorioVivienda;
 import ar.edu.unlam.tallerweb1.servicios.Interfaces.IServicioVivienda;
@@ -36,8 +37,8 @@ public class ServicioVivienda implements IServicioVivienda {
     }
 
     @Override
-    public List<Vivienda> obtenerListaViviendasPorIdPropietario(Long id) {
-        return repositorioVivienda.obtenerListaViviendasPorIdPropietario(id);
+    public List<Vivienda> obtenerListaViviendasPorIdPropietario(Propietario propietario) {
+        return repositorioVivienda.obtenerListaViviendasPorIdPropietario(propietario);
     }
 
     @Override
@@ -48,5 +49,10 @@ public class ServicioVivienda implements IServicioVivienda {
     @Override
     public void modificarVivienda(Vivienda vivienda) {
         repositorioVivienda.modificarVivienda(vivienda);
+    }
+
+    @Override
+    public int obtenerPrecioPorId(long idVivienda) {
+        return repositorioVivienda.obtenerPrecioPorId(idVivienda);
     }
 }

@@ -8,14 +8,18 @@ import java.util.*;
 @PrimaryKeyJoinColumn(name="usuario_id")
 public class Roomie extends Usuario {
 
+
     private Boolean recibirDonacion;
 
     private double ingreso;
     private double puntaje;
     private double cantidadTotalPuntuada;
+
     private double billeteraDeDonaciones;
 
     private Boolean puntuacion;
+
+
     private Boolean estudiante;
 
     private Integer cantidadDeDenuncias;
