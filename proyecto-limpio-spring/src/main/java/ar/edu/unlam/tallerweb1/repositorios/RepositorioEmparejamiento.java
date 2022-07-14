@@ -71,4 +71,5 @@ public class RepositorioEmparejamiento implements IRepositorioEmparejamiento {
                 .setParameter("idAEncontrar", id).list();
     }
 
+
 }

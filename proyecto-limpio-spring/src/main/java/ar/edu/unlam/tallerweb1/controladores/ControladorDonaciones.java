@@ -1,29 +1,37 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import ar.edu.unlam.tallerweb1.modelo.DatosRecibidosPorPost.DatosDonacion;
+import ar.edu.unlam.tallerweb1.modelo.DatosRecibidosPorPost.DatosLogin;
 import ar.edu.unlam.tallerweb1.modelo.Roomie;
 import ar.edu.unlam.tallerweb1.servicios.Interfaces.IServicioDonaciones;
+import ar.edu.unlam.tallerweb1.servicios.Interfaces.IServicioLogin;
+import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
 public class ControladorDonaciones {
 
     private IServicioDonaciones servicioDeDonacion;
-
-    private Double billetera = 0.0;
+    private IServicioLogin servicioLogin;
+    private Boolean pudoDonar = false;
 
     @Autowired
-    public ControladorDonaciones(IServicioDonaciones servicioDeDonacion ) {
+    public ControladorDonaciones(IServicioDonaciones servicioDeDonacion, IServicioLogin servicioLogin ) {
         this.servicioDeDonacion=servicioDeDonacion;
-
+        this.servicioLogin=servicioLogin;
     }
-    @RequestMapping(path = "home/donatarios")
+
+    @RequestMapping(path = "/donatarios")
     public ModelAndView listar(Boolean recibe) {
         ModelMap model = new ModelMap();
         List<Roomie> resultado = null;
@@ -33,40 +41,61 @@ public class ControladorDonaciones {
             model.put("msg-error", "No hay Roomies que acepten donaciones");
         }
         model.put("donatarios", resultado);
-        return new ModelAndView("listadoDeDonatarios", model);
+        return new ModelAndView("donatarios", model);
     }
-
-    //@RequestMapping(path = "home/{email}")
-    public ModelAndView mostrarBilletera(@PathVariable("roomie") Roomie roomieDonatario) {
-        double billetera = 0.0;
+    //Debo modificar los casos de prueba de servicios y acomodar mejor este metodo para que se vea el aumento en la billetera
+    @RequestMapping(path = "/ver-billetera")
+    public ModelAndView mostrarBilletera(String roomieDonatario) {
         ModelMap model = new ModelMap();
-        billetera = servicioDeDonacion.billeteraDelRoomie(roomieDonatario);
-        model.put("billetera", billetera); //muestro un atributo
+        //double billetera = servicioDeDonacion.billeteraDelRoomie(roomieDonatario);
+        // model.put("billetera", billetera); //muestro un atributo
+        //Podemos agregar otro model por ejemplo model.put("nombre", roomieDoanatari.getnombr..)
         return new ModelAndView("ver-billetera", model);
-
     }
 
-   //@RequestMapping(path = "home/{email}")
-    public ModelAndView mensajeDeExito(Roomie donatario, Double monto) {
-
+    @RequestMapping("/darDonacion")
+    public ModelAndView irADarDonacion() {
+        ModelMap modelo = new ModelMap();
+        modelo.put("DatosDonacion", new Roomie());
+        return new ModelAndView("darDonacion", modelo);
+    }
+    @RequestMapping(path = "/darDonacionValidacion", method = RequestMethod.POST)
+    public ModelAndView MensajeDeExito(@ModelAttribute("DatosDonacion") DatosDonacion datos)
+    {
         ModelMap model= new ModelMap();
+        Roomie roomie = new Roomie();
+        roomie.setEmail(datos.getEmail());
+        double suma = servicioDeDonacion.incrementaBilletera(roomie, datos.getBilleteraDeDonaciones());
 
-        if(servicioDeDonacion.darDonacion(donatario,monto)) {
+        if(servicioDeDonacion.darDonacion(datos.getEmail(), datos.getBilleteraDeDonaciones())) {
+            model.put("email",datos.getEmail());
+            model.put("error","Se dono correctamente al roomie");
+            model.put("billetera",suma);
+            return new ModelAndView("ver-billetera", model);
 
-            model.put("msg-error","se ha realizado donacion con exito");
         }else{
-            model.put("msg-error","no se ha realizado donacion");
+            model.put("error","El roomie o el monto a donar son incorrecto.");
         }
-
-        return new ModelAndView("ver-billetera",model);
+        return new ModelAndView("darDonacion",model);
     }
+    @RequestMapping("/activarDonacion")
+    public ModelAndView irAactivarDonacion() {
+        ModelMap modelo = new ModelMap();
+        modelo.put("datosLogin", new DatosLogin());
+        return new ModelAndView("activarDonacion", modelo);
+    }
+    @RequestMapping(path = "/activarDonacionValidacion", method = RequestMethod.POST)
+    public ModelAndView activarDonacion(@ModelAttribute("datosLogin") DatosLogin datosLogin, HttpServletRequest request) {
+        ModelMap model = new ModelMap();
+        Boolean activoDonacion = servicioDeDonacion.activarDonacion(datosLogin.getEmail(), datosLogin.getAceptodonacion());
+        if (activoDonacion){
+            model.put("email", datosLogin.getEmail());
+            model.put("error", "se aplicaron los cambios");
+            return new ModelAndView("activarDonacion", model);
+        } else {
+            model.put("error", "No se aplicaron los cambios");
+        }
+        return new ModelAndView("activarDonacion", model);
 
+    }
 }
-
-
-
-
-
-
-
-//tipo de retorno de una accion : datos+vista (model+vista)

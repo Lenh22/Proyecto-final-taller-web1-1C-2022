@@ -14,10 +14,13 @@ public class Roomie extends Usuario {
     private double puntaje;
     private double cantidadTotalPuntuada;
     private double billeteraDeDonaciones;
+
+    private Integer cantidadDeDenuncias;
+
+    public Integer puntajeGamification;
+
     @ManyToOne(optional = true)
     private  Alquiler alquiler;
-
-    public Roomie() { }
 
     //Constructor para un roomie con la lista de atributos ya armadas
     public Roomie(String nombre, String apellido, Integer edad, String email, String password, String rol
@@ -58,6 +61,26 @@ public class Roomie extends Usuario {
         this.ingreso = ingreso;
     }
 
+    public Roomie(String nombre, String apellido, int edad, String email, String password,String rol,boolean activo, boolean recibirDonacion, double ingreso, double puntaje, double cantidadTotalPuntuada, double billeteraDeDonaciones, int cantidadDeDenuncias ,int puntajeGamification) {
+        super(nombre,apellido,edad,email,password,rol,activo);
+        this.recibirDonacion = recibirDonacion;
+        this.ingreso = ingreso;
+        this.puntaje = puntaje;
+        this.cantidadTotalPuntuada = cantidadTotalPuntuada;
+        this.billeteraDeDonaciones = billeteraDeDonaciones;
+        this.cantidadDeDenuncias=cantidadDeDenuncias;
+        this.puntajeGamification= puntajeGamification;
+    }
+
+    public Roomie(String s, String s1, int i, String s2, String password, String rol, boolean b, boolean b1, int i1, int i2, int i3, int i4) {
+    }
+    public Roomie(String maria, String gonzalez, int i, String mail, String pass, String rol, boolean b, double v, boolean b1, double v1, double v2, Double billeteraDeDonaciones) {
+    }
+
+    public Roomie() {
+
+    }
+
     public void setRecibirDonacion(Boolean recibirDonacion) {
         this.recibirDonacion = recibirDonacion;
     }
@@ -95,6 +118,22 @@ public class Roomie extends Usuario {
 
     public Boolean getRecibirDonacion() {
         return recibirDonacion;
+    }
+
+    public Integer getCantidadDeDenuncias() {
+        return cantidadDeDenuncias;
+    }
+
+    public void setCantidadDeDenuncias(Integer cantidadDeDenuncias) {
+        this.cantidadDeDenuncias = cantidadDeDenuncias;
+    }
+
+    public Integer getPuntajeGamification() {
+        return puntajeGamification;
+    }
+
+    public void setPuntajeGamification(Integer puntajeGamification) {
+        this.puntajeGamification = puntajeGamification;
     }
 }
 

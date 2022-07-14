@@ -2,7 +2,7 @@ package ar.edu.unlam.tallerweb1.Emparejamiento;
 
 import ar.edu.unlam.tallerweb1.SpringTest;
 import ar.edu.unlam.tallerweb1.controladores.ControladorEmparejamiento;
-import ar.edu.unlam.tallerweb1.controladores.DatosRegistro;
+import ar.edu.unlam.tallerweb1.modelo.DatosRecibidosPorPost.DatosRegistro;
 import ar.edu.unlam.tallerweb1.modelo.Atributo;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioEmparejamiento;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioUsuario;

@@ -1,6 +1,10 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import ar.edu.unlam.tallerweb1.modelo.DatosRecibidosPorPost.DatosLogin;
+import ar.edu.unlam.tallerweb1.modelo.Roomie;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.servicios.Interfaces.IServicioDeGamification;
+import ar.edu.unlam.tallerweb1.servicios.Interfaces.IServicioDeRoomie;
 import ar.edu.unlam.tallerweb1.servicios.Interfaces.IServicioLogin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletRequestEvent;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
@@ -23,10 +25,14 @@ public class ControladorLogin {
 	// dicha clase debe estar anotada como @Service o @Repository y debe estar en un paquete de los indicados en
 	// applicationContext.xml
 	private IServicioLogin servicioLogin;
+	private IServicioDeGamification servicioDeGamification;
+	private IServicioDeRoomie servicioDeRoomie;
 
 	@Autowired
-	public ControladorLogin(IServicioLogin servicioLogin){
+	public ControladorLogin(IServicioLogin servicioLogin,IServicioDeGamification servicioDeGamification,IServicioDeRoomie servicioDeRoomie){
 		this.servicioLogin = servicioLogin;
+		this.servicioDeGamification = servicioDeGamification;
+		this.servicioDeRoomie=servicioDeRoomie;
 	}
 
 	// Este metodo escucha la URL localhost:8080/NOMBRE_APP/login si la misma es invocada por metodo http GET
@@ -52,7 +58,7 @@ public class ControladorLogin {
 		// invoca el metodo consultarUsuario del servicio y hace un redirect a la URL /home, esto es, en lugar de enviar a una vista
 		// hace una llamada a otro action a traves de la URL correspondiente a esta
 		Usuario usuarioBuscado = servicioLogin.consultarUsuario(datosLogin.getEmail(), datosLogin.getPassword());
-		if (usuarioBuscado != null) {
+		if (usuarioBuscado != null && usuarioBuscado.getActivo()) {
 			request.getSession().setAttribute("ROL", usuarioBuscado.getRol());
 			request.getSession().setAttribute("Activo",true);
 			request.getSession().setAttribute("id",usuarioBuscado.getId());
@@ -70,7 +76,12 @@ public class ControladorLogin {
 
 	// Escucha la URL /home por GET, y redirige a una vista.
 	@RequestMapping(path = "/home", method = RequestMethod.GET)
-	public ModelAndView irAHome() {
+	public ModelAndView irAHome(HttpServletRequest request) {
+		String email = request.getSession().getAttribute("email").toString();
+		ModelMap model = new ModelMap();
+		Roomie roomie = (Roomie) servicioDeRoomie.consultarUsuario(email);
+		String nivel = servicioDeGamification.obtenerNivel(roomie.getEmail());
+		model.put("nivel",nivel);
 		return new ModelAndView("home");
 	}
 

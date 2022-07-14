@@ -1,4 +1,4 @@
-package ar.edu.unlam.tallerweb1.modelo;
+package ar.edu.unlam.tallerweb1.modelo.DatosRecibidosPorPost;
 
 public class DatosBuscadorAlquiler {
     private Integer id;

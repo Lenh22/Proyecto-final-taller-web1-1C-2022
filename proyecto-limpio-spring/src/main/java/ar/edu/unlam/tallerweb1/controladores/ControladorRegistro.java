@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
 import ar.edu.unlam.tallerweb1.modelo.Atributo;
+import ar.edu.unlam.tallerweb1.modelo.DatosRecibidosPorPost.DatosRegistro;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.Interfaces.IServicioRegistro;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,7 @@ public class ControladorRegistro {
                 return new ModelAndView("registro-roomie", model);
             }
             else{
+                datosRegistro.setActivo(true);
                 servicioRegistro.registrarNuevoUsuario(datosRegistro);
                 model.put("datosLogin",datosRegistro);
             }
@@ -63,6 +65,7 @@ public class ControladorRegistro {
             else{
                 datosRegistro1 = (DatosRegistro) request.getSession().getAttribute("DATOSREGISTRO");
                 datosRegistro1.setAtributos(datosRegistro.getAtributos());
+                datosRegistro1.setActivo(true);
                 model.put("datosLogin",datosRegistro1);
                 servicioRegistro.registrarNuevoUsuario(datosRegistro1);
             }

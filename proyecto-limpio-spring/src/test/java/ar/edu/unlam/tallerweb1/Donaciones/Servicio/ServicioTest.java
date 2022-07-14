@@ -3,7 +3,7 @@ package ar.edu.unlam.tallerweb1.Donaciones.Servicio;
 import ar.edu.unlam.tallerweb1.modelo.Roomie;
 import ar.edu.unlam.tallerweb1.repositorios.Interfaces.IRepositorioRoomie;
 import ar.edu.unlam.tallerweb1.servicios.Interfaces.IServicioDonaciones;
-import ar.edu.unlam.tallerweb1.servicios.ServicioDonacion;
+import ar.edu.unlam.tallerweb1.servicios.ServicioDonaciones;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,33 +15,35 @@ public class ServicioTest {
 
     private IRepositorioRoomie repositorioRoomies;
     private IServicioDonaciones servicioDeDonacion;
-    private String mail = "maria@maria.com";
-    private String pass = "12345";
-    private Roomie roomie2 = new Roomie("Maria", "Gonzalez", 20, mail, pass, true, 50000.0,0.0, 0.0, 5.0);
+    private String mail = "pepe@mail.com";
+    private String pass = "123";
+    private Roomie roomie2 = new Roomie("Maria", "Gonzalez", 20, mail, pass,"rol",true,true, (int) 1.0, (int) 1.0, (int) 1.0, (int) 1.0);
 
     private Double donacion = 1.00;
 
     @Before
     public void init(){
         repositorioRoomies = mock(IRepositorioRoomie.class);
-        servicioDeDonacion = new ServicioDonacion(repositorioRoomies);
+        servicioDeDonacion = new ServicioDonaciones(repositorioRoomies);
     }
     @Test
-    public void IncrementarBilletera(){
-        Roomie donatario = DadoQueExisteDonatario(mail) ;
-        CuandoHagoLaDonacion(roomie2,donacion);
+    public void IncrementarBilletera() {
+        DadoQueExisteDonatario(mail) ;
+        CuandoHagoLaDonacion(mail,donacion);
         EntoncesAumentaBilletera(roomie2,donacion);
     }
     private void EntoncesAumentaBilletera(Roomie roomie, Double donacion) {
-        assertThat(servicioDeDonacion.incrementaBilletera(roomie,donacion)).isEqualTo(2.00);
+        assertThat(servicioDeDonacion.incrementaBilletera(roomie,donacion)).isEqualTo(3.00);
     }
-    private void CuandoHagoLaDonacion(Roomie rommie, Double donacion) {
+    private void CuandoHagoLaDonacion(String rommie, Double donacion) {
         servicioDeDonacion.darDonacion(rommie,donacion);
+
     }
     private Roomie DadoQueExisteDonatario(String mail) {
         roomie2.setRecibirDonacion(true);
-        when(repositorioRoomies.buscar(mail)).thenReturn(roomie2);
-        return repositorioRoomies.buscar(mail);
+        when(repositorioRoomies.ObtenerUnRoomie(mail)).thenReturn(roomie2);
+        return repositorioRoomies.ObtenerUnRoomie(mail);
 
     }
 }
+

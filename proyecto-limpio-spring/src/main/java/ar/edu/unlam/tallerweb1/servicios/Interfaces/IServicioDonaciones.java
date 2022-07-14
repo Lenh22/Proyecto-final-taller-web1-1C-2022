@@ -8,11 +8,13 @@ public interface IServicioDonaciones {
 
     List<Roomie> buscarDonatarios(Boolean recibe) throws Exception ;
 
-    Boolean darDonacion(Roomie roomieDonatario, Double donacion);
+    Boolean darDonacion(String roomieDonatario, Double donacion);
 
     Double incrementaBilletera(Roomie roomie, Double donacion);
 
     Roomie buscarDonatario(Roomie roomieDonatario);
 
-    Double billeteraDelRoomie(Roomie roomieDonatario);
+    Double billeteraDelRoomie(String roomieDonatario);
+
+    Boolean activarDonacion(String email, Boolean activar);
 }

@@ -1,4 +1,4 @@
-package ar.edu.unlam.tallerweb1.controladores;
+package ar.edu.unlam.tallerweb1.modelo.DatosRecibidosPorPost;
 
 import ar.edu.unlam.tallerweb1.modelo.Atributo;
 
@@ -87,5 +87,9 @@ public class DatosRegistro {
 
     public void setAtributos(List<Atributo> atributos) {
         this.atributos = atributos;
+    }
+
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
     }
 }

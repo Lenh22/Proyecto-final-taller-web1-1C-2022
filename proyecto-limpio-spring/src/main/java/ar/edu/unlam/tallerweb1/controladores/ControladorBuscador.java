@@ -1,7 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
-import ar.edu.unlam.tallerweb1.modelo.DatosBuscadorAlquiler;
-import ar.edu.unlam.tallerweb1.modelo.DatosBuscadorRoomie;
+import ar.edu.unlam.tallerweb1.modelo.DatosRecibidosPorPost.DatosBuscadorAlquiler;
+import ar.edu.unlam.tallerweb1.modelo.DatosRecibidosPorPost.DatosBuscadorRoomie;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.Vivienda;
 import ar.edu.unlam.tallerweb1.servicios.Interfaces.IServicioBuscador;
