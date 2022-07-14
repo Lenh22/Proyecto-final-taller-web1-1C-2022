@@ -26,7 +26,6 @@ public class ServicioBuscadorRoomieTest {
     private String nombre4 = "Emanuel";
     private List<Usuario> roomies;
 
-/*
 
     @Before
     public void init(){
@@ -42,55 +41,65 @@ public class ServicioBuscadorRoomieTest {
     @Test
     public void queSePuedanListarRoomiesDisponibles(){
 
-        dadoQueExisteElRoomie(nombre1);
-        dadoQueExisteElRoomie2(nombre2);
-        dadoQueExisteElRoomie3(nombre3);
-        dadoQueExisteElRoomie4(nombre4);
+        dadoQueExistenLosRoomies();
 
-        roomies = cuandoQuieroListarlo(nombre1);
-        roomies = cuandoQuieroListarlo(nombre2);
-        roomies = cuandoQuieroListarlo(nombre3);
-        roomies = cuandoQuieroListarlo(nombre4);
+        roomies = cuandoQuieroListarlo();
 
         entoncesPuedoVerLaListaDeRoomies();
     }
 
     @Test
+    public void queSePuedanListarPorFiltroRoomiesDisponibles(){
+
+        dadoQueExistenLosRoomies();
+
+        roomies = cuandoQuieroListarloPorFiltro();
+
+        entoncesPuedoVerLaListaDeRoomiesFiltradas();
+    }
+
+    @Test (expected = UsuarioExistente.class)
     public void queNoSePuedaListarUnRoomieInexistente(){
         dadoQueNoExisteElRoomie(roomie2);
 
-        entoncesElRoomieEstaVacio();
+        roomies = cuandoNoQuieroListarlo();
+
+        entoncesLaListaEstaVacia();
     }
 
-    private void dadoQueExisteElRoomie(String nombre) {
-        when(repositorioBuscador.ObtenerUnRoomie(nombre)).thenReturn(roomie1);
-
-    }
-    private void dadoQueExisteElRoomie4(String nombre4) {
-        when(repositorioBuscador.ObtenerUnRoomie(nombre4)).thenReturn(roomie2);
+    private void entoncesPuedoVerLaListaDeRoomiesFiltradas() {
+        assertThat(servicioBuscador.ListarRoomiesPorFiltro2(nombre2)).isEqualTo(roomies);
     }
 
-    private void dadoQueExisteElRoomie3(String nombre3) {
-        when(repositorioBuscador.ObtenerUnRoomie(nombre3)).thenReturn(roomie3);
+    private List<Usuario> cuandoQuieroListarloPorFiltro() {
+        return servicioBuscador.ListarRoomiesPorFiltro2(nombre2);
     }
 
-    private void dadoQueExisteElRoomie2(String nombre2) {
-        when(repositorioBuscador.ObtenerUnRoomie(nombre2)).thenReturn(roomie4);
+    private List<Usuario> cuandoNoQuieroListarlo() throws UsuarioExistente{
+        servicioBuscador.ListarAlquileres();
+        throw new UsuarioExistente();
     }
 
-    private List<Usuario> cuandoQuieroListarlo(String nombre) {
+    private void dadoQueExistenLosRoomies() {
+        when(repositorioBuscador.buscarRoomie(nombre1)).thenReturn(roomie1);
+        when(repositorioBuscador.buscarRoomie(nombre2)).thenReturn(roomie2);
+        when(repositorioBuscador.buscarRoomie(nombre3)).thenReturn(roomie3);
+        when(repositorioBuscador.buscarRoomie(nombre4)).thenReturn(roomie4);
+    }
+
+    private List<Usuario> cuandoQuieroListarlo() {
         return servicioBuscador.ListarRoomies();
     }
 
     private void entoncesPuedoVerLaListaDeRoomies() {
-        assertThat(servicioBuscador.getTotalRoomies()).isEqualTo(4);
+        assertThat(servicioBuscador.ListarRoomies()).isEqualTo(roomies);
     }
 
-    private void entoncesElRoomieEstaVacio() {
-        assertThat(roomie2.getNombre()).isEqualTo(null);
+    private void entoncesLaListaEstaVacia() {
+        assertThat(servicioBuscador.ListarRoomies()).isEqualTo(roomies);
     }
 
-    private void dadoQueNoExisteElRoomie(Roomie roomie) throws UsuarioExistente {
+    private void dadoQueNoExisteElRoomie(Roomie roomie){
         when(repositorioBuscador.buscarRoomie(roomie.getNombre())).thenReturn(null);
-    }*/
+    }
 }

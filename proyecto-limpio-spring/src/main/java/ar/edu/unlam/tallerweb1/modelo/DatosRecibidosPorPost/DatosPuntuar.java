@@ -1,8 +1,9 @@
-package ar.edu.unlam.tallerweb1.modelo;
+package ar.edu.unlam.tallerweb1.modelo.DatosRecibidosPorPost;
 
 public class DatosPuntuar {
     private Boolean puntuacion;
     private Long id;
+    private String email;
 
 
     public DatosPuntuar() {
@@ -24,4 +25,11 @@ public class DatosPuntuar {
         this.puntuacion = puntuacion;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

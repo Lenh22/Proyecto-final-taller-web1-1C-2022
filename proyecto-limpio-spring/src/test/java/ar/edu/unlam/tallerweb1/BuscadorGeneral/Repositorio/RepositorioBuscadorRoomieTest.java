@@ -14,9 +14,21 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class RepositorioBuscadorRoomieTest extends SpringTest {
-/*
+
     @Autowired
     RepositorioBuscador repositorioBuscador;
+    Roomie roomie1 = new Roomie();
+    Roomie roomie2 = new Roomie();
+    Roomie roomie3 = new Roomie();
+    Roomie roomie4 = new Roomie();
+    Roomie roomie5 = new Roomie();
+    Roomie roomie6 = new Roomie();
+    String nombre1 = "Arami";
+    String nombre2 = "Arami";
+    String nombre3 = "Leandro";
+    String nombre4 = "Jose";
+    String nombre5 = "Arami";
+    String nombre6 = "Arami";
 
 
     @Test
@@ -27,7 +39,7 @@ public class RepositorioBuscadorRoomieTest extends SpringTest {
         Roomie roomie = new Roomie();
         roomie.setNombre("arami");
         repositorioBuscador.AgregarRoomie(roomie);
-        Roomie encontrado = repositorioBuscador.ObtenerUnRoomie(roomie.getNombre());
+        Roomie encontrado = repositorioBuscador.buscarRoomie(roomie.getNombre());
 
         assertThat(encontrado).isEqualTo(roomie);
     }
@@ -42,14 +54,34 @@ public class RepositorioBuscadorRoomieTest extends SpringTest {
 
         entoncesVerificoLaLista(encontrados);
     }
-    private void dadoQueExisteUnaListaDeRoomies() {
 
-        Roomie roomie1 = new Roomie();
-        Roomie roomie2 = new Roomie();
-        Roomie roomie3 = new Roomie();
-        Roomie roomie4 = new Roomie();
-        Roomie roomie5 = new Roomie();
-        Roomie roomie6 = new Roomie();
+    @Test @Transactional
+    @Rollback
+    public  void queDevuelvaUnaListaDeViviendasEnAlquileresPorFiltro(){
+
+        dadoQueExisteUnaListaDeRoomies();
+
+        roomie1.setNombre(nombre1);
+        roomie2.setNombre(nombre2);
+        roomie3.setNombre(nombre3);
+        roomie4.setNombre(nombre4);
+        roomie5.setNombre(nombre5);
+        roomie6.setNombre(nombre6);
+
+        List<Usuario> encontrados= entoncesQueMeRetorneLaListaPorFiltro(nombre1);
+
+        entoncesVerificoLaListaFiltrada(encontrados);
+    }
+
+    private void entoncesVerificoLaListaFiltrada(List<Usuario> encontrados) {
+        assertThat(encontrados.size()).isEqualTo(4);
+    }
+
+    private List<Usuario> entoncesQueMeRetorneLaListaPorFiltro(String nombre) {
+        return repositorioBuscador.ObtenerRoomiesPorFiltro2(nombre);
+    }
+
+    private void dadoQueExisteUnaListaDeRoomies() {
 
         List<Roomie> lista = new LinkedList<>();
         lista.add(roomie1);
@@ -70,7 +102,7 @@ public class RepositorioBuscadorRoomieTest extends SpringTest {
 
     private void entoncesVerificoLaLista(List<Usuario> encontrados) {
         assertThat(encontrados.size()).isEqualTo(6);
-    }*/
+    }
 }
 
 

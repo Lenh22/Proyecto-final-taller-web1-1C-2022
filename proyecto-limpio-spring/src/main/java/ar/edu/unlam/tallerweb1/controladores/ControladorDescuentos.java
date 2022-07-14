@@ -1,6 +1,6 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
-import ar.edu.unlam.tallerweb1.modelo.DatosDescuento;
+import ar.edu.unlam.tallerweb1.modelo.DatosRecibidosPorPost.DatosDescuento;
 import ar.edu.unlam.tallerweb1.modelo.Roomie;
 import ar.edu.unlam.tallerweb1.servicios.IServicioDescuento;
 import org.springframework.beans.factory.annotation.Autowired;

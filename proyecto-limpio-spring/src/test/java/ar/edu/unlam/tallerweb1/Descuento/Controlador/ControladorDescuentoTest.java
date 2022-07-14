@@ -1,7 +1,7 @@
 package ar.edu.unlam.tallerweb1.Descuento.Controlador;
 
 import ar.edu.unlam.tallerweb1.controladores.ControladorDescuentos;
-import ar.edu.unlam.tallerweb1.modelo.DatosDescuento;
+import ar.edu.unlam.tallerweb1.modelo.DatosRecibidosPorPost.DatosDescuento;
 import ar.edu.unlam.tallerweb1.modelo.Excepciones.RoomieSinDescuento;
 import ar.edu.unlam.tallerweb1.modelo.Roomie;
 import ar.edu.unlam.tallerweb1.servicios.ServicioDescuento;
@@ -20,7 +20,7 @@ public class ControladorDescuentoTest{
     private String mail = "maria@maria.com";
     private String pass = "12345";
     private Boolean estudiante = true;
-    Integer edad = 22;
+    private Integer edad = 22;
     public Roomie roomie2;
     public Boolean descuento = false;
     private Long id = 1L;

@@ -11,6 +11,8 @@ public interface IRepositorioPuntuaciones {
 
     Roomie ObtenerUnRoomie(Long id);;
 
+    Roomie ObtenerUnRoomieMail(String email);
+
     Roomie buscarUsuario(String email, String password);
 
     Roomie buscarRoomie(Long id, Boolean puntuacion);

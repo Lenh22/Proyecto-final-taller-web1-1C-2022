@@ -1,6 +1,6 @@
 package ar.edu.unlam.tallerweb1.controladores;
 import ar.edu.unlam.tallerweb1.modelo.Roomie;
-import ar.edu.unlam.tallerweb1.modelo.DatosPuntuar;
+import ar.edu.unlam.tallerweb1.modelo.DatosRecibidosPorPost.DatosPuntuar;
 import ar.edu.unlam.tallerweb1.servicios.IServicioPuntuaciones;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class ControladorPuntuaciones {
@@ -36,10 +35,12 @@ public class ControladorPuntuaciones {
 
         Roomie roomieBuscado = new Roomie();
         roomieBuscado.setPuntuacion(datos.getPuntuacion());
-        servicioDePuntuacion.consultarRoomie(datos.getId());
+        roomieBuscado.setEmail(datos.getEmail());
+        servicioDePuntuacion.consultarRoomiePorMail(datos.getEmail());
         try{
-            puntaje = servicioDePuntuacion.puntuacionRoomie(datos.getId(), datos.getPuntuacion());
-            model.put("id", datos.getId());
+            puntaje = servicioDePuntuacion.puntuacionRoomieMail(datos.getEmail(), datos.getPuntuacion());
+            Math.ceil(puntaje);
+            model.put("roomie", roomieBuscado.getEmail());
             model.put("puntaje", puntaje);
         }catch (Exception e){
             model.put("error", "El usuario buscado no existe");

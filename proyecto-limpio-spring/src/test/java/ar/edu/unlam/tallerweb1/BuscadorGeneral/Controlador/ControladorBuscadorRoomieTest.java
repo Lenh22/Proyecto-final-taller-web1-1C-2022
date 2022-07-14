@@ -1,7 +1,7 @@
 package ar.edu.unlam.tallerweb1.BuscadorGeneral.Controlador;
 
 import ar.edu.unlam.tallerweb1.controladores.ControladorBuscador;
-import ar.edu.unlam.tallerweb1.modelo.DatosBuscadorRoomie;
+import ar.edu.unlam.tallerweb1.modelo.DatosRecibidosPorPost.DatosBuscadorRoomie;
 import ar.edu.unlam.tallerweb1.modelo.Excepciones.UsuarioExistente;
 import ar.edu.unlam.tallerweb1.modelo.Roomie;
 import ar.edu.unlam.tallerweb1.servicios.ServicioBuscador;
@@ -69,7 +69,7 @@ public class ControladorBuscadorRoomieTest {
         ModelAndView mav = mostrarRoomiesDisponiblesConFiltro(datos);
 
         //verificacion
-        entoncesMeLLevaALaVista(VISTA_LISTA_ROOMIES_FILTRO,mav.getViewName());
+        entoncesMeLLevaALaVista(VISTA_LISTA_ROOMIES,mav.getViewName());
 
     }
 

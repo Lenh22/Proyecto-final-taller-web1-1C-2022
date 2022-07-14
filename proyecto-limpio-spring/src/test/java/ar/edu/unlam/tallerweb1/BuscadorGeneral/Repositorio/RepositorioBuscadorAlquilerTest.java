@@ -16,12 +16,24 @@ public class RepositorioBuscadorAlquilerTest extends SpringTest {
 
     @Autowired
     RepositorioBuscador repositorioBuscador;
+    Vivienda vivienda1 = new Vivienda();
+    Vivienda vivienda2 = new Vivienda();
+    Vivienda vivienda3 = new Vivienda();
+    Vivienda vivienda4 = new Vivienda();
+    Vivienda vivienda5 = new Vivienda();
+    Vivienda vivienda6 = new Vivienda();
+    String direccion1 = "calle 1";
+    String direccion2 = "calle 1";
+    String direccion3 = "calle 2";
+    String direccion4 = "calle 3";
+    String direccion5 = "calle 4";
+    String direccion6 = "calle 1";
 
-/*
+
     @Test
     @Transactional
     @Rollback
-    public void queSePuedaEncontrarUnAlquilerDisponiblePorId()
+    public void queSePuedaEncontrarUnAlquilerDisponiblePorDireccion()
     {
         Vivienda vivienda = new Vivienda();
         vivienda.setVivienda(1);
@@ -42,13 +54,34 @@ public class RepositorioBuscadorAlquilerTest extends SpringTest {
 
         entoncesVerificoLaLista(encontrados);
     }
+
+    @Test @Transactional
+    @Rollback
+    public  void queDevuelvaUnaListaDeViviendasEnAlquileresPorFiltro(){
+
+        dadoQueExisteUnaListaDeAlquileres();
+
+        vivienda1.setDireccion(direccion1);
+        vivienda2.setDireccion(direccion2);
+        vivienda3.setDireccion(direccion3);
+        vivienda4.setDireccion(direccion4);
+        vivienda5.setDireccion(direccion5);
+        vivienda6.setDireccion(direccion6);
+
+        List<Vivienda> encontrados= entoncesQueMeRetorneLaListaPorFiltro();
+
+        entoncesVerificoLaListaFiltrada(encontrados);
+    }
+
+    private void entoncesVerificoLaListaFiltrada(List<Vivienda> encontrados) {
+        assertThat(encontrados.size()).isEqualTo(3);
+    }
+
+    private List<Vivienda> entoncesQueMeRetorneLaListaPorFiltro() {
+        return repositorioBuscador.ObtenerAlquileresPorFiltro2(direccion2);
+    }
+
     private void dadoQueExisteUnaListaDeAlquileres() {
-        Vivienda vivienda1 = new Vivienda();
-        Vivienda vivienda2 = new Vivienda();
-        Vivienda vivienda3 = new Vivienda();
-        Vivienda vivienda4 = new Vivienda();
-        Vivienda vivienda5 = new Vivienda();
-        Vivienda vivienda6 = new Vivienda();
 
         List<Vivienda> lista = new LinkedList<>();
         lista.add(vivienda1);
@@ -69,6 +102,6 @@ public class RepositorioBuscadorAlquilerTest extends SpringTest {
 
     private void entoncesVerificoLaLista(List<Vivienda> encontrados) {
         assertThat(encontrados.size()).isEqualTo(6);
-    }*/
+    }
 }
 

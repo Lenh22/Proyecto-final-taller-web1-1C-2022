@@ -6,7 +6,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 @Repository("repositorioPuntuacion")
@@ -29,9 +28,15 @@ public class RepositorioPuntuacion implements IRepositorioPuntuaciones{
     }
 
     @Override
-    public Roomie ObtenerUnRoomie(Long idAEncontrar) {
+    public Roomie ObtenerUnRoomie(Long id) {
         return (Roomie) sessionFactory.getCurrentSession()
-                .createQuery("from Roomie where id =:id").setParameter("id", idAEncontrar).uniqueResult(); //uniqueResult retorna solo un valor
+                .createQuery("from Roomie where id =:id").setParameter("id", id).uniqueResult(); //uniqueResult retorna solo un valor
+    }
+
+    @Override
+    public Roomie ObtenerUnRoomieMail(String email) {
+        return (Roomie) sessionFactory.getCurrentSession()
+                .createQuery("from Roomie where email =:email").setParameter("email", email).uniqueResult(); //uniqueResult retorna solo un valor
     }
 
     @Override

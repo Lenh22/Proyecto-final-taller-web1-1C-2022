@@ -1,7 +1,7 @@
 package ar.edu.unlam.tallerweb1.BuscadorGeneral.Controlador;
 
 import ar.edu.unlam.tallerweb1.controladores.ControladorBuscador;
-import ar.edu.unlam.tallerweb1.modelo.DatosBuscadorAlquiler;
+import ar.edu.unlam.tallerweb1.modelo.DatosRecibidosPorPost.DatosBuscadorAlquiler;
 import ar.edu.unlam.tallerweb1.modelo.Excepciones.ViviendaExistente;
 import ar.edu.unlam.tallerweb1.modelo.Vivienda;
 import ar.edu.unlam.tallerweb1.servicios.ServicioBuscador;
@@ -65,7 +65,7 @@ public class ControladorBuscadorAlquilerTest {
 
         ModelAndView mav = mostrarAlquileresFiltrados(datos);
 
-        entoncesMeLLevaALaVista(VISTA_LISTA_ALQUILERES_FILTRADOS,mav.getViewName());
+        entoncesMeLLevaALaVista(VISTA_LISTA_ALQUILERES,mav.getViewName());
     }
 
     //agg boton que vaya a alquiler

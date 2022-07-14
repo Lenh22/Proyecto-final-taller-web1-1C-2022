@@ -4,7 +4,7 @@ import ar.edu.unlam.tallerweb1.controladores.ControladorPuntuaciones;
 import ar.edu.unlam.tallerweb1.modelo.Excepciones.UsuarioExistente;
 import ar.edu.unlam.tallerweb1.modelo.Roomie;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
-import ar.edu.unlam.tallerweb1.modelo.DatosPuntuar;
+import ar.edu.unlam.tallerweb1.modelo.DatosRecibidosPorPost.DatosPuntuar;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPuntuacion;
 import org.junit.Before;
 import org.junit.Test;

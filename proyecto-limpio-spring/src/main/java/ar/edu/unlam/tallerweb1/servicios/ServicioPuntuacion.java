@@ -36,6 +36,27 @@ public class ServicioPuntuacion implements IServicioPuntuaciones{
         }
         return verPuntaje(buscado);
     }
+
+    @Override
+    public Double puntuacionRoomieMail(String email, Boolean puntuacion) throws UsuarioExistente {
+        Roomie buscado = repositorioUsuario.ObtenerUnRoomieMail(email);
+
+        if(buscado == null) {
+            throw new UsuarioExistente();
+        }
+        if (buscado != null && puntuacion == true) {
+            subirPuntaje(buscado);
+        }
+        if(buscado != null && puntuacion == false && verPuntaje(buscado)>=0.0){
+            bajarPuntaje(buscado);
+        }
+        if(buscado != null && puntuacion == false && buscado.getPuntaje()==0.0){
+            Double cantidadPuntuaciones = buscado.getCantidadTotalPuntuada();
+            buscado.setCantidadTotalPuntuada(++cantidadPuntuaciones);
+        }
+        return verPuntaje(buscado);
+    }
+
     /*Este metodo me devuelve el porcentaje total de un roomie basandose en los votos positivos, lo divide con la cantidad
      * total y multiplica por 100*/
     @Override
@@ -74,6 +95,11 @@ public class ServicioPuntuacion implements IServicioPuntuaciones{
     @Override
     public Roomie consultarRoomie(Long id) {
         return repositorioUsuario.ObtenerUnRoomie(id);
+    }
+
+    @Override
+    public Roomie consultarRoomiePorMail(String mail) {
+        return repositorioUsuario.ObtenerUnRoomieMail(mail);
     }
 
     @Override

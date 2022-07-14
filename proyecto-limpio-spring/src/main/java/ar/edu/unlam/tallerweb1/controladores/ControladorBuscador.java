@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 import ar.edu.unlam.tallerweb1.modelo.*;
+import ar.edu.unlam.tallerweb1.modelo.DatosRecibidosPorPost.DatosBuscadorAlquiler;
+import ar.edu.unlam.tallerweb1.modelo.DatosRecibidosPorPost.DatosBuscadorRoomie;
 import ar.edu.unlam.tallerweb1.servicios.IServicioBuscador;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,13 +37,12 @@ public class ControladorBuscador {
 
         try {
             List<Usuario> lista =  servicioDeBuscador.ListarRoomiesPorFiltro2(datos.getNombre());
-            model.put("id", datos.getId());
-            model.put("lista", lista);
+            model.put("datosBuscadorRoomie", lista);
         }catch (Exception e){
             model.put("error", "El usuario buscado no existe");
         }
 
-        return new ModelAndView("validar-buscador-roomie", model);
+        return new ModelAndView("buscador-roomie", model);
     }
 
     @RequestMapping("/buscador-alquiler")
@@ -61,11 +62,11 @@ public class ControladorBuscador {
 
         try {
             List<Vivienda> lista = servicioDeBuscador.ListarAlquileresPorFiltro2(datos.getDireccion());
-            model.put("lista", lista);
+            model.put("datosBuscadorAlquiler", lista);
         }catch (Exception e){
             model.put("error", "La vivienda buscada no existe");
         }
 
-        return new ModelAndView("validar-buscador-alquiler", model);
+        return new ModelAndView("buscador-alquiler", model);
     }
 }
