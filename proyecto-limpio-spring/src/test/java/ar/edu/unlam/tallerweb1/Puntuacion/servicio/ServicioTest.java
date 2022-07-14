@@ -1,8 +1,8 @@
 package ar.edu.unlam.tallerweb1.Puntuacion.servicio;
 
+import ar.edu.unlam.tallerweb1.modelo.Excepciones.UsuarioExistente;
 import ar.edu.unlam.tallerweb1.modelo.Roomie;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
-import ar.edu.unlam.tallerweb1.modelo.UsuarioExistente;
 import ar.edu.unlam.tallerweb1.repositorios.Interfaces.IRepositorioPuntuaciones;
 import ar.edu.unlam.tallerweb1.servicios.Interfaces.IServicioPuntuaciones;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPuntuacion;

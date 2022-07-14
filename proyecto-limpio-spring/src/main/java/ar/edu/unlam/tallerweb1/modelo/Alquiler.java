@@ -25,5 +25,10 @@ public class Alquiler {
     @Cascade(value = ALL)
     private List<Roomie> roomie = new LinkedList<>();
 
+    @ManyToOne
+    @Cascade(value = ALL)
+    private Propietario propietario;
+
+
 
 }

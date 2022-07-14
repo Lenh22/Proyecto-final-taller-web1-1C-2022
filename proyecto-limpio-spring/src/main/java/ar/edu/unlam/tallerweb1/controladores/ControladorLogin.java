@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletRequestEvent;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
@@ -55,6 +57,8 @@ public class ControladorLogin {
 			request.getSession().setAttribute("Activo",true);
 			request.getSession().setAttribute("id",usuarioBuscado.getId());
 			model.put("usuario",usuarioBuscado);
+			String context = request.getRealPath("img");
+			model.put("img",context);
 			return new ModelAndView("home", model);
 		} else {
 			// si el usuario no existe agrega un mensaje de error en el modelo.
@@ -65,9 +69,11 @@ public class ControladorLogin {
 
 	// Escucha la URL /home por GET, y redirige a una vista.
 	@RequestMapping(path = "/home", method = RequestMethod.GET)
-	public ModelAndView irAHome() {
-
-		return new ModelAndView("home");
+	public ModelAndView irAHome(HttpServletRequest request) {
+		String context = request.getRealPath("img");
+		ModelMap map = new ModelMap();
+		map.put("img",context);
+		return new ModelAndView("home",map);
 	}
 
 	// Escucha la url /, y redirige a la URL /login, es lo mismo que si se invoca la url /login directamente.

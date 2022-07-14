@@ -1,7 +1,7 @@
 package ar.edu.unlam.tallerweb1.servicios.Interfaces;
 
+import ar.edu.unlam.tallerweb1.modelo.Excepciones.UsuarioExistente;
 import ar.edu.unlam.tallerweb1.modelo.Roomie;
-import ar.edu.unlam.tallerweb1.modelo.UsuarioExistente;
 
 public interface IServicioPuntuaciones {
 
