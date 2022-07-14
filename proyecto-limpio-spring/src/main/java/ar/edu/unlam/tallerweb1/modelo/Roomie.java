@@ -15,6 +15,9 @@ public class Roomie extends Usuario {
     private double cantidadTotalPuntuada;
     private double billeteraDeDonaciones;
 
+    private Boolean puntuacion;
+    private Boolean estudiante;
+
     private Integer cantidadDeDenuncias;
 
     public Integer puntajeGamification;
@@ -55,8 +58,8 @@ public class Roomie extends Usuario {
     }
 
     //Constructor para datos registro
-    public Roomie(String nombre, String apellido, Integer edad, String email, String password, String rol, Boolean recibirDonaciones, double ingreso) {
-        super(nombre, apellido, edad, email, password, rol);
+    public Roomie(String nombre, String apellido, Integer edad, String email, String password, String rol, Boolean recibirDonaciones, double ingreso,Boolean activo) {
+        super(nombre, apellido, edad, email, password, rol,activo);
         this.recibirDonacion = recibirDonacion;
         this.ingreso = ingreso;
     }
@@ -134,6 +137,22 @@ public class Roomie extends Usuario {
 
     public void setPuntajeGamification(Integer puntajeGamification) {
         this.puntajeGamification = puntajeGamification;
+    }
+
+    public Boolean getPuntuacion() {
+        return puntuacion;
+    }
+
+    public void setPuntuacion(Boolean puntuacion) {
+        this.puntuacion = puntuacion;
+    }
+
+    public Boolean getEstudiante() {
+        return estudiante;
+    }
+
+    public void setEstudiante(Boolean estudiante) {
+        this.estudiante = estudiante;
     }
 }
 

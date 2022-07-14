@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository("repositorioPuntuacion")
-public class RepositorioPuntuacion implements IRepositorioPuntuaciones {
+public class RepositorioPuntuacion implements IRepositorioPuntuaciones{
 
     private SessionFactory sessionFactory;
 
@@ -21,7 +21,7 @@ public class RepositorioPuntuacion implements IRepositorioPuntuaciones {
     }
 
     @Override
-    public List<Roomie> obtenerRoomies() {
+    public List<Roomie> ObtenerRoomies() {
         //Forma Session por criteria
         final Session session = sessionFactory.getCurrentSession();
         return session.createCriteria(Roomie.class).list();
@@ -29,9 +29,15 @@ public class RepositorioPuntuacion implements IRepositorioPuntuaciones {
     }
 
     @Override
-    public Roomie obtenerUnRoomie(String emailAEncontrar) {
+    public Roomie ObtenerUnRoomie(Long id) {
         return (Roomie) sessionFactory.getCurrentSession()
-                .createQuery("from Roomie where email =:email").setParameter("email", emailAEncontrar).uniqueResult(); //uniqueResult retorna solo un valor
+                .createQuery("from Roomie where id =:id").setParameter("id", id).uniqueResult(); //uniqueResult retorna solo un valor
+    }
+
+    @Override
+    public Roomie ObtenerUnRoomieMail(String email) {
+        return (Roomie) sessionFactory.getCurrentSession()
+                .createQuery("from Roomie where email =:email").setParameter("email", email).uniqueResult(); //uniqueResult retorna solo un valor
     }
 
     @Override
@@ -44,7 +50,22 @@ public class RepositorioPuntuacion implements IRepositorioPuntuaciones {
     }
 
     @Override
-    public void agregarRoomie(Roomie roomie) {
+    public Roomie buscarRoomie(Long id, Boolean puntuacion) {
+        final Session session = sessionFactory.getCurrentSession();
+        return (Roomie) session.createCriteria(Roomie.class)
+                .add(Restrictions.eq("id", id))
+                .add(Restrictions.eq("puntuacion", puntuacion))
+                .uniqueResult();
+    }
+
+    @Override
+    public void AgregarRoomiePuntuado(Roomie roomie) {
+        sessionFactory.getCurrentSession().save(roomie);
+    }
+
+
+    @Override
+    public void AgregarRoomie(Roomie roomie) {
         sessionFactory.getCurrentSession().save(roomie);
     }
 }

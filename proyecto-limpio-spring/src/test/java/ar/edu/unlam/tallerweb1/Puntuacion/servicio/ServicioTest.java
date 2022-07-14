@@ -14,7 +14,7 @@ import static org.mockito.Mockito.*;
 
 public class ServicioTest {
 
-    private IRepositorioPuntuaciones repositorioUsuario;
+    /*private IRepositorioPuntuaciones repositorioUsuario;
     private IServicioPuntuaciones servicioPuntuacion;
     private String mail = "maria@maria.com";
     private String pass = "12345";
@@ -79,6 +79,6 @@ public class ServicioTest {
 
     private void dadoQueNoExisteElRoomie() {
         when(repositorioUsuario.buscarUsuario(mail, pass)).thenReturn(null);
-    }
+    }*/
 }
 

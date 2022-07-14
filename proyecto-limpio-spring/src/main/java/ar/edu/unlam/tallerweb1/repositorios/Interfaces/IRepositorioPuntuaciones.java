@@ -6,11 +6,17 @@ import java.util.List;
 
 public interface IRepositorioPuntuaciones {
 
-    List<Roomie> obtenerRoomies();
+    List<Roomie> ObtenerRoomies();
 
-    Roomie obtenerUnRoomie(String email);;
+    Roomie ObtenerUnRoomie(Long id);;
+
+    Roomie ObtenerUnRoomieMail(String email);
 
     Roomie buscarUsuario(String email, String password);
 
-    void agregarRoomie(Roomie roomie);
+    Roomie buscarRoomie(Long id, Boolean puntuacion);
+
+    void AgregarRoomie(Roomie roomie);
+
+    void AgregarRoomiePuntuado(Roomie roomie);
 }

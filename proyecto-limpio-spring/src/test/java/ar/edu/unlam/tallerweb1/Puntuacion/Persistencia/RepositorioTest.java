@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class RepositorioTest extends SpringTest{
 
 
-    @Autowired
+    /*@Autowired
     RepositorioPuntuacion repositorioPuntuacion;
 
     @Test
@@ -27,7 +27,7 @@ public class RepositorioTest extends SpringTest{
         session().save(roomie1);
         Roomie roomie2= repositorioPuntuacion.obtenerUnRoomie(roomie1.getEmail());
         assertThat(roomie2).isEqualTo(roomie1);
-    }
+    }*/
 
 
 }

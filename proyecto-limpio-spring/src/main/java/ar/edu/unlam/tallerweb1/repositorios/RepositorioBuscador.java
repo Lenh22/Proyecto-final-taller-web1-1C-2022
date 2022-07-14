@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class RepositorioBuscador implements IRepositorioBuscador {
+public class RepositorioBuscador implements  IRepositorioBuscador{
 
     private SessionFactory sessionFactory;
 
@@ -87,8 +87,8 @@ public class RepositorioBuscador implements IRepositorioBuscador {
     @Override
     public List<Vivienda> ObtenerAlquileresPorFiltro(Integer vivienda) {
         final Session session = sessionFactory.getCurrentSession();
-        List<Vivienda> viviendas = session.createQuery("From Vivienda where vivienda= :vivienda")
-                .setParameter("vivienda",vivienda)
+        List<Vivienda> viviendas = session.createQuery("From Vivienda where Id= :Id")
+                .setParameter("Id",vivienda)
                 .list();
         return viviendas;
     }

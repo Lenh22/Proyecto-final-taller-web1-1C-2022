@@ -52,7 +52,7 @@ public class ServicioRegistro implements IServicioRegistro {
 
     public Roomie pasarDatosRegistroARoomie(DatosRegistro datosRegistro) {
         return new Roomie(datosRegistro.getNombre(),datosRegistro.getApellido(),datosRegistro.getEdad(),datosRegistro.getEmail(),datosRegistro.getPassword(),
-                datosRegistro.getRol(),datosRegistro.getRecibirDonaciones(),datosRegistro.getIngreso());
+                datosRegistro.getRol(),datosRegistro.getRecibirDonaciones(),datosRegistro.getIngreso(),datosRegistro.getActivo());
     }
 
     public Propietario pasarDatosRegistroAPropietario(DatosRegistro datosRegistro) {

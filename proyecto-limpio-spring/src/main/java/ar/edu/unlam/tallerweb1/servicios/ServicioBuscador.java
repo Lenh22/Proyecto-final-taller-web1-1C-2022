@@ -15,9 +15,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-@Service
-@Transactional
-public class ServicioBuscador implements IServicioBuscador {
+@Service @Transactional
+public class ServicioBuscador implements IServicioBuscador{
 
     private IRepositorioBuscador repositorioBuscador;
 
@@ -25,7 +24,7 @@ public class ServicioBuscador implements IServicioBuscador {
     private List<Roomie> roomiesCompatibles = new LinkedList<>();
 
     @Autowired
-    public ServicioBuscador(IRepositorioBuscador repositorioBuscador) {
+    public ServicioBuscador(IRepositorioBuscador repositorioBuscador){
         this.repositorioBuscador = repositorioBuscador;
     }
 
@@ -40,34 +39,33 @@ public class ServicioBuscador implements IServicioBuscador {
         List<Usuario> roomies = repositorioBuscador.ObtenerRoomies();
         return roomies;
     }
-
     @Override
-    public List<Usuario> ListarRoomiesPorFiltro(Long id) throws UsuarioExistente {
+    public List<Usuario> ListarRoomiesPorFiltro(Long id) throws UsuarioExistente{
         List<Usuario> roomies = repositorioBuscador.ObtenerRoomiesPorFiltro(id);
-        if (roomies == null) {
+        if(roomies == null){
             throw new UsuarioExistente();
         }
         return roomies;
     }
-
     @Override
-    public List<Usuario> ListarRoomiesPorFiltro2(String nombre) throws UsuarioExistente {
+    public List<Usuario> ListarRoomiesPorFiltro2(String nombre) throws UsuarioExistente{
         List<Usuario> roomies = repositorioBuscador.ObtenerRoomiesPorFiltro2(nombre);
-        if (roomies == null) {
+        if(roomies == null){
             throw new UsuarioExistente();
         }
         return roomies;
     }
 
     @Override
-    public Integer getTotalRoomies() {
+    public Integer getTotalRoomies(){
         return repositorioBuscador.ObtenerRoomies().size();
     }
-
     @Override
-    public Roomie buscarRoomiePorNombre(String nombre) {
+    public Roomie buscarRoomiePorNombre(String nombre){
         return repositorioBuscador.buscarRoomie(nombre);
     }
+
+
 
 
     @Override
@@ -76,7 +74,7 @@ public class ServicioBuscador implements IServicioBuscador {
     }
 
     @Override
-    public Vivienda buscarAlquilerPorDireccion(String direccion) {
+    public Vivienda buscarAlquilerPorDireccion(String direccion){
         Vivienda buscada = repositorioBuscador.buscarAlquiler(direccion);
 
         if (buscada != null) {
@@ -94,23 +92,21 @@ public class ServicioBuscador implements IServicioBuscador {
     @Override
     public List<Vivienda> ListarAlquileresPorFiltro(Integer id) throws ViviendaExistente {
         List<Vivienda> viviendas = repositorioBuscador.ObtenerAlquileresPorFiltro(id);
-        if (viviendas == null) {
+        if(viviendas == null){
             throw new ViviendaExistente();
         }
         return viviendas;
     }
-
     @Override
     public List<Vivienda> ListarAlquileresPorFiltro2(String direccion) throws ViviendaExistente {
         List<Vivienda> viviendas = repositorioBuscador.ObtenerAlquileresPorFiltro2(direccion);
-        if (viviendas == null) {
+        if(viviendas == null){
             throw new ViviendaExistente();
         }
         return viviendas;
     }
-
     @Override
-    public Integer getTotalViviendas() {
+    public Integer getTotalViviendas(){
         return repositorioBuscador.ObtenerAlquileres().size();
     }
 }

@@ -92,4 +92,8 @@ public class DatosRegistro {
     public void setActivo(Boolean activo) {
         this.activo = activo;
     }
+
+    public Boolean getActivo() {
+        return activo;
+    }
 }

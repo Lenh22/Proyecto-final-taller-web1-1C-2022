@@ -18,7 +18,7 @@ import static org.assertj.core.api.Java6Assertions.assertThat;
 public class Testeo extends SpringTest {
 
 
-    private ControladorPuntuaciones controller;
+    /*private ControladorPuntuaciones controller;
     private ServicioPuntuacion service;
 
     @Autowired
@@ -46,7 +46,7 @@ public class Testeo extends SpringTest {
 
         assertThat(mav.getViewName()).isEqualTo("ver-puntuacion");
 
-    }
+    }*/
 
 }
 

@@ -7,9 +7,10 @@ import ar.edu.unlam.tallerweb1.repositorios.Interfaces.IRepositorioPuntuaciones;
 import ar.edu.unlam.tallerweb1.servicios.Interfaces.IServicioPuntuaciones;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-@Service
-public class ServicioPuntuacion implements IServicioPuntuaciones {
+@Service @Transactional
+public class ServicioPuntuacion implements IServicioPuntuaciones{
 
     private IRepositorioPuntuaciones repositorioUsuario;
 
@@ -19,49 +20,94 @@ public class ServicioPuntuacion implements IServicioPuntuaciones {
     }
 
     @Override
-    public Double puntuacionRoomie(Roomie roomie, Boolean puntuacion) throws UsuarioExistente {
-        Usuario buscado = repositorioUsuario.buscarUsuario(roomie.getEmail(), roomie.getPassword());
+    public Double puntuacionRoomie(Long id, Boolean puntuacion) throws UsuarioExistente {
+        Roomie buscado = repositorioUsuario.ObtenerUnRoomie(id);
+
         if(buscado == null) {
             throw new UsuarioExistente();
-
-        }else{
-            if (puntuacion.booleanValue()) {
-                Double puntaje = subirPuntaje(roomie);
-                roomie.setPuntaje(puntaje);
-
-            } else if(puntuacion.equals(false) && verPuntuacion(roomie)>0.0){
-                roomie.setPuntaje(bajarPuntaje(roomie));
-            }
         }
-        return roomie.getPuntaje();
+        if (buscado != null && puntuacion == true) {
+            subirPuntaje(buscado);
+        }
+        if(buscado != null && puntuacion == false && verPuntaje(buscado)>=0.0){
+            bajarPuntaje(buscado);
+        }
+        if(buscado != null && puntuacion == false && buscado.getPuntaje()==0.0){
+            Double cantidadPuntuaciones = buscado.getCantidadTotalPuntuada();
+            buscado.setCantidadTotalPuntuada(++cantidadPuntuaciones);
+        }
+        return verPuntaje(buscado);
     }
 
     @Override
-    public Double verPuntuacion(Roomie roomie) {
-        Double resultado = 0.0;
+    public Double puntuacionRoomieMail(String email, Boolean puntuacion) throws UsuarioExistente {
+        Roomie buscado = repositorioUsuario.ObtenerUnRoomieMail(email);
+
+        if(buscado == null) {
+            throw new UsuarioExistente();
+        }
+        if (buscado != null && puntuacion == true) {
+            subirPuntaje(buscado);
+        }
+        if(buscado != null && puntuacion == false && verPuntaje(buscado)>=0.0){
+            bajarPuntaje(buscado);
+        }
+        if(buscado != null && puntuacion == false && buscado.getPuntaje()==0.0){
+            Double cantidadPuntuaciones = buscado.getCantidadTotalPuntuada();
+            buscado.setCantidadTotalPuntuada(++cantidadPuntuaciones);
+        }
+        return verPuntaje(buscado);
+    }
+
+    /*Este metodo me devuelve el porcentaje total de un roomie basandose en los votos positivos, lo divide con la cantidad
+     * total y multiplica por 100*/
+    @Override
+    public Double verPuntaje(Roomie roomie) {
+
+        Double resultado;
         Double puntos = roomie.getPuntaje();
         Double cantidadTotalPuntuada = roomie.getCantidadTotalPuntuada();
-        resultado = (puntos / cantidadTotalPuntuada) * 100;
+        if(cantidadTotalPuntuada > 0.0){
+            resultado = (puntos / cantidadTotalPuntuada) * 100;
+        }else{
+            resultado = 0.0;
+        }
         return resultado;
     }
 
     @Override
     public double bajarPuntaje(Roomie roomie) {
         Double cantidadPuntuaciones = roomie.getCantidadTotalPuntuada();
-        roomie.setCantidadTotalPuntuada(cantidadPuntuaciones++);
-        return roomie.getPuntaje();
+        roomie.setCantidadTotalPuntuada(++cantidadPuntuaciones);
+        Double cantidadPuntaje = roomie.getPuntaje();
+        //roomie.setPuntaje(--cantidadPuntaje);
+        return cantidadPuntaje;
     }
 
     @Override
     public Double subirPuntaje(Roomie roomie) {
+
         Double cantidadPuntuaciones = roomie.getCantidadTotalPuntuada();
         Double cantidadPuntaje = roomie.getPuntaje();
-        roomie.setCantidadTotalPuntuada(cantidadPuntuaciones++);
-        cantidadPuntaje++;
-        return cantidadPuntaje++;
-
+        roomie.setCantidadTotalPuntuada(++cantidadPuntuaciones);
+        roomie.setPuntaje(++cantidadPuntaje);
+        return roomie.getPuntaje();
     }
 
+    @Override
+    public Roomie consultarRoomie(Long id) {
+        return repositorioUsuario.ObtenerUnRoomie(id);
+    }
+
+    @Override
+    public Roomie consultarRoomiePorMail(String mail) {
+        return repositorioUsuario.ObtenerUnRoomieMail(mail);
+    }
+
+    @Override
+    public void saveRoomie(Roomie roomie) {
+        repositorioUsuario.AgregarRoomie(roomie);
+    }
 
 }
 
