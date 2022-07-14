@@ -69,28 +69,28 @@ public class ControladorTest {
     }
 
     private void entoncesTengoElnivel(String email) {
-            servicioDeGamification.obtenerNivel(email);
-            when(servicioDeGamification.obtenerNivel(email)).thenReturn("RoomieBasico");
+            servicioDeGamification.obtenerNombreDeLaMedalla(email);
+            when(servicioDeGamification.obtenerNombreDeLaMedalla(email)).thenReturn("RoomieBasico");
     }
     private void entoncesTengoElnivel2(String email) {
-        servicioDeGamification.obtenerNivel(email);
-        when(servicioDeGamification.obtenerNivel(email)).thenReturn("RoomieMedio");
+        servicioDeGamification.obtenerNombreDeLaMedalla(email);
+        when(servicioDeGamification.obtenerNombreDeLaMedalla(email)).thenReturn("RoomieMedio");
     }
     private void entoncesTengoElnivel3(String email) {
-        servicioDeGamification.obtenerNivel(email);
-        when(servicioDeGamification.obtenerNivel(email)).thenReturn("RoomieFantastico");
+        servicioDeGamification.obtenerNombreDeLaMedalla(email);
+        when(servicioDeGamification.obtenerNombreDeLaMedalla(email)).thenReturn("RoomieFantastico");
     }
     private void dadoQueExisteUnRoomieLogueadoCon1punto(String email) {
-        servicioDeGamification.generarPuntajeGamification(email);
-        when(servicioDeGamification.generarPuntajeGamification(email)).thenReturn(1);
+        servicioDeGamification.ReCalcularPuntajeGamification(email);
+        when(servicioDeGamification.ReCalcularPuntajeGamification(email)).thenReturn(1);
     }
     private void dadoQueExisteUnRoomieLogueadoCon2punto(String email) {
-        servicioDeGamification.generarPuntajeGamification(email);
-        when(servicioDeGamification.generarPuntajeGamification(email)).thenReturn(4);
+        servicioDeGamification.ReCalcularPuntajeGamification(email);
+        when(servicioDeGamification.ReCalcularPuntajeGamification(email)).thenReturn(4);
     }
     private void dadoQueExisteUnRoomieLogueadoCon3punto(String email) {
-        servicioDeGamification.generarPuntajeGamification(email);
-        when(servicioDeGamification.generarPuntajeGamification(email)).thenReturn(6);
+        servicioDeGamification.ReCalcularPuntajeGamification(email);
+        when(servicioDeGamification.ReCalcularPuntajeGamification(email)).thenReturn(6);
     }
 
 }

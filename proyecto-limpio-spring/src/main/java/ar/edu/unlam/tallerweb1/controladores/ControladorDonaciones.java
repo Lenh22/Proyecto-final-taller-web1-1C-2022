@@ -76,7 +76,7 @@ public class ControladorDonaciones {
             return new ModelAndView("ver-billetera", model);
 
         }else{
-            model.put("error","El roomie o el monto a donar son incorrecto.");
+            model.put("error","Los datos ingresados son incorrectos.");
         }
         return new ModelAndView("darDonacion",model);
     }

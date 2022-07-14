@@ -21,32 +21,31 @@ public class ServicioDeGamification implements IServicioDeGamification {
 
     @Override
     //ActualizarPuntaje nombre mas claros
-    public Integer generarPuntajeGamification(String email) {
+    public Integer ReCalcularPuntajeGamification(String email) {
         Roomie roomie = repositorioRoomies.ObtenerUnRoomie(email);
 
-        if (roomie.getBilleteraDeDonaciones() >= 1.0) {
+        if (roomie.getPuntaje() >= 2) {
+            roomie.setPuntajeGamification(2);
+        }
+        if (roomie.getBilleteraDeDonaciones() >= 5.0) {
             roomie.setPuntajeGamification(roomie.getPuntajeGamification() + 1);
         }
         if (roomie.getCantidadDeDenuncias() >= 1) {
             roomie.setPuntajeGamification(roomie.getPuntajeGamification() - 1);
         }
-        if (roomie.getPuntaje() >= 1) {
-            roomie.setPuntajeGamification(roomie.getPuntajeGamification() + 1);
-        }
+
         repositorioRoomies.actualizar(roomie);
         return roomie.getPuntajeGamification();
     }
 
     @Override
-    public String obtenerNivel(String mail) {
-
-        if (generarPuntajeGamification(mail) >= 1 && generarPuntajeGamification(mail) < 3) {
-            nivel = "RoomieBasico";
+    public String obtenerNombreDeLaMedalla(String mail) {
+        nivel = "Inicial";
+        if (ReCalcularPuntajeGamification(mail) >= 2 && ReCalcularPuntajeGamification(mail) < 3) {
+            nivel = "Medio";
         }
-        if (generarPuntajeGamification(mail) >= 4 && generarPuntajeGamification(mail) < 5) {
-            nivel = "RoomieMedio";
-        } else {
-            nivel = "RoomieFantastico";
+        if ( ReCalcularPuntajeGamification(mail) > 3){
+            nivel = "Experto";
         }
         return nivel;
     }

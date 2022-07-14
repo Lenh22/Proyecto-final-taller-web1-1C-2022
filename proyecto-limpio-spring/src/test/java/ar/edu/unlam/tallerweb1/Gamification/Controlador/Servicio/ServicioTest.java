@@ -28,7 +28,7 @@ public class ServicioTest {
 
     @Before
     public void init(){
-        this.roomie2 = new Roomie("Maria", "Gonzalez", 20, mail, pass,"roomie",true,true,1.0,1.0,1.0,1.0,5,1);
+        this.roomie2 = new Roomie("Maria", "Gonzalez", 20, mail, pass,"roomie",true,true,1.0,1.0,1.0,10.0,5,1);
         repositorioRoomies = mock(IRepositorioRoomie.class);
         servicioDeGamification = new ServicioDeGamification(repositorioRoomies);
     }
@@ -41,11 +41,11 @@ public class ServicioTest {
     }
 
     private void LeCalculoElPuntaje() {
-        servicioDeGamification.generarPuntajeGamification(roomie2.getEmail());
+        servicioDeGamification.ReCalcularPuntajeGamification(roomie2.getEmail());
     }
 
     private void entoncesTieneElSiguientePuntaje() {
-        assertThat(roomie2.getPuntajeGamification()).isEqualTo(2);
+        assertThat(roomie2.getPuntajeGamification()).isEqualTo(1);
     }
 
     private Roomie dadoQueExiteUnUsuarioConDistintosValores() {

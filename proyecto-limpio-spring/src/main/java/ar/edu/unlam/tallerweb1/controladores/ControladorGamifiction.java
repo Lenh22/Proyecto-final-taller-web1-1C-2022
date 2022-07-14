@@ -25,8 +25,8 @@ public class ControladorGamifiction {
     public ModelAndView mostrarNivel(@ModelAttribute("email") String email) {
         ModelMap model = new ModelMap();
         //try{
-        servicioDeGamification.generarPuntajeGamification(email);
-        resultado=servicioDeGamification.obtenerNivel(email); //nivel
+        servicioDeGamification.ReCalcularPuntajeGamification(email);
+        resultado=servicioDeGamification.obtenerNombreDeLaMedalla(email); //nivel
 
             model.put("nivel", resultado);
 

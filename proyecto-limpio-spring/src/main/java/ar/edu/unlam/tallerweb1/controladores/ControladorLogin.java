@@ -4,6 +4,7 @@ import ar.edu.unlam.tallerweb1.modelo.Roomie;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.IServicioDeGamification;
 import ar.edu.unlam.tallerweb1.servicios.IServicioDeRoomie;
+import ar.edu.unlam.tallerweb1.servicios.IServicioDonaciones;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 @Controller
 public class ControladorLogin {
@@ -28,6 +28,7 @@ public class ControladorLogin {
 	private IServicioDeGamification servicioDeGamification;
 
 	private IServicioDeRoomie servicioDeRoomie;
+
 
 	@Autowired
 	public ControladorLogin(ServicioLogin servicioLogin, IServicioDeGamification servicioDeGamification,IServicioDeRoomie servicioDeRoomie){
@@ -88,8 +89,12 @@ public class ControladorLogin {
 		String email = request.getSession().getAttribute("email").toString();
 		ModelMap model = new ModelMap();
 		Roomie roomie = (Roomie) servicioDeRoomie.consultarUsuario(email);
-		String nivel = servicioDeGamification.obtenerNivel(roomie.getEmail());
+		String nivel = servicioDeGamification.obtenerNombreDeLaMedalla(roomie.getEmail());
+		Double billetera = roomie.getBilleteraDeDonaciones();
+		String nombre = roomie.getNombre();
 		model.put("nivel",nivel);
+		model.put("billtera",billetera);
+		model.put("Nombre",nombre);
 		return new ModelAndView("home",model);
 	}
 

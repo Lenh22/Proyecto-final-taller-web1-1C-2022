@@ -40,7 +40,7 @@ public class ControladorDenuncia {
 
                 model.put("email", datosdenuncia.getEmail());
                 model.put("estado", datosdenuncia.getEstado());
-                model.put("error", "Se denuncio Exitosamente");
+                model.put("exito", "La accion se completo");
                 return new ModelAndView("denuncia", model);
             }
          else {
